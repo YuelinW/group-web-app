@@ -13,9 +13,9 @@ code {
 }
 
 .wd-profile-image {
-  position: absolute;
-  top: 250px;
-  left: 300px;
+  position: relative;
+  bottom: 70px;
+  left: 10px;
   border: white 2px solid;
 }
 
@@ -23,10 +23,6 @@ code {
   object-fit: cover;
 }
 
-.wd-nudge-down-s {
-  margin-top: 30px;
-}
-
-.wd-nudge-down-m {
-  margin-top: 60px;
+.wd-nudge-up {
+  margin-top: -50px;
 }

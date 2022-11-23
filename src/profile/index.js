@@ -11,6 +11,8 @@ import Following from "./profile-content/following";
 import Follower from "./profile-content/follower";
 import Friend from "./profile-content/friend";
 import BasicInfo from "./profile-content/basic-info";
+import ProfileHeader from "./profile-header";
+import ProfileAbout from "./profile-about";
 
 
 const Profile = () => {
@@ -19,9 +21,7 @@ const Profile = () => {
   const dispatch = useDispatch();
   // useEffect(() => {dispatch()}, []); // TODO: load when first render
 
-  const joindayArray = profile.dateJoined.split("/");
-  const birthdayArray = profile.dateOfBirth.split("/");
-  const months = ["", "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+  const [activeComponent, setActiveComponent] = useState("basic");
 
   return (
       <div>
@@ -30,45 +30,48 @@ const Profile = () => {
         <div><input type="radio" className="form-check-input" name="isUser" id="isNotUser" onClick={() => setUserIsProfileHolder(false)}/><label htmlFor="isNotUser">Not User</label></div>
 
         <div>
-          <div className="d-flex flex-wrap align-items-center row">
-            <div className="col-1">
-              <Link to="/"><i className="bi bi-arrow-left-circle-fill fa-2x"></i></Link>
-            </div>
-            <div className="col-11">
-              <h3 className="mb-0 fw-bolder text-primary">{profile.username}</h3>
-            </div>
-          </div>
-          <img src={profile.bannerPicture} height={230} alt={profile.bannerPicture} className="w-100 rounded-1 mt-1 wd-object-fit-cover-image"/>
-          <div>
-            <img src={profile.profilePicture} height={150} width={150} alt={profile.profilePicture} className="rounded-2 ms-3 wd-profile-image"/>
-            {
-              userIsProfileHolder && <Link to="/edit-profile"><button className="btn btn-primary float-end rounded-pill mt-2 me-2">Update Your Profile</button></Link>
-            }
-          </div>
-          <div className="wd-nudge-down-m">
+          <ProfileHeader profile={profile}/>
+          <div className="wd-nudge-up">
             <div className="row">
-              <div className="col-3">
-                <ProfileNavbar/>
+              <div className="col-2 col-md-2 col-lg-1 col-xl-3">
+                <div className="btn-group-vertical w-100" role="group" arial-label="Profile Navbar">
+                  <input type="radio" className="btn-check btn-primary" name="profile-radio"
+                         id="radio-basic" autoComplete="off" defaultChecked onClick={() => setActiveComponent("basic")}/>
+                  <label className="btn btn-outline-primary text-start fa-lg p-3"
+                         htmlFor="radio-basic"><i className="bi bi-person-circle fa-lg pe-2"></i><span className="d-none d-xl-inline">Basic Information</span></label>
+                  <input type="radio" className="btn-check " name="profile-radio"
+                         id="radio-activity" autoComplete="off" onClick={() => setActiveComponent("activity")}/>
+                  <label className="btn btn-outline-primary text-start fa-lg p-3"
+                         htmlFor="radio-activity"><i className="bi bi-activity fa-lg pe-2"></i><span className="d-none d-xl-inline">Recent Activity</span></label>
+                  <input type="radio" className="btn-check" name="profile-radio"
+                         id="radio-review" autoComplete="off" onClick={() => setActiveComponent("review")}/>
+                  <label className="btn btn-outline-primary text-start fa-lg p-3"
+                         htmlFor="radio-review"><i className="bi bi-r-square-fill fa-lg pe-2"></i><span className="d-none d-xl-inline">Reviews</span></label>
+                  <input type="radio" className="btn-check" name="profile-radio"
+                         id="radio-following" autoComplete="off" onClick={() => setActiveComponent("following")}/>
+                  <label className="btn btn-outline-primary text-start fa-lg p-3"
+                         htmlFor="radio-following"><i className="bi bi-person-fill-check fa-lg pe-2"></i><span className="d-none d-xl-inline">Following</span></label>
+                  <input type="radio" className="btn-check" name="profile-radio"
+                         id="radio-follower" autoComplete="off" onClick={() => setActiveComponent("follower")}/>
+                  <label className="btn btn-outline-primary text-start fa-lg p-3"
+                         htmlFor="radio-follower"><i className="bi bi-person-fill-down fa-lg pe-2"></i><span className="d-none d-xl-inline">Followers</span></label>
+                  <input type="radio" className="btn-check" name="profile-radio"
+                         id="radio-friend" autoComplete="off" onClick={() => setActiveComponent("friend")}/>
+                  <label className="btn btn-outline-primary text-start fa-lg p-3"
+                         htmlFor="radio-friend"><i className="bi bi-people-fill fa-lg pe-2"></i><span className="d-none d-xl-inline">Friends</span></label>
+                </div>
               </div>
-              <div className="col-6">
-                <Routes>
-                  <Route index element={<BasicInfo/>}/>
-                  <Route path="home" element={<BasicInfo/>}/>
-                  <Route path="activity" element={<RecentActivity/>}/>
-                  <Route path="review" element={<Review/>}/>
-                  <Route path="following" element={<Following/>}/>
-                  <Route path="follower" element={<Follower/>}/>
-                  <Route path="friend" element={<Friend/>}/>
-                </Routes>
+              <div className="col-10 col-md-7 col-lg-8 col-xl-6">
+                {(activeComponent === 'basic') && <BasicInfo profile={profile}/>}
+                {(activeComponent === 'activity') && <RecentActivity/>}
+                {(activeComponent === 'review') && <Review/>}
+                {(activeComponent === 'following') && <Following/>}
+                {(activeComponent === 'follower') && <Follower/>}
+                {(activeComponent === 'friend') && <Friend/>}
               </div>
-              <div className="col-3 bg-light p-3 rounded-3">
-                <h3 className="fw-bold text-primary pb-3">About {profile.username}</h3>
-                <h5 className="fw-bold"><i className="bi bi-geo-alt me-2"></i>Location</h5>
-                <div className="me-3 pb-3">{profile.location}</div>
-                <h5 className="fw-bold"><i className="bi bi-calendar3 me-2"></i>Sharing Since</h5>
-                <div className="me-3 pb-3">{months[joindayArray[0]] + " " + joindayArray[1]}</div>
-                <h5 className="fw-bold"><i className="bi bi-balloon-heart me-2"></i>Things I Love</h5>
-                <div className="me-3 pb-3">{profile.bio}</div>
+
+              <div className="d-none d-md-block col-md-3 col-lg-3 bg-light p-3 rounded-3">
+                <ProfileAbout profile={profile}/>
               </div>
               {
                   userIsProfileHolder && <PrivateProfile profile={profile}/>
