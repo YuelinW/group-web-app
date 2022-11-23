@@ -11,3 +11,21 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.wd-profile-image {
+  position: absolute;
+  top: 220px;
+  border: white 2px solid;
+}
+
+.wd-object-fit-cover-image {
+  object-fit: cover;
+}
+
+.wd-nudge-down-s {
+  margin-top: 30px;
+}
+
+.wd-nudge-down-m {
+  margin-top: 60px;
+}
