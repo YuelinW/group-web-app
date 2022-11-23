@@ -14,7 +14,8 @@ code {
 
 .wd-profile-image {
   position: absolute;
-  top: 220px;
+  top: 250px;
+  left: 300px;
   border: white 2px solid;
 }
 

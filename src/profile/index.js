@@ -10,6 +10,7 @@ import Review from "./profile-content/review";
 import Following from "./profile-content/following";
 import Follower from "./profile-content/follower";
 import Friend from "./profile-content/friend";
+import BasicInfo from "./profile-content/basic-info";
 
 
 const Profile = () => {
@@ -34,40 +35,40 @@ const Profile = () => {
               <Link to="/"><i className="bi bi-arrow-left-circle-fill fa-2x"></i></Link>
             </div>
             <div className="col-11">
-              <h3 className="mb-0 fw-bolder">{profile.username}</h3>
+              <h3 className="mb-0 fw-bolder text-primary">{profile.username}</h3>
             </div>
           </div>
-          <img src={profile.bannerPicture} height={200} alt={profile.bannerPicture} className="w-100 rounded-1 mt-1 wd-object-fit-cover-image"/>
+          <img src={profile.bannerPicture} height={230} alt={profile.bannerPicture} className="w-100 rounded-1 mt-1 wd-object-fit-cover-image"/>
           <div>
             <img src={profile.profilePicture} height={150} width={150} alt={profile.profilePicture} className="rounded-2 ms-3 wd-profile-image"/>
             {
               userIsProfileHolder && <Link to="/edit-profile"><button className="btn btn-primary float-end rounded-pill mt-2 me-2">Update Your Profile</button></Link>
             }
-
           </div>
           <div className="wd-nudge-down-m">
-            <p>{profile.bio}</p>
-            <span className="me-3"><i className="bi bi-calendar3 me-1"></i>Joined {months[joindayArray[0]] + " " + joindayArray[1]}</span>
-            <span className="me-3"><i className="bi bi-geo-alt me-1"></i>{profile.location}</span>
-            <span className="me-3"><i className="bi bi-balloon me-1"></i>Born {months[parseInt(birthdayArray[0])] + " " + parseInt(birthdayArray[1]) + ", " + birthdayArray[2]}</span>
-          </div>
-          <div className="wd-nudge-down-s">
             <div className="row">
               <div className="col-3">
                 <ProfileNavbar/>
               </div>
               <div className="col-6">
                 <Routes>
-                  <Route index element={<RecentActivity/>}/>
-                  <Route path="home" element={<RecentActivity/>}/>
+                  <Route index element={<BasicInfo/>}/>
+                  <Route path="home" element={<BasicInfo/>}/>
+                  <Route path="activity" element={<RecentActivity/>}/>
                   <Route path="review" element={<Review/>}/>
                   <Route path="following" element={<Following/>}/>
-                  <Route path="followers" element={<Follower/>}/>
-                  <Route path="friends" element={<Friend/>}/>
+                  <Route path="follower" element={<Follower/>}/>
+                  <Route path="friend" element={<Friend/>}/>
                 </Routes>
               </div>
-              <div className="col-3">
-                About this person
+              <div className="col-3 bg-light p-3 rounded-3">
+                <h3 className="fw-bold text-primary pb-3">About {profile.username}</h3>
+                <h5 className="fw-bold"><i className="bi bi-geo-alt me-2"></i>Location</h5>
+                <div className="me-3 pb-3">{profile.location}</div>
+                <h5 className="fw-bold"><i className="bi bi-calendar3 me-2"></i>Sharing Since</h5>
+                <div className="me-3 pb-3">{months[joindayArray[0]] + " " + joindayArray[1]}</div>
+                <h5 className="fw-bold"><i className="bi bi-balloon-heart me-2"></i>Things I Love</h5>
+                <div className="me-3 pb-3">{profile.bio}</div>
               </div>
               {
                   userIsProfileHolder && <PrivateProfile profile={profile}/>
