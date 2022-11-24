@@ -26,3 +26,7 @@ code {
 .wd-nudge-up {
   margin-top: -50px;
 }
+
+.wd-hover-cursor {
+  cursor: pointer;
+}
