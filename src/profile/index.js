@@ -1,7 +1,6 @@
 import React, {useState} from 'react';
 import {useDispatch, useSelector} from "react-redux";
 import {useEffect} from "react";
-import PrivateProfile from "./private-profile";
 import RecentActivity from "./profile-content/recent-activity";
 import Review from "./profile-content/review";
 import Following from "./profile-content/following";
@@ -11,10 +10,13 @@ import BasicInfo from "./profile-content/basic-info";
 import ProfileHeader from "./profile-header";
 import ProfileAbout from "./profile-about";
 import NotLoggedIn from "./not-logged-in";
+import {useLocation} from "react-router";
 
 
 const Profile = () => {
   const {profile} = useSelector(state => state.profile);
+  const {pathname} = useLocation();
+  const paths = pathname.split("/");
   const [isLoggedIn, setIsLoggedIn] = useState(true); // Only for production: if true, can see private profile.
   const dispatch = useDispatch();
   // useEffect(() => {dispatch()}, []); // TODO: load when first render
@@ -27,10 +29,10 @@ const Profile = () => {
         <div><input type="radio" className="form-check-input me-1" name="isUser" id="isUser" defaultChecked onClick={() => setIsLoggedIn(true)}/><label htmlFor="isUser">Yes</label></div>
         <div><input type="radio" className="form-check-input me-1" name="isUser" id="isNotUser" onClick={() => setIsLoggedIn(false)}/><label htmlFor="isNotUser">No</label></div>
         {
-          !isLoggedIn && <NotLoggedIn/>
+          !isLoggedIn && paths.length === 2 && <NotLoggedIn/>
         }
         {
-          isLoggedIn &&
+          (isLoggedIn || paths.length === 3) &&
             <div>
               <ProfileHeader profile={profile}/>
               <div className="wd-nudge-up">
