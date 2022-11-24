@@ -4,15 +4,14 @@ import React from "react";
 const PrivateProfile = ({profile}) => {
   return (
       <div className="ms-3">
-        <h1>Private</h1>
-        <h5 className="fw-bold mb-0">{profile.firstName} {profile.lastName}</h5>
-        <div className="text-secondary">{profile.username}</div>
-        <div className="mt-3">
-        </div>
-        <div className="mt-3">
-          <span className="me-3"><span className="fw-bold text-white">{profile.followingCount}</span> Following</span>
-          <span className="fw-bold text-white">{profile.followersCount}</span> Followers
-        </div>
+        <h3 className="text-info">Private Information</h3>
+        <ul className="list-group list-group-flush">
+          <li className="list-group-item w-75"><div className="fw-bold mb-0 text-secondary">First Name:<span className="text-dark ps-2">{profile.firstName}</span></div></li>
+          <li className="list-group-item w-75"><div className="fw-bold mb-0 text-secondary">Last Name:<span className="text-dark ps-2">{profile.lastName}</span></div></li>
+          <li className="list-group-item w-75"><div className="fw-bold mb-0 text-secondary">User Name:<span className="text-dark ps-2">{profile.username}</span></div></li>
+          <li className="list-group-item w-75"><div className="fw-bold mb-0 text-secondary">Email:<span className="text-dark ps-2">{profile.email}</span></div></li>
+          <li className="list-group-item w-75"><div className="fw-bold mb-0 text-secondary">Phone:<span className="text-dark ps-2">{profile.phone}</span></div></li>
+        </ul>
       </div>
   );
 };

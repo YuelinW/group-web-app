@@ -8,7 +8,6 @@ const ProfileHeader = ({profile}) => {
   const showEdit = paths.length === 2; // if == 3, then it is ["", "profile", "uid"] and we should not show update button
 
   return (
-
       <>
         <div className="d-flex flex-wrap align-items-center row">
           <div className="col-1">

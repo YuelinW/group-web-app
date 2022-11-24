@@ -12,7 +12,7 @@ const ProfileAbout = ({profile}) => {
         <div className="me-3 pb-3">{profile.location}</div>
         <h5 className="fw-bold"><i className="bi bi-calendar2-heart me-2"></i>Birthday</h5>
         <div className="me-3 pb-3">{months[parseInt(birthdayArray[0])] + " " + parseInt(birthdayArray[1]) + ", " + birthdayArray[2]}</div>
-        <h5 className="fw-bold"><i className="bi bi-calendar3 me-2"></i>Sharing Since</h5>
+        <h5 className="fw-bold"><i className="bi bi-calendar3 me-2"></i>Joined Since</h5>
         <div className="me-3 pb-3">{months[joindayArray[0]] + " " + joindayArray[1]}</div>
         <h5 className="fw-bold"><i className="bi bi-balloon-heart me-2"></i>Things I Love</h5>
         <div className="me-3 pb-3">{profile.bio}</div>

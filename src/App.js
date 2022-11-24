@@ -5,6 +5,7 @@ import {Provider} from "react-redux";
 import {Route, Routes} from "react-router";
 import profileReducer from "./profile/profile-reducer";
 import {BrowserRouter} from "react-router-dom";
+import EditProfile from "./profile/edit-profile";
 
 
 const store = configureStore({
@@ -18,6 +19,7 @@ function App() {
         <Provider store={store}>
           <Routes>
             <Route path="/profile/*" element={<Profile/>}></Route>
+            <Route path="/edit-profile" element={<EditProfile/>}></Route>
           </Routes>
         </Provider>
       </div>
