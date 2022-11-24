@@ -1,0 +1,26 @@
+[
+  { "_id": 123,
+    "name": "Just Poke",
+    "rating": 4.5,
+    "reviews": 123,
+    "location": "Redmond",
+    "image":"https://user-images.githubusercontent.com/113388766/203698608-b4dd68f5-467c-4bc2-8b0b-5e102ecc3438.jpg",
+    "category":"Hawaiian"
+  },
+  { "_id": 234,
+    "name": "Serious Pie",
+    "rating": 5.0,
+    "reviews": 41,
+    "location": "Kirkland",
+    "image":"https://user-images.githubusercontent.com/113388766/203701491-d86574f0-1711-42c1-b5c1-3d65a3802f78.jpg",
+    "category":"Pizza"
+  },
+  { "_id": 345,
+    "name": "DERU Market",
+    "rating": 4.8,
+    "reviews": 1591,
+    "location": "Kirkland",
+    "image":"https://user-images.githubusercontent.com/113388766/203701761-becacf61-8c41-49d3-8ab7-446fa862582a.jpg",
+    "category":"Brunch"
+  }
+]
