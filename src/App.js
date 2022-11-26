@@ -3,15 +3,17 @@ import Profile from "./profile";
 import {configureStore} from "@reduxjs/toolkit";
 import {Provider} from "react-redux";
 import {Route, Routes} from "react-router";
-import profileReducer from "./profile/profile-reducer";
+import profileReducer from "./profile/profile-service/profile-reducer";
 import {BrowserRouter} from "react-router-dom";
 import EditProfile from "./profile/edit-profile";
 import ProfileOther from "./profile/profile-other";
-import otherProfileReducer from "./profile/other-profile-reducer";
+import userActivityReducer
+  from "./profile/profile-service/user-activity-reducer";
+import restaurantsReducer from "./restaurant/restaurants-reducer";
 
 
 const store = configureStore({
-  reducer: {profile: profileReducer, otherProfile: otherProfileReducer}
+  reducer: {profile: profileReducer, userActivity: userActivityReducer, restaurantsData: restaurantsReducer}
 });
 
 function App() {

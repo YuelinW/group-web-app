@@ -10,7 +10,7 @@ const BasicInfo = ({profile}) => {
       <>
         {isLoggedIn && <PrivateProfile profile={profile}/>}
         {!isLoggedIn &&
-            <h4 className="text-info">This content is only viewable for the user. Please log in to see details of your profile.</h4>
+            <h4 className="text-info">This content is only viewable by the account owner. Please log in to see details of your profile.</h4>
         }
       </>
   );
