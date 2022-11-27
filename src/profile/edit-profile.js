@@ -4,27 +4,20 @@ import {useState} from "react";
 import React from "react";
 import {updateProfileThunk} from "./profile-service/profile-thunks";
 import {updateProfile} from "./profile-service/profile-reducer";
+import dateFormat from "dateformat";
 
 const EditProfile = () => {
-  const {profile} = useSelector(state => state.profile);
-
-  // Reformat date of birth
-  let profileBirthdayMonth = profile.dateOfBirth.split("/")[0];
-  let profileBirthdayDate = profile.dateOfBirth.split("/")[1];
-  if (profileBirthdayMonth.length === 1) {
-    profileBirthdayMonth = "0" + profileBirthdayMonth;
-  }
-  if (profileBirthdayDate.length === 1) {
-    profileBirthdayDate = "0" + profileBirthdayDate;
-  }
-  let profileBirthdayYear = profile.dateOfBirth.split("/")[2];
-
+  const {profile} = useSelector(state => state.profile); //TODO: may need to change to state.user. > need to get the current login user
   const [nameString, setNameString] = useState(profile.firstName + " " + profile.lastName);
   const [bioString, setBioString] = useState(profile.bio);
   const [emailString, setEmailString] = useState(profile.email);
   const [phoneString, setPhoneString] = useState(profile.phone);
   const [passwordString, setPasswordString] = useState(profile.password);
   const [locationString, setLocationString] = useState(profile.location);
+
+  const profileBirthdayYear = profile.dateOfBirth.substring(0, 4);
+  const profileBirthdayMonth = profile.dateOfBirth.substring(5, 7);
+  const profileBirthdayDate = profile.dateOfBirth.substring(8, 10);
   const [birthdateString, setBirthdateString] = useState(profileBirthdayYear + "-" + profileBirthdayMonth + "-" + profileBirthdayDate);
   const [dateInEdit, setDateInEdit] = useState(false);
 
@@ -58,7 +51,6 @@ const EditProfile = () => {
 
   const dispatch = useDispatch();
   const saveHandler = () => {
-    const birthdateStringArray = birthdateString.split("-");
     const newProfile = {
       firstName: nameString.split(" ")[0],
       lastName: nameString.split(" ")[1],
@@ -67,12 +59,12 @@ const EditProfile = () => {
       password: passwordString,
       bio: bioString,
       location: locationString,
-      dateOfBirth: birthdateStringArray[1] + "/" + birthdateStringArray[2] + "/" + birthdateStringArray[0]
+      dateOfBirth: birthdateString
     }
     // dispatch(updateProfileThunk(newProfile)); // TODO
     dispatch(updateProfile(newProfile)); // TODO: to be deleted
   };
-
+  const birthdayArray = birthdateString.split("/");
   return (
       <div className="container w-50">
         <div className="d-flex align-items-center row mt-2 mb-2">

@@ -3,7 +3,7 @@ import React from "react";
 
 const customerList = [
   {_id: "customerlist1", icon: "bi bi-person-circle", label: "Basic Information", active: "basic"},
-  {_id: "customerlist2", icon: "bi bi-activity", label: "Recent Activity", active: "activity"},
+  // {_id: "customerlist2", icon: "bi bi-activity", label: "Recent Activity", active: "activity"},
   {_id: "customerlist3", icon: "bi bi-r-square-fill", label: "Reviews", active: "review"},
   {_id: "customerlist4", icon: "bi bi-person-fill-check", label: "Following", active: "following"},
   {_id: "customerlist5", icon: "bi bi-person-fill-down", label: "Followers", active: "follower"},

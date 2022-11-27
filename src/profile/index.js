@@ -21,14 +21,14 @@ import UserList from "./profile-content/user-list";
 
 
 const Profile = () => {
-  const {profile} = useSelector(state => state.profile);
-  const [isLoggedIn, setIsLoggedIn] = useState(true); // Only for production: if true, can see private profile.
+  const {profile} = useSelector(state => state.profile); // TODO
+  const [isLoggedIn, setIsLoggedIn] = useState(true); // Only for production: if true, can see private profile. TODO: isLoggedIn = currentUser != null
   const dispatch = useDispatch();
   const [activeComponent, setActiveComponent] = useState('basic'); // all roles start with basic
-  // useEffect(() => {dispatch()}, []); // TODO: load when first render. update this to have activeComponent to be "basic"
+  // useEffect(() => {dispatch(loginThunk())}, []); // TODO: load when first render. update this to have activeComponent to be "basic"
 
   return (
-      <div>
+      <div className="mt-2 mb-2">
         <div>Is the user logged in?</div>
         <div><input type="radio" className="form-check-input me-1" name="isUser" id="isUser" defaultChecked onClick={() => setIsLoggedIn(true)}/><label htmlFor="isUser">Yes</label></div>
         <div><input type="radio" className="form-check-input me-1" name="isUser" id="isNotUser" onClick={() => setIsLoggedIn(false)}/><label htmlFor="isNotUser">No</label></div>
@@ -44,7 +44,7 @@ const Profile = () => {
                   <ProfileNavbar role={profile.role} setActiveComponent ={setActiveComponent}/>
                   <div className="col-10 col-md-7 col-lg-8 col-xl-6">
                     {(activeComponent === 'basic') && <BasicInfo profile={profile}/>}
-                    {(activeComponent === 'activity') && <RecentActivity profile={profile}/>}
+                    {/*{(activeComponent === 'activity') && <RecentActivity profile={profile}/>}*/}
                     {(activeComponent === 'review') && <Review profile={profile}/>}
                     {(activeComponent === 'following') && <Following profile={profile}/>}
                     {(activeComponent === 'follower') && <Follower profile={profile}/>}
