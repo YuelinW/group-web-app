@@ -1,0 +1,18 @@
+{
+  "_id": 234,
+  "firstName": "Bob",
+  "lastName": "Johnson",
+  "username": "bob233",
+  "email": "bob.johnson@email.com",
+  "phone": "123-456-7890",
+  "profilePicture": "https://user-images.githubusercontent.com/15254181/204069325-ab0b880c-551f-4570-986b-2d449206499e.png",
+  "bannerPicture": "https://user-images.githubusercontent.com/15254181/203613376-d7c29b41-9deb-4fce-9ebd-0c0a5f5cf44b.jpg",
+  "bio": "I am Bob. I love eating",
+  "role": "CUSTOMER",
+  "location": "Bellevue, WA",
+  "dateOfBirth": "3/2/1943",
+  "dateJoined": "1/2011",
+  "password": "p@assWord1",
+  "followersCount": 123,
+  "followingCount": 23
+}

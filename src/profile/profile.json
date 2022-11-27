@@ -1,5 +1,5 @@
 {
-  "_id": 123,
+  "_id": "63814758e61fadd4540f639b",
   "firstName": "Alice",
   "lastName": "Doe",
   "username": "alice666",
@@ -8,11 +8,11 @@
   "profilePicture": "https://user-images.githubusercontent.com/15254181/203483222-a01e1942-19e4-49c8-b3e3-41dd0ce8b3de.jpg",
   "bannerPicture": "https://user-images.githubusercontent.com/15254181/203613376-d7c29b41-9deb-4fce-9ebd-0c0a5f5cf44b.jpg",
   "bio": "Foodie. I love sushi, ramen, dumplings. Please follow me!",
-  "role": "ADMIN",
+  "role": "CUSTOMER",
   "location": "Seattle, WA",
   "dateOfBirth": "5/2/1963",
   "dateJoined": "12/2021",
   "password": "p@assWord1",
-  "followersCount": 123,
-  "followingCount": 23
+  "followersCount": 1,
+  "followingCount": 1
 }

@@ -1,5 +1,5 @@
 import {createSlice} from "@reduxjs/toolkit";
-import profile from "./profile.json";
+import profile from "../profile.json";
 
 const initialState = {
   loading: false,

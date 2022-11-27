@@ -2,8 +2,8 @@ import {useDispatch, useSelector} from "react-redux";
 import {Link} from "react-router-dom";
 import {useState} from "react";
 import React from "react";
-import {updateProfileThunk} from "./profile-thunks";
-import {updateProfile} from "./profile-reducer";
+import {updateProfileThunk} from "./profile-service/profile-thunks";
+import {updateProfile} from "./profile-service/profile-reducer";
 
 const EditProfile = () => {
   const {profile} = useSelector(state => state.profile);

@@ -24,10 +24,8 @@ const Profile = () => {
   const {profile} = useSelector(state => state.profile);
   const [isLoggedIn, setIsLoggedIn] = useState(true); // Only for production: if true, can see private profile.
   const dispatch = useDispatch();
-  // useEffect(() => {dispatch()}, []); // TODO: load when first render
-
-
   const [activeComponent, setActiveComponent] = useState('basic'); // all roles start with basic
+  // useEffect(() => {dispatch()}, []); // TODO: load when first render. update this to have activeComponent to be "basic"
 
   return (
       <div>
