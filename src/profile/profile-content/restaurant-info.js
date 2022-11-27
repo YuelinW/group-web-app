@@ -14,7 +14,7 @@ const RestaurantInfo = ({restaurantID}) => {
       <div className="list-group" key={restaurantID}>
         {singleRestaurant &&
         <>
-          <div><Link to={`/details/${restaurantID}`}>Restaurant: {singleRestaurant.name}</Link><span className="ps-3">Price: {singleRestaurant.price}</span></div>
+          <div><Link to={`/details/${restaurantID}`}>Restaurant: {singleRestaurant.name}</Link><span className="ps-4">Price: {singleRestaurant.price}</span></div>
         </>
         }
       </div>
