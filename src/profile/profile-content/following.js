@@ -1,6 +1,10 @@
-const Following = () => {
+import React from "react";
+
+const Following = ({profile}) => {
   return (
-      <h4>Following</h4>
+      <div className="ms-3">
+        <h3 className="text-info">Following</h3>
+      </div>
   );
 };
 export default Following;
