@@ -1,23 +1,8 @@
-import React, {useEffect, useState} from "react";
-import RestaurantInfo from "./restaurant-info";
-import * as service from "../../review/review-service";
+import React from "react";
 
-const generateRating = (rating) => {
-  let result = '';
-  const singleStar = '<i class="bi bi-star-fill text-primary"></i>';
-  for (let i = 0; i < rating; i++) {
-    result = result + singleStar;
-  }
-  return result;
-}
 
 const RecentActivity = ({profile}) => {
-  const [reviews, setReviews] = useState([]);
-  useEffect(() => {
-    service.findAllReviewsByUserID(profile._id)
-    .then(res => {setReviews(res); console.log(res); return res;})
-    .catch(() => setReviews(null))
-  }, []);
+
 
   return (
       <div className="ms-3">
