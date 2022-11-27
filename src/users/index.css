@@ -1,0 +1,28 @@
+.wd-auth-form {
+  width: 500px;
+  box-shadow: rgb(0 0 0 / 16%) 1px 1px 10px;
+  padding-top: 30px;
+  padding-bottom: 30px;
+  border-radius: 8px;
+}
+
+.wd-auth-form-content {
+  padding-left: 12%;
+  padding-right: 12%;
+}
+
+.wd-auth-form-title {
+  text-align: center;
+  font-weight: bold;
+}
+
+.wd-sign-up-box {
+  width: 500px;
+  text-align: center;
+  font-weight: bold;
+  margin-top: 20px;
+}
+
+a:link {
+  text-decoration: none;
+}
