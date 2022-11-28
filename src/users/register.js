@@ -1,9 +1,10 @@
 import React, {useState} from "react";
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {registerThunk} from "./users-thunks";
 import "./index.css";
 import {Link} from "react-router-dom";
 import AvatarUploader from "react-avatar-uploader";
+import {Navigate} from "react-router";
 
 const Register = () => {
   const [role, setRole] = useState('')
@@ -18,6 +19,7 @@ const Register = () => {
   const [location, setLocation] = useState('')
   const [dateOfBirth, setDateOfBirth] = useState('')
   const [error, setError] = useState(null)
+  const {currentUser} = useSelector((state) => state.users)
   const dispatch = useDispatch()
   const handleRegisterBtn = (e) => {
     e.preventDefault();
@@ -69,16 +71,19 @@ const Register = () => {
     const newUser = {role, profilePicture, username, firstName, lastName, email, phone, password, location, dateOfBirth}
     dispatch(registerThunk(newUser))
   }
+  if (currentUser) {
+    return (<Navigate to={'/profile'}/>)
+  }
   return(
       <div className="d-flex justify-content-center">
         <form className="wd-auth-form">
           <div className="wd-auth-form-content">
             <h3 className="wd-auth-form-title">Sign Up</h3>
             {
-                error &&
-                <div className="alert alert-danger mt-2 mb-2">
-                  {error}
-                </div>
+              error &&
+              <div className="alert alert-danger mt-2 mb-2">
+                {error}
+              </div>
             }
             <div className="form-group">
               <h6 className="mt-4 fw-bold">Select your role</h6>

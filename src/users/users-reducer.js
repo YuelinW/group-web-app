@@ -1,5 +1,10 @@
 import {createSlice} from "@reduxjs/toolkit";
-import {findAllUsersThunk, registerThunk} from "./users-thunks";
+import {
+  findAllUsersThunk,
+  loginThunk,
+  logoutThunk, profileThunk,
+  registerThunk
+} from "./users-thunks";
 
 const usersReducer = createSlice({
   name: 'users',
@@ -15,13 +20,13 @@ const usersReducer = createSlice({
     [findAllUsersThunk.fulfilled]: (state, action) => {
       state.users = action.payload
     },
-    // [loginThunk.fulfilled]: (state, action) => {
-    //   state.currentUser = action.payload
-    // },
-    // [loginThunk.rejected]: (state, action) => {
-    //   state.error = action.payload
-    //   state.currentUser = null
-    // },
+    [loginThunk.fulfilled]: (state, action) => {
+      state.currentUser = action.payload
+    },
+    [loginThunk.rejected]: (state, action) => {
+      state.error = action.payload
+      state.currentUser = null
+    },
     [registerThunk.fulfilled]: (state, action) => {
       state.currentUser = action.payload
     },
@@ -29,16 +34,16 @@ const usersReducer = createSlice({
       state.error = action.payload
       state.currentUser = null
     },
-    // [logoutThunk.fulfilled]: (state, action) => {
-    //   state.currentUser = null
-    // },
-    // [profileThunk.fulfilled]: (state, action) => {
-    //   state.currentUser = action.payload
-    // },
-    // [profileThunk.rejected]: (state, action) => {
-    //   state.error = action.payload
-    //   state.currentUser = null
-    // },
+    [logoutThunk.fulfilled]: (state, action) => {
+      state.currentUser = null
+    },
+    [profileThunk.fulfilled]: (state, action) => {
+      state.currentUser = action.payload
+    },
+    [profileThunk.rejected]: (state, action) => {
+      state.error = action.payload
+      state.currentUser = null
+    }
   }
 })
 

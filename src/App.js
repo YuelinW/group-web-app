@@ -8,7 +8,7 @@ import Register from "./users/register";
 import usersReducer from "./users/users-reducer";
 import {Provider} from "react-redux";
 import CurrentUser from "./users/current-user";
-import UserList from "./users";
+import ProtectedRoute from "./users/protected-route";
 
 const store = configureStore({
   reducer: {
@@ -23,10 +23,13 @@ function App() {
           <CurrentUser>
             <BrowserRouter>
               <Routes>
-                <Route path="/users" element={<UserList/>}/>
                 <Route path="/login" element={<Login/>}/>
                 <Route path="/register" element={<Register/>}/>
-                <Route path="/profile" element={<Profile/>}/>
+                <Route path="/profile" element={
+                  <ProtectedRoute>
+                    <Profile/>
+                  </ProtectedRoute>
+                }/>
               </Routes>
             </BrowserRouter>
           </CurrentUser>
