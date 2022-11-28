@@ -24,7 +24,7 @@ export const createAdvertisement = async (ad) => {
 };
 
 export const updateAdvertisement = async (ad) => {
-  await axios.put(`${YEALP_API}/${ad.id}`);
+  await axios.put(`${YEALP_API}/${ad._id}`, ad);
   return ad;
 };
 

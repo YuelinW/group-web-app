@@ -2,7 +2,7 @@ import {createSlice} from "@reduxjs/toolkit";
 import {
   deleteAdvertisementByIDThunk,
   findAllAdvertisementsByOwnerIDThunk,
-  findAllAdvertisementsThunk
+  findAllAdvertisementsThunk, updateAdvertisementThunk
 } from "./advertisements-thunks";
 
 
@@ -50,6 +50,15 @@ const advertisementsSlice = createSlice({
           state.allAds = state.allAds.filter(a => a._id !== payload)
           state.adsOfOwner = state.adsOfOwner.filter(a => a._id !== payload) // this can be used for both admin delete or owner delete
         },
+    [updateAdvertisementThunk.fulfilled]:
+        (state, {payload}) => {
+          state.loading = false;
+          const index = state.adsOfOwner.findIndex(t => t._id === payload._id);
+          state.adsOfOwner[index] = {
+            ...state.adsOfOwner[index],
+            ...payload
+          };
+        }
   }
 });
 export default advertisementsSlice.reducer;
