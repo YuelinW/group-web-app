@@ -10,10 +10,11 @@ import ProfileOther from "./profile/profile-other";
 import userActivityReducer
   from "./profile/profile-service/user-activity-reducer";
 import restaurantsReducer from "./restaurant/restaurants-reducer";
+import advertisementsReducer from "./advertisement/advertisements-reducer";
 
 
 const store = configureStore({
-  reducer: {profile: profileReducer, userActivity: userActivityReducer, restaurantsData: restaurantsReducer}
+  reducer: {profile: profileReducer, userActivity: userActivityReducer, restaurants: restaurantsReducer, advertisements: advertisementsReducer}
 });
 
 function App() {

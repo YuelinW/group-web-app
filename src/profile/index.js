@@ -11,12 +11,11 @@ import ProfileHeader from "./profile-header";
 import ProfileAbout from "./profile-about";
 import NotLoggedIn from "./not-logged-in";
 import ProfileNavbar from "./profile-navbar";
-import AddRestaurant from "./profile-content/add-restaurant";
 import RestaurantList from "./profile-content/restaurant-list";
 import AdvertisementList from "./profile-content/advertisement-list";
 import PostAdvertisement from "./profile-content/post-advertisement";
 import Partner from "./profile-content/partner";
-import ResList from "./profile-content/res-list";
+import ReviewList from "./profile-content/review-list";
 import UserList from "./profile-content/user-list";
 
 
@@ -49,15 +48,14 @@ const Profile = () => {
                     {(activeComponent === 'following') && <Following profile={profile}/>}
                     {(activeComponent === 'follower') && <Follower profile={profile}/>}
                     {(activeComponent === 'friend') && <Friend profile={profile}/>}
-                    {(activeComponent === 'addRes') && <AddRestaurant profile={profile}/>}
                     {(activeComponent === 'restaurant') && <RestaurantList profile={profile}/>}
                     {(activeComponent === 'ad') && <AdvertisementList profile={profile}/>}
-                    {(activeComponent === 'post') && <PostAdvertisement profile={profile}/>}
-                    {(activeComponent === 'partner') && <Partner profile={profile}/>}
+                    {/*{(activeComponent === 'post') && <PostAdvertisement profile={profile}/>}*/}
+                    {/*{(activeComponent === 'partner') && <Partner profile={profile}/>}*/}
                     {(activeComponent === 'userList') && <UserList profile={profile}/>}
-                    {(activeComponent === 'resList') && <ResList profile={profile}/>}
+                    {(activeComponent === 'reviewList') && <ReviewList profile={profile}/>}
                   </div>
-                  <div className="d-none d-md-block col-md-3 col-lg-3 bg-light p-3 rounded-3">
+                  <div className="d-none d-md-block col-md-3 col-lg-3">
                     <ProfileAbout profile={profile}/>
                   </div>
                 </div>

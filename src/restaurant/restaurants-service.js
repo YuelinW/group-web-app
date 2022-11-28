@@ -18,3 +18,8 @@ export const findRestaurantsByOwnerID = async (oid) => {
   const response = await axios.get(`${YEALP_API}/owners/${oid}`);
   return response.data;
 };
+
+export const disConnectOwnerAndRestaurant = async (ownersAndRestaurant) => {
+  await axios.put(`${YEALP_API}/disconnect/${ownersAndRestaurant.rid}`, ownersAndRestaurant.owners);
+  return ownersAndRestaurant.rid;
+}

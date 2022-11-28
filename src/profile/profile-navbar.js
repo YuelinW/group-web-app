@@ -13,16 +13,16 @@ const customerList = [
 const ownerList = [
   {_id: "ownerlist6", icon: "bi bi-person-circle", label: "Basic Information", active: "basic"},
   {_id: "ownerlist2", icon: "bi bi-shop", label: "Restaurant List", active: "restaurant"},
-  {_id: "ownerlist1", icon: "bi bi-house-add-fill", label: "Add Restaurant", active: "addRes"},
+  // {_id: "ownerlist1", icon: "bi bi-house-add-fill", label: "Add Restaurant", active: "addRes"},
   {_id: "ownerlist3", icon: "bi bi-badge-ad-fill", label: "Advertisement List", active: "ad"},
-  {_id: "ownerlist4", icon: "bi bi-file-earmark-plus-fill", label: "Post Advertisement", active: "post"},
-  {_id: "ownerlist5", icon: "bi bi-people-fill", label: "Partners", active: "partner"},
+  // {_id: "ownerlist4", icon: "bi bi-file-earmark-plus-fill", label: "Post Advertisement", active: "post"},
+  // {_id: "ownerlist5", icon: "bi bi-people-fill", label: "Partners", active: "partner"},
 ];
 
 const adminList = [
   {_id: "adminList1", icon: "bi bi-person-circle", label: "Basic Information", active: "basic"},
   {_id: "adminList2", icon: "bi bi-person-lines-fill", label: "User List", active: "userList"},
-  {_id: "adminList3", icon: "bi bi-list-stars", label: "Restaurant List", active: "resList"},
+  {_id: "adminList3", icon: "bi bi-list-stars", label: "Review List", active: "reviewList"},
 ];
 
 
