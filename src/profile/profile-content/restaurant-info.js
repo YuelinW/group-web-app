@@ -8,7 +8,7 @@ const RestaurantInfo = ({restaurantID}) => {
     service.findRestaurantByRestaurantID(restaurantID)
     .then(res => setSingleRestaurant(res))
     .catch(() => {setSingleRestaurant(null)})
-  }, []);
+  }, [restaurantID]);
 
   return (
       <div className="list-group" key={restaurantID}>

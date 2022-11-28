@@ -13,7 +13,7 @@ const PostAdvertisement = ({profile}) => {
   const currentUser = profile; // todo: delete
   const dispatch = useDispatch();
   const {restaurants, loading} = useSelector(state => state.restaurants);
-  useEffect(() => {dispatch(findRestaurantsByOwnerIDThunk(profile._id))}, []);
+  useEffect(() => {dispatch(findRestaurantsByOwnerIDThunk(profile._id))}, [profile]);
 
   const [inEdit, setInEdit] = useState(false);
   const [adTitle, setAdTitle] = useState('');

@@ -1,7 +1,7 @@
 import {createSlice} from "@reduxjs/toolkit";
-import profile from "../profile.json";
+// import profile from "../profile.json";
 // import profile from "../test-only-profile/charlie-profile.json";
-// import profile from "../test-only-profile/alie-profile.json";
+import profile from "../test-only-profile/alie-profile.json";
 
 const initialState = {
   loading: false,

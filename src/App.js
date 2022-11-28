@@ -31,15 +31,15 @@ function App() {
                 <Route path="/login" element={<Login/>}/>
                 <Route path="/register" element={<Register/>}/>
                 <Route path="/profile" element={
-                  <ProtectedRoute>
+                  // <ProtectedRoute>
                     <Profile/>
-                  </ProtectedRoute>
+                  // </ProtectedRoute>
                 }/>
                 <Route path="/profile/:uid" element={<ProfileOther/>}></Route>
                 <Route path="/edit-profile" element={
-                  <ProtectedRoute>
+                  // <ProtectedRoute>
                     <EditProfile/>
-                  </ProtectedRoute>
+                  // </ProtectedRoute>
                 }/>
                 }
               </Routes>

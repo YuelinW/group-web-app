@@ -9,7 +9,7 @@ const Follower = ({profile}) => {
     service.findFollowsByLeaderID(profile._id)
     .then(res => setFollows(res))
     .catch(() => setFollows(null))
-  }, []);
+  }, [profile]);
 
   // from the follows array, check whose leaderID is this profile_id
   return (

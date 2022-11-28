@@ -17,7 +17,7 @@ const Reviews = ({profile}) => {
     service.findAllReviewsByUserID(profile._id)
     .then(res => setReviews(res))
     .catch(() => setReviews(null))
-  }, []);
+  }, [profile]);
 
   return (
       <div className="ms-3">

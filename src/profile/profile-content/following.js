@@ -9,7 +9,7 @@ const Following = ({profile}) => {
     service.findFollowsByFollowerID(profile._id)
     .then(res => setFollows(res))
     .catch(() => setFollows(null))
-  }, []);
+  }, [profile]);
 
   return (
       <div className="ms-3">

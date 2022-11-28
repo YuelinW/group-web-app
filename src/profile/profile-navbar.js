@@ -3,7 +3,6 @@ import React from "react";
 
 const customerList = [
   {_id: "customerlist1", icon: "bi bi-person-circle", label: "Basic Information", active: "basic"},
-  // {_id: "customerlist2", icon: "bi bi-activity", label: "Recent Activity", active: "activity"},
   {_id: "customerlist3", icon: "bi bi-r-square-fill", label: "Reviews", active: "review"},
   {_id: "customerlist4", icon: "bi bi-person-fill-check", label: "Following", active: "following"},
   {_id: "customerlist5", icon: "bi bi-person-fill-down", label: "Followers", active: "follower"},
@@ -13,10 +12,8 @@ const customerList = [
 const ownerList = [
   {_id: "ownerlist6", icon: "bi bi-person-circle", label: "Basic Information", active: "basic"},
   {_id: "ownerlist2", icon: "bi bi-shop", label: "Restaurant List", active: "restaurant"},
-  // {_id: "ownerlist1", icon: "bi bi-house-add-fill", label: "Add Restaurant", active: "addRes"},
   {_id: "ownerlist3", icon: "bi bi-badge-ad-fill", label: "Advertisement List", active: "ad"},
   {_id: "ownerlist4", icon: "bi bi-file-earmark-plus-fill", label: "Post Advertisement", active: "post"},
-  // {_id: "ownerlist5", icon: "bi bi-people-fill", label: "Partners", active: "partner"},
 ];
 
 const adminList = [

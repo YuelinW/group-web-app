@@ -8,7 +8,7 @@ import AdItem from "../../advertisement/ad-item";
 const AdvertisementList = ({profile}) => {
   const {adsOfOwner, loading} = useSelector(state => state.advertisements);
   const dispatch = useDispatch();
-  useEffect(() => {dispatch(findAllAdvertisementsByOwnerIDThunk(profile._id))}, []);
+  useEffect(() => {dispatch(findAllAdvertisementsByOwnerIDThunk(profile._id))}, [profile]);
   return (
       <ul className="list-group">
         {

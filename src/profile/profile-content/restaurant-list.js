@@ -14,7 +14,7 @@ const RestaurantList = ({profile}) => {
   // const {currentUser} = useSelector(state => state.users); // todo: uncomment
   const currentUser = profile; // todo: delete
   const dispatch = useDispatch();
-  useEffect(() => {dispatch(findRestaurantsByOwnerIDThunk(profile._id))}, []);
+  useEffect(() => {dispatch(findRestaurantsByOwnerIDThunk(profile._id))}, [profile]);
   const disconnectRestaurantAndOwnerHandler = (r) => {
     const newOwnerList = r.owners.filter(id => id !== profile._id);
     const compoundObject = {
