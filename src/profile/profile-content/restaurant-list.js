@@ -29,7 +29,7 @@ const RestaurantList = ({profile}) => {
               <div className="list-group-item">
                 Loading...
               </div>}
-          {restaurants.length === 0 && <>This owner doesn't have any restaurants.</>}
+          {restaurants.length === 0 && !loading && <>This owner doesn't have any restaurants.</>}
           {
               restaurants && restaurants.length > 0 && restaurants.map(restaurant =>
                   {
@@ -40,7 +40,8 @@ const RestaurantList = ({profile}) => {
                               <h5 className="card-title text-primary">{restaurant.name}
                                 <span className="ps-2 text-secondary">{restaurant.price}</span>
                                 <button className="ms-5 btn btn-danger float-end" onClick={() => disconnectRestaurantAndOwnerHandler(restaurant)}>I am not the owner</button></h5>
-                              <p className="card-text text-dark">Phone: {restaurant.display_phone} Category: {restaurant.category}</p>
+                              <p className="card-text text-dark mb-0">Phone: {restaurant.display_phone}</p>
+                              <p>Category: {restaurant.category}</p>
                               <p className="card-text"><Link to={`/details/${restaurant._id}`}>Details</Link></p>
                             </div>
                         </div>

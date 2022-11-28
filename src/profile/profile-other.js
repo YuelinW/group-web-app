@@ -9,7 +9,6 @@ import Review from "./profile-content/review";
 import Following from "./profile-content/following";
 import Follower from "./profile-content/follower";
 import Friend from "./profile-content/friend";
-import AddRestaurant from "./profile-content/add-restaurant";
 import RestaurantList from "./profile-content/restaurant-list";
 import AdvertisementList from "./profile-content/advertisement-list";
 import PostAdvertisement from "./profile-content/post-advertisement";
@@ -39,15 +38,15 @@ const ProfileOther = () => {
             <ProfileNavbar role={otherProfile.role} setActiveComponent ={setActiveComponent}/>
             <div className="col-10 col-md-7 col-lg-8 col-xl-6">
               {(activeComponent === 'basic') && <BasicInfo profile={otherProfile}/>}
-              {(activeComponent === 'activity') && <RecentActivity profile={otherProfile}/>}
+              {/*{(activeComponent === 'activity') && <RecentActivity profile={otherProfile}/>}*/}
               {(activeComponent === 'review') && <Review profile={otherProfile}/>}
               {(activeComponent === 'following') && <Following profile={otherProfile}/>}
               {(activeComponent === 'follower') && <Follower profile={otherProfile}/>}
               {(activeComponent === 'friend') && <Friend profile={otherProfile}/>}
-              {(activeComponent === 'addRes') && <AddRestaurant profile={otherProfile}/>}
+              {/*{(activeComponent === 'addRes') && <AddRestaurant profile={otherProfile}/>}*/}
               {(activeComponent === 'restaurant') && <RestaurantList profile={otherProfile}/>}
               {(activeComponent === 'ad') && <AdvertisementList profile={otherProfile}/>}
-              {(activeComponent === 'post') && <PostAdvertisement profile={otherProfile}/>}
+              {/*{(activeComponent === 'post') && <PostAdvertisement profile={otherProfile}/>}*/}
               {(activeComponent === 'partner') && <Partner profile={otherProfile}/>}
               {(activeComponent === 'userList') && <UserList profile={otherProfile}/>}
               {(activeComponent === 'resList') && <ReviewList profile={otherProfile}/>}
