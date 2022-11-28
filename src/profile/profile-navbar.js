@@ -15,7 +15,7 @@ const ownerList = [
   {_id: "ownerlist2", icon: "bi bi-shop", label: "Restaurant List", active: "restaurant"},
   // {_id: "ownerlist1", icon: "bi bi-house-add-fill", label: "Add Restaurant", active: "addRes"},
   {_id: "ownerlist3", icon: "bi bi-badge-ad-fill", label: "Advertisement List", active: "ad"},
-  // {_id: "ownerlist4", icon: "bi bi-file-earmark-plus-fill", label: "Post Advertisement", active: "post"},
+  {_id: "ownerlist4", icon: "bi bi-file-earmark-plus-fill", label: "Post Advertisement", active: "post"},
   // {_id: "ownerlist5", icon: "bi bi-people-fill", label: "Partners", active: "partner"},
 ];
 

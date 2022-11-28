@@ -4,10 +4,12 @@ import {
   updateAdvertisementThunk
 } from "./advertisements-thunks";
 import {useState} from "react";
+import RestaurantName from "./restaurant-name";
 
 const AdItem = ({ad, owner}) => {
   const [adContent, setAdContent] = useState(ad.content);
   const [contentInEdit, setContentInEdit] = useState(false);
+
   const dispatch = useDispatch();
 
   const deleteAdHandler = (aid) => {
@@ -29,26 +31,25 @@ const AdItem = ({ad, owner}) => {
           <div className="col-10 pe-0">
             <i className="bi bi-x-lg float-end wd-clickable"
                onClick={() => deleteAdHandler(ad._id)}></i>
-
             {
               !contentInEdit && <button className="float-end me-3 btn btn-dark" onClick={() => setContentInEdit(true)}>Edit Content</button>
             }
             {
               contentInEdit && <div className="">
                   <div>
+                    <p>Only advertisement content can be changed. Title and poster cannot be changed.</p>
                     <textarea className="w-100" value={adContent} onChange={(e) => setAdContent(e.target.value)}></textarea>
                   </div>
                   <button className="btn btn-success mb-3" onClick={() => {updateAdHandler(); setContentInEdit(false)}}>Finish</button>
-                  <button className="btn btn-light ms-2 mb-3" onClick={() => {setContentInEdit(false)}}>Cancel</button>
+                  <button className="btn btn-light ms-2 mb-3" onClick={() => {setContentInEdit(false); setAdContent(ad.content)}}>Cancel</button>
                   <hr/>
                 </div>
             }
-
-
             <span className="fw-bold text-primary">{owner.username}</span>
             <i className="bi bi-patch-check-fill ms-1 me-1"></i>
-            <span className="text-info">{ad.restauranID} · {ad.postedDate.substring(0, 10)}</span>
-            <h3 className="pt-3">{ad.title}</h3>
+            <span className="text-info"> · {ad.postedDate.substring(0, 10)}</span>
+            <RestaurantName rid={ad.restaurantID}/>
+            <h4>{ad.title}</h4>
             <h6>{ad.content}</h6>
             <img src={ad.poster} alt={ad.postedDate} className="w-100"/>
           </div>

@@ -50,7 +50,7 @@ const Profile = () => {
                     {(activeComponent === 'friend') && <Friend profile={profile}/>}
                     {(activeComponent === 'restaurant') && <RestaurantList profile={profile}/>}
                     {(activeComponent === 'ad') && <AdvertisementList profile={profile}/>}
-                    {/*{(activeComponent === 'post') && <PostAdvertisement profile={profile}/>}*/}
+                    {(activeComponent === 'post') && <PostAdvertisement profile={profile}/>}
                     {/*{(activeComponent === 'partner') && <Partner profile={profile}/>}*/}
                     {(activeComponent === 'userList') && <UserList profile={profile}/>}
                     {(activeComponent === 'reviewList') && <ReviewList profile={profile}/>}
