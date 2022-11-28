@@ -3,7 +3,6 @@ import {useDispatch, useSelector} from "react-redux";
 import {registerThunk} from "./users-thunks";
 import "./index.css";
 import {Link} from "react-router-dom";
-import AvatarUploader from "react-avatar-uploader";
 import {Navigate} from "react-router";
 
 const Register = () => {
@@ -21,6 +20,11 @@ const Register = () => {
   const [error, setError] = useState(null)
   const {currentUser} = useSelector((state) => state.users)
   const dispatch = useDispatch()
+  const handleFileUpload = async (e) => {
+    const url = URL.createObjectURL(e.target.files[0])
+    setProfilePicture(url)
+    // TODO: convert local url to cloud one
+  }
   const handleRegisterBtn = (e) => {
     e.preventDefault();
     if (role === "") {
@@ -81,7 +85,7 @@ const Register = () => {
             <h3 className="wd-auth-form-title">Sign Up</h3>
             {
               error &&
-              <div className="alert alert-danger mt-2 mb-2">
+              <div className="alert alert-danger mt-3 mb-0">
                 {error}
               </div>
             }
@@ -114,16 +118,10 @@ const Register = () => {
             </div>
             <div className="mt-4 mb-2 fw-bold">Upload a profile image</div>
             <div className="d-flex justify-content-center">
-              <AvatarUploader
-                  name="uploadProfilePicture"
-                  size={120}
-                  uploadURL="http://localhost:3000"
-                  fileType={"image/jpeg"}
-                  value={profilePicture}
-                  onChange={(e) => {
-                    setProfilePicture(URL.createObjectURL(e.target.files[0]))
-                  }}/>
+              <img className="rounded-circle wd-image-size" src={profilePicture} alt=""/>
             </div>
+            <input className="mt-2" type="file" accept="image/*"
+                   onChange={handleFileUpload}/>
             <div id="customerForm">
               <div className="form-group">
                 <label htmlFor="registerUserName"
