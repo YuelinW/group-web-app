@@ -1,17 +1,18 @@
 import React, {useState}  from "react";
-import {useDispatch, useSelector} from "react-redux";
+import {useDispatch} from "react-redux";
 import "./index.css";
 import {Link} from "react-router-dom";
 import {loginThunk} from "./users-thunks";
-import {Navigate} from "react-router";
+import {useNavigate} from "react-router";
 
 const Login = () => {
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
   const [error, setError] = useState(null)
-  const {currentUser} = useSelector((state) => state.users)
   const dispatch = useDispatch()
-  const handleLoginBtn = (e) => {
+  const navigate = useNavigate();
+  //TODO: cannot login successfully
+  const handleLoginBtn = async (e) => {
     e.preventDefault();
     if (username === "") {
       setError('Username must be filled')
@@ -22,25 +23,25 @@ const Login = () => {
       return
     }
     setError(null)
-    const loginUser = {username, password}
-    dispatch(loginThunk(loginUser))
+    try {
+      await dispatch(loginThunk({username, password})).unwrap()
+      navigate('/profile')
+      console.log('successful')
+    } catch(error) {
+      console.log('unsuccessful')
+      setError('Username and Password do not match')
+    }
   }
-  if (currentUser) {
-    return (<Navigate to={'/profile'}/>)
-  }
-  // else {
-  //   setError('Username and Password do not match')
-  // }
   return(
       <div className="d-flex justify-content-center">
         <form className="wd-auth-form">
           <div className="wd-auth-form-content">
             <h3 className="wd-auth-form-title">Log In</h3>
             {
-              error &&
-              <div className="alert alert-danger">
-                {error}
-              </div>
+                error &&
+                <div className="alert alert-danger mt-3 mb-0">
+                  {error}
+                </div>
             }
             <div className="form-group">
               <label htmlFor="loginUserName"
