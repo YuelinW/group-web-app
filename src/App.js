@@ -13,7 +13,7 @@ import restaurantsReducer from "./restaurant/restaurants-reducer";
 
 
 const store = configureStore({
-  reducer: {profile: profileReducer, userActivity: userActivityReducer, restaurantsData: restaurantsReducer}
+  reducer: {profile: profileReducer, userActivity: userActivityReducer, restaurants: restaurantsReducer}
 });
 
 function App() {

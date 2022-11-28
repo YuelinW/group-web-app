@@ -1,6 +1,7 @@
 import {
+  disConnectOwnerAndRestaurantThunk,
   findAllRestaurantsThunk,
-  findRestaurantsByOwnerID
+  findRestaurantsByOwnerIDThunk
 } from './restaurants-thunks';
 import {createSlice} from "@reduxjs/toolkit";
 
@@ -28,20 +29,25 @@ const restaurantSlice = createSlice({
           state.loading = false;
           state.restaurants = [];
         },
-    [findRestaurantsByOwnerID.pending]:
+    [findRestaurantsByOwnerIDThunk.pending]:
         (state) => {
           state.loading = true;
           state.singleRestaurant = null;
         },
-    [findRestaurantsByOwnerID.fulfilled]:
+    [findRestaurantsByOwnerIDThunk.fulfilled]:
         (state, {payload}) => {
           state.loading = false;
           state.restaurants = payload;
         },
-    [findRestaurantsByOwnerID.rejected]:
+    [findRestaurantsByOwnerIDThunk.rejected]:
         (state) => {
           state.loading = false;
         },
+    [disConnectOwnerAndRestaurantThunk.fulfilled]:
+        (state, {payload}) => {
+          state.loading = false;
+          state.restaurants = state.restaurants.filter(r => r._id !== payload);
+        }
   }
 });
 export default restaurantSlice.reducer;

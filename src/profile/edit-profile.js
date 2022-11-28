@@ -4,10 +4,10 @@ import {useState} from "react";
 import React from "react";
 import {updateProfileThunk} from "./profile-service/profile-thunks";
 import {updateProfile} from "./profile-service/profile-reducer";
-import dateFormat from "dateformat";
 
 const EditProfile = () => {
   const {profile} = useSelector(state => state.profile); //TODO: may need to change to state.user. > need to get the current login user
+  //TODO: need to protect this url from being hard accessed. If user is not loggedin, show notlogged in page
   const [nameString, setNameString] = useState(profile.firstName + " " + profile.lastName);
   const [bioString, setBioString] = useState(profile.bio);
   const [emailString, setEmailString] = useState(profile.email);

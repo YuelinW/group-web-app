@@ -15,7 +15,7 @@ import AdvertisementList from "./profile-content/advertisement-list";
 import PostAdvertisement from "./profile-content/post-advertisement";
 import Partner from "./profile-content/partner";
 import UserList from "./profile-content/user-list";
-import ResList from "./profile-content/res-list";
+import ReviewList from "./profile-content/review-list";
 import ProfileAbout from "./profile-about";
 import otherProfileData from "./otherProfile.json";
 
@@ -50,7 +50,7 @@ const ProfileOther = () => {
               {(activeComponent === 'post') && <PostAdvertisement profile={otherProfile}/>}
               {(activeComponent === 'partner') && <Partner profile={otherProfile}/>}
               {(activeComponent === 'userList') && <UserList profile={otherProfile}/>}
-              {(activeComponent === 'resList') && <ResList profile={otherProfile}/>}
+              {(activeComponent === 'resList') && <ReviewList profile={otherProfile}/>}
             </div>
             <div className="d-none d-md-block col-md-3 col-lg-3 bg-light p-3 rounded-3">
               <ProfileAbout profile={otherProfile}/>
