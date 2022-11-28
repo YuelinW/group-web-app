@@ -18,14 +18,13 @@ import Partner from "./profile-content/partner";
 import ReviewList from "./profile-content/review-list";
 import UserList from "./profile-content/user-list";
 
-
 const Profile = () => {
   const {profile} = useSelector(state => state.profile); // TODO
   const [isLoggedIn, setIsLoggedIn] = useState(true); // Only for production: if true, can see private profile. TODO: isLoggedIn = currentUser != null
   const dispatch = useDispatch();
   const [activeComponent, setActiveComponent] = useState('basic'); // all roles start with basic
   // useEffect(() => {dispatch(loginThunk())}, []); // TODO: load when first render. update this to have activeComponent to be "basic"
-
+  const {currentUser} = useSelector((state) => state.users)
   return (
       <div className="mt-2 mb-2">
         <div>Is the user logged in?</div>

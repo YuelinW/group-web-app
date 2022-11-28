@@ -11,13 +11,18 @@
     "bootstrap": "^5.2.2",
     "bootstrap-icons": "^1.10.2",
     "dateformat": "^5.0.3",
+    "@types/jquery": "^3.5.14",
+    "jquery": "^3.6.1",
     "react": "^18.2.0",
+    "react-avatar-edit": "^1.2.0",
+    "react-avatar-uploader": "^1.0.3",
     "react-dom": "^18.2.0",
     "react-redux": "^8.0.5",
     "react-router": "^6.4.3",
     "react-router-dom": "^6.4.3",
     "react-scripts": "5.0.1",
     "redux": "^4.2.0",
+    "styled-components": "^5.3.6",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
