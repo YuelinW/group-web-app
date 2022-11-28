@@ -3,11 +3,8 @@ import {Routes, Route} from "react-router";
 import {BrowserRouter} from "react-router-dom";
 import {configureStore} from "@reduxjs/toolkit";
 import Profile from "./profile";
-import {configureStore} from "@reduxjs/toolkit";
 import {Provider} from "react-redux";
-import {Route, Routes} from "react-router";
 import profileReducer from "./profile/profile-service/profile-reducer";
-import {BrowserRouter} from "react-router-dom";
 import EditProfile from "./profile/edit-profile";
 import ProfileOther from "./profile/profile-other";
 import userActivityReducer

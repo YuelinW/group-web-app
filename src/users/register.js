@@ -3,7 +3,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {registerThunk} from "./users-thunks";
 import "./index.css";
 import {Link} from "react-router-dom";
-import AvatarUploader from "react-avatar-uploader";
+// import AvatarUploader from "react-avatar-uploader";
 import {Navigate} from "react-router";
 
 const Register = () => {
@@ -113,17 +113,17 @@ const Register = () => {
               </div>
             </div>
             <div className="mt-4 mb-2 fw-bold">Upload a profile image</div>
-            <div className="d-flex justify-content-center">
-              <AvatarUploader
-                  name="uploadProfilePicture"
-                  size={120}
-                  uploadURL="http://localhost:3000"
-                  fileType={"image/jpeg"}
-                  value={profilePicture}
-                  onChange={(e) => {
-                    setProfilePicture(URL.createObjectURL(e.target.files[0]))
-                  }}/>
-            </div>
+            {/*<div className="d-flex justify-content-center">*/}
+            {/*  <AvatarUploader*/}
+            {/*      name="uploadProfilePicture"*/}
+            {/*      size={120}*/}
+            {/*      uploadURL="http://localhost:3000"*/}
+            {/*      fileType={"image/jpeg"}*/}
+            {/*      value={profilePicture}*/}
+            {/*      onChange={(e) => {*/}
+            {/*        setProfilePicture(URL.createObjectURL(e.target.files[0]))*/}
+            {/*      }}/>*/}
+            {/*</div>*/}
             <div id="customerForm">
               <div className="form-group">
                 <label htmlFor="registerUserName"

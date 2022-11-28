@@ -1,5 +1,6 @@
 import {createSlice} from "@reduxjs/toolkit";
 import {
+  createAdvertisementThunk,
   deleteAdvertisementByIDThunk,
   findAllAdvertisementsByOwnerIDThunk,
   findAllAdvertisementsThunk, updateAdvertisementThunk
@@ -58,7 +59,7 @@ const advertisementsSlice = createSlice({
             ...state.adsOfOwner[index],
             ...payload
           };
-        }
+        },
   }
 });
 export default advertisementsSlice.reducer;
