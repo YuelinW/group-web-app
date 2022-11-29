@@ -24,6 +24,10 @@ const Profile = () => {
   const {currentUser} = useSelector((state) => state.users)
   return (
       <div className="mt-2 mb-2">
+        {
+            currentUser &&
+            <h2>Welcome {currentUser.username}</h2>
+        }
         <div>Is the user logged in?</div>
         <div><input type="radio" className="form-check-input me-1" name="isUser" id="isUser" defaultChecked onClick={() => setIsLoggedIn(true)}/><label htmlFor="isUser">Yes</label></div>
         <div><input type="radio" className="form-check-input me-1" name="isUser" id="isNotUser" onClick={() => setIsLoggedIn(false)}/><label htmlFor="isNotUser">No</label></div>

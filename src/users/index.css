@@ -1,9 +1,12 @@
 .wd-auth-form {
-  width: 500px;
+  width: 420px;
   box-shadow: rgb(0 0 0 / 16%) 1px 1px 10px;
+  margin-top: 30px;
+  margin-bottom: 30px;
   padding-top: 30px;
   padding-bottom: 30px;
   border-radius: 8px;
+  background-color: white;
 }
 
 .wd-auth-form-content {
@@ -17,10 +20,15 @@
 }
 
 .wd-sign-up-box {
-  width: 500px;
+  width: 420px;
   text-align: center;
   font-weight: bold;
   margin-top: 20px;
+}
+
+.wd-image-size {
+  width: 150px;
+  height: 150px;
 }
 
 a:link {
