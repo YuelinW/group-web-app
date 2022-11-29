@@ -3,12 +3,13 @@ import React, {useEffect} from "react";
 import {findAllUsersThunk} from "../../users/users-thunks";
 import FollowProfile from "../../follow/follow-profile";
 
+// only viewed by admin users
+
 const UserList = ({profile}) => {
   const {users, loading} = useSelector(state => state.users);
   const dispatch = useDispatch();
   useEffect(() => {dispatch(findAllUsersThunk())}, [profile]);
 
-  // only admin can view user lists
   return (
       <>
         <div className="ms-3">

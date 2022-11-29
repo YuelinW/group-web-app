@@ -32,7 +32,8 @@ const PostAdvertisement = ({profile}) => {
     dispatch(createAdvertisementThunk(newAd));
   }
 
-  const isLoggedInAndIsOwner = (currentUser != null && currentUser._id === profile._id && currentUser.role === 'OWNER');
+  const isLoggedInAndIsOwner = (currentUser._id === profile._id
+      && currentUser.role === 'OWNER');
   return (
       <>
       {!isLoggedInAndIsOwner &&

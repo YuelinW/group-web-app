@@ -32,3 +32,8 @@ export const findUserByID = async (uid) => { // this is called when /profile/uid
   const response = await axios.get(`${BASE_URL}/users/${uid}`);
   return response.data
 }
+
+export const updateCurrentUserProfileByUserName = async (user) => { // this is called in edit-profile
+  await axios.put(`${BASE_URL}/users/username/${user.username}`, user);
+  return user;
+}

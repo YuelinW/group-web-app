@@ -14,7 +14,7 @@ const generateRating = (rating) => {
   return result;
 }
 
-const ReviewItem = ({review, allowDelete}) => {
+const ReviewItem = ({review, allowDelete}) => { // only admin user can delete
   const dispatch = useDispatch();
   const deleteReviewHandler = (review) => {
     dispatch(deleteReviewByIDThunk(review));

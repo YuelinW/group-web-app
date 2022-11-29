@@ -2,6 +2,8 @@ import React, {useEffect, useState} from "react";
 import * as service from "../../review/review-service";
 import ReviewItem from "./review-item";
 
+
+// reviews of a certain user
 const Reviews = ({profile}) => {
   const [reviews, setReviews] = useState([]);
   useEffect(() => {

@@ -3,6 +3,8 @@ import React, {useEffect} from "react";
 import {findAllReviewsThunk} from "../../review/review-thunks";
 import ReviewItem from "./review-item";
 
+
+// only viewed by admin users
 const ReviewList = ({profile}) => {
   const {reviews, loading} = useSelector(state => state.reviews);
   const dispatch = useDispatch();

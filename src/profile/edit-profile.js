@@ -1,23 +1,24 @@
 import {useDispatch, useSelector} from "react-redux";
 import {Link} from "react-router-dom";
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import React from "react";
-import {updateProfileThunk} from "./profile-service/profile-thunks";
-import {updateProfile} from "./profile-service/profile-reducer";
+import {updateCurrentUserProfileByUserNameThunk} from "../users/users-thunks";
 
 const EditProfile = () => {
-  const {profile} = useSelector(state => state.profile); //TODO: may need to change to state.user. > need to get the current login user
+  const currentUser = useSelector(state => state.users.fakeCurrentUser); // TODO: update to currentUser
+  const dispatch = useDispatch();
+  // useEffect(() => {dispatch()}, []); //TODO: in first rendering, load loggedin user
   //TODO: need to protect this url from being hard accessed. If user is not loggedin, show notlogged in page
-  const [nameString, setNameString] = useState(profile.firstName + " " + profile.lastName);
-  const [bioString, setBioString] = useState(profile.bio);
-  const [emailString, setEmailString] = useState(profile.email);
-  const [phoneString, setPhoneString] = useState(profile.phone);
-  const [passwordString, setPasswordString] = useState(profile.password);
-  const [locationString, setLocationString] = useState(profile.location);
+  const [nameString, setNameString] = useState(currentUser.firstName + " " + currentUser.lastName);
+  const [bioString, setBioString] = useState(currentUser.bio);
+  const [emailString, setEmailString] = useState(currentUser.email);
+  const [phoneString, setPhoneString] = useState(currentUser.phone);
+  const [passwordString, setPasswordString] = useState(currentUser.password);
+  const [locationString, setLocationString] = useState(currentUser.location);
 
-  const profileBirthdayYear = profile.dateOfBirth.substring(0, 4);
-  const profileBirthdayMonth = profile.dateOfBirth.substring(5, 7);
-  const profileBirthdayDate = profile.dateOfBirth.substring(8, 10);
+  const profileBirthdayYear = currentUser.dateOfBirth.substring(0, 4);
+  const profileBirthdayMonth = currentUser.dateOfBirth.substring(5, 7);
+  const profileBirthdayDate = currentUser.dateOfBirth.substring(8, 10);
   const [birthdateString, setBirthdateString] = useState(profileBirthdayYear + "-" + profileBirthdayMonth + "-" + profileBirthdayDate);
   const [dateInEdit, setDateInEdit] = useState(false);
 
@@ -49,11 +50,12 @@ const EditProfile = () => {
     setBirthdateString(event.target.value);
   };
 
-  const dispatch = useDispatch();
+
   const saveHandler = () => {
     const newProfile = {
       firstName: nameString.split(" ")[0],
       lastName: nameString.split(" ")[1],
+      username: currentUser.username,
       email: emailString,
       phone: phoneString,
       password: passwordString,
@@ -61,10 +63,11 @@ const EditProfile = () => {
       location: locationString,
       dateOfBirth: birthdateString
     }
-    // dispatch(updateProfileThunk(newProfile)); // TODO
-    dispatch(updateProfile(newProfile)); // TODO: to be deleted
+    dispatch(updateCurrentUserProfileByUserNameThunk(newProfile));
   };
-  const birthdayArray = birthdateString.split("/");
+
+
+
   return (
       <div className="container w-50">
         <div className="d-flex align-items-center row mt-2 mb-2">
@@ -78,9 +81,9 @@ const EditProfile = () => {
             <Link to="/profile"><button className="btn btn-primary float-end rounded-pill me-2" onClick={() => saveHandler()}>Save</button></Link>
           </div>
         </div>
-        <img src={profile.bannerPicture} height={230} alt={profile.bannerPicture} className="w-100 rounded-1 mt-1 wd-object-fit-cover-image"/>
+        <img src={currentUser.bannerPicture} height={230} alt={currentUser.bannerPicture} className="w-100 rounded-1 mt-1 wd-object-fit-cover-image"/>
         <div>
-          <img src={profile.profilePicture} height={150} width={150} alt={profile.profilePicture} className="rounded-2 ms-3 wd-profile-image"/>
+          <img src={currentUser.profilePicture} height={150} width={150} alt={currentUser.profilePicture} className="rounded-2 ms-3 wd-profile-image"/>
         </div>
         <div className="ms-3 wd-nudge-up">
           <div className="mb-3">

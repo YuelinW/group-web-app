@@ -22,7 +22,8 @@ const RestaurantList = ({profile}) => {
     dispatch(disConnectOwnerAndRestaurantThunk(compoundObject)
     )};
 
-  const isLoggedInAndIsOwner = (currentUser != null && currentUser._id === profile._id && currentUser.role === 'OWNER');
+  const isLoggedInAndIsOwner = (currentUser._id === profile._id
+      && currentUser.role === 'OWNER');
   return (
       <div className="ms-3 me-5">
         <h3 className="text-info">Restaurants I Own</h3>
