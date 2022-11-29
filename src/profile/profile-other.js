@@ -1,4 +1,4 @@
-import {useLocation, useParams} from "react-router";
+import {useParams} from "react-router";
 import {useDispatch, useSelector} from "react-redux";
 import React, {useEffect, useState} from "react";
 import ProfileHeader from "./profile-header";
@@ -14,10 +14,10 @@ import UserList from "./profile-content/user-list";
 import ReviewList from "./profile-content/review-list";
 import ProfileAbout from "./profile-about";
 import {findUserByIDThunk} from "../users/users-thunks";
+import PostAdvertisement from "./profile-content/post-advertisement";
 
 
 const ProfileOther = () => {
-  // doesn't care of logged in or not. Can always display public info
   const {uid} = useParams();
   const dispatch = useDispatch();
   const {otherUser} = useSelector(state => state.users);
@@ -39,10 +39,11 @@ const ProfileOther = () => {
                 {(activeComponent === 'friend') && <Friend profile={otherUser}/>}
                 {(activeComponent === 'restaurant') && <RestaurantList profile={otherUser}/>}
                 {(activeComponent === 'ad') && <AdvertisementList profile={otherUser}/>}
+                {(activeComponent === 'post') && <PostAdvertisement profile={otherUser}/>}
                 {(activeComponent === 'userList') && <UserList profile={otherUser}/>}
                 {(activeComponent === 'resList') && <ReviewList profile={otherUser}/>}
               </div>
-              <div className="d-none d-md-block col-md-3 col-lg-3 bg-light p-3 rounded-3">
+              <div className="d-none d-md-block col-md-3 col-lg-3">
                 <ProfileAbout profile={otherUser}/>
               </div>
             </div>

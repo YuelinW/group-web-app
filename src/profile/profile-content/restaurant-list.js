@@ -5,14 +5,12 @@ import {
   disConnectOwnerAndRestaurantThunk,
   findRestaurantsByOwnerIDThunk
 } from "../../restaurant/restaurants-thunks";
-import {
-  createAdvertisementThunk
-} from "../../advertisement/advertisements-thunks";
+
 
 const RestaurantList = ({profile}) => {
   const {restaurants, loading} = useSelector(state => state.restaurants);
   // const {currentUser} = useSelector(state => state.users); // todo: uncomment
-  const currentUser = profile; // todo: delete
+  const currentUser = {...profile, _id: "a"}; // todo: delete
   const dispatch = useDispatch();
   useEffect(() => {dispatch(findRestaurantsByOwnerIDThunk(profile._id))}, [profile]);
   const disconnectRestaurantAndOwnerHandler = (r) => {
@@ -24,6 +22,7 @@ const RestaurantList = ({profile}) => {
     dispatch(disConnectOwnerAndRestaurantThunk(compoundObject)
     )};
 
+  const isLoggedInAndIsOwner = (currentUser != null && currentUser._id === profile._id && currentUser.role === 'OWNER');
   return (
       <div className="ms-3 me-5">
         <h3 className="text-info">Restaurants I Own</h3>
@@ -40,7 +39,7 @@ const RestaurantList = ({profile}) => {
                 <div className="card-body">
                   <h5 className="card-title text-primary">{restaurant.name}<span className="ps-2 text-secondary">{restaurant.price}</span>
                     {
-                      currentUser != null && currentUser._id === profile._id && <>
+                        isLoggedInAndIsOwner && <>
                         <button className="btn btn-danger float-end" onClick={() => disconnectRestaurantAndOwnerHandler(restaurant)}>I am not the owner</button>
                         </>
                     }

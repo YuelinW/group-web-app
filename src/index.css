@@ -17,6 +17,7 @@ code {
   bottom: 70px;
   left: 10px;
   border: white 2px solid;
+  object-fit: cover;
 }
 
 .wd-object-fit-cover-image {
