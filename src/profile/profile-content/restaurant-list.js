@@ -34,7 +34,7 @@ const RestaurantList = ({profile}) => {
           {restaurants.length === 0 && !loading && <>This owner doesn't have any restaurants.</>}
           {
               restaurants && restaurants.length > 0 && restaurants.map(restaurant =>
-              <div className="card w-100 m-2" key={restaurant.id}>
+              <div className="card w-100 m-2" key={restaurant._id}>
                 <img src={restaurant.image_url} className="card-img-top" alt={restaurant.name}/>
                 <div className="card-body">
                   <h5 className="card-title text-primary">{restaurant.name}<span className="ps-2 text-secondary">{restaurant.price}</span>
@@ -48,8 +48,7 @@ const RestaurantList = ({profile}) => {
                   <p>Category: {restaurant.category}</p>
                   <p className="card-text"><Link to={`/details/${restaurant.yelpID}`}>Details</Link></p>
                 </div>
-              </div>
-              )
+              </div>)
           }
         </div>
       </div>

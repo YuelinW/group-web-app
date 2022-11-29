@@ -7,3 +7,13 @@ export const findAllReviewsByUserID = async (oid) => {
   const response = await axios.get(`${YEALP_API}/owners/${oid}`);
   return response.data;
 }
+
+export const findAllReviews = async () => {
+  const response = await axios.get(`${YEALP_API}`);
+  return response.data;
+}
+
+export const deleteReviewByID = async (review) => {
+  await axios.delete(`${YEALP_API}/${review._id}`);
+  return review;
+}

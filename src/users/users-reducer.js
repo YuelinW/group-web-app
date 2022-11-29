@@ -18,7 +18,12 @@ const usersReducer = createSlice({
   reducers: {
   },
   extraReducers: {
+    [findAllUsersThunk.pending]: (state, action) => {
+      state.loading = true;
+      state.users = action.payload
+    },
     [findAllUsersThunk.fulfilled]: (state, action) => {
+      state.loading = false;
       state.users = action.payload
     },
     [loginThunk.fulfilled]: (state, action) => {

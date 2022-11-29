@@ -59,7 +59,7 @@ const PostAdvertisement = ({profile}) => {
             {restaurants.length === 0 && !loading && <>This owner doesn't have any restaurants.</>}
             {
                 restaurants && restaurants.length > 0 && restaurants.map(restaurant =>
-                    <div className="card w-100 m-2" key={restaurant.id}>
+                    <div className="card w-100 m-2" key={restaurant._id}>
                       <div className="card-body">
                         <button className="btn btn-info mb-4 w-100 rounded-pill" onClick={() => {
                           setInEdit(true);
