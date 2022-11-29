@@ -8,13 +8,13 @@ const RestaurantInfo = ({restaurantID}) => {
     service.findRestaurantByRestaurantID(restaurantID)
     .then(res => setSingleRestaurant(res))
     .catch(() => {setSingleRestaurant(null)})
-  }, []);
+  }, [restaurantID]);
 
   return (
       <div className="list-group" key={restaurantID}>
         {singleRestaurant &&
         <>
-          <div><Link to={`/details/${restaurantID}`}>Restaurant: {singleRestaurant.name}</Link><span className="ps-4">Price: {singleRestaurant.price}</span></div>
+          <div><Link to={`/details/${singleRestaurant.yelpID}`}>Restaurant: {singleRestaurant.name}</Link><span className="ps-4">Price: {singleRestaurant.price}</span></div>
         </>
         }
       </div>

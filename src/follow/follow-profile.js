@@ -13,7 +13,7 @@ const FollowProfile = ({profile_ID}) => {
   // given profile_id, find the profile and display it
   return (
       <div>
-        <Link to={`profile/${profile_ID}`}><img src={profile.profilePicture} height={20} width={20}
+        <Link to={`/profile/${profile_ID}`}><img src={profile.profilePicture} height={20} width={20}
                         className="rounded-circle me-2"/>{profile.username}</Link>
       </div>
   );

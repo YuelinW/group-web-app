@@ -9,8 +9,11 @@ import RestaurantName from "./restaurant-name";
 const AdItem = ({ad, owner}) => {
   const [adContent, setAdContent] = useState(ad.content);
   const [contentInEdit, setContentInEdit] = useState(false);
-
   const dispatch = useDispatch();
+
+  // const {currentUser} = useSelector(state => state.users); // todo: uncomment
+  const currentUser = {...owner, _id: "a"}; // todo: delete
+  const isLoggedInAndIsOwner = (currentUser != null && currentUser._id === owner._id && currentUser.role === 'OWNER'); // only owner of the Ads can edit it
 
   const deleteAdHandler = (aid) => {
     dispatch(deleteAdvertisementByIDThunk(aid));
@@ -28,11 +31,13 @@ const AdItem = ({ad, owner}) => {
           <div className="col-auto">
             <img src={owner.profilePicture} width={45} height={45} className="rounded-circle" alt={owner.profilePicture}/>
           </div>
-          <div className="col-10 pe-0">
-            <i className="bi bi-x-lg float-end wd-clickable"
-               onClick={() => deleteAdHandler(ad._id)}></i>
+          <div className="col-10 ps-0 pe-0">
             {
-              !contentInEdit && <button className="float-end me-3 btn btn-dark" onClick={() => setContentInEdit(true)}>Edit Content</button>
+              isLoggedInAndIsOwner && <i className="bi bi-x-lg float-end wd-clickable"
+                                         onClick={() => deleteAdHandler(ad._id)}></i>
+            }
+            {
+                isLoggedInAndIsOwner && !contentInEdit && <button className="float-end me-3 btn btn-dark" onClick={() => setContentInEdit(true)}>Edit Content</button>
             }
             {
               contentInEdit && <div className="">
@@ -42,7 +47,6 @@ const AdItem = ({ad, owner}) => {
                   </div>
                   <button className="btn btn-success mb-3" onClick={() => {updateAdHandler(); setContentInEdit(false)}}>Finish</button>
                   <button className="btn btn-light ms-2 mb-3" onClick={() => {setContentInEdit(false); setAdContent(ad.content)}}>Cancel</button>
-                  <hr/>
                 </div>
             }
             <span className="fw-bold text-primary">{owner.username}</span>

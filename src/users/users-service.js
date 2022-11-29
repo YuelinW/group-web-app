@@ -27,3 +27,8 @@ export const logout = async () => {
   const response = await axios.post(`${BASE_URL}/logout`)
   return response.data
 }
+
+export const findUserByID = async (uid) => { // this is called when /profile/uid is loaded
+  const response = await axios.get(`${BASE_URL}/users/${uid}`);
+  return response.data
+}

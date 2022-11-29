@@ -9,14 +9,14 @@ const Friend = ({profile}) => {
     service.findFollowsByLeaderID(profile._id)
     .then(res => setFollowsFollower(res))
     .catch(() => setFollowsFollower(null))
-  }, []);
+  }, [profile]);
 
   const [followsFollowing, setFollowsFollowing] = useState([]);
   useEffect(() => {
     service.findFollowsByFollowerID(profile._id)
     .then(res => setFollowsFollowing(res))
     .catch(() => setFollowsFollowing(null))
-  }, []);
+  }, [profile]);
 
   return (
       <div className="ms-3">

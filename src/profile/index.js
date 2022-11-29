@@ -1,7 +1,5 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import {useDispatch, useSelector} from "react-redux";
-import {useEffect} from "react";
-import RecentActivity from "./profile-content/recent-activity";
 import Review from "./profile-content/review";
 import Following from "./profile-content/following";
 import Follower from "./profile-content/follower";
@@ -14,7 +12,6 @@ import ProfileNavbar from "./profile-navbar";
 import RestaurantList from "./profile-content/restaurant-list";
 import AdvertisementList from "./profile-content/advertisement-list";
 import PostAdvertisement from "./profile-content/post-advertisement";
-import Partner from "./profile-content/partner";
 import ReviewList from "./profile-content/review-list";
 import UserList from "./profile-content/user-list";
 
@@ -46,7 +43,6 @@ const Profile = () => {
                   <ProfileNavbar role={profile.role} setActiveComponent ={setActiveComponent}/>
                   <div className="col-10 col-md-7 col-lg-8 col-xl-6">
                     {(activeComponent === 'basic') && <BasicInfo profile={profile}/>}
-                    {/*{(activeComponent === 'activity') && <RecentActivity profile={profile}/>}*/}
                     {(activeComponent === 'review') && <Review profile={profile}/>}
                     {(activeComponent === 'following') && <Following profile={profile}/>}
                     {(activeComponent === 'follower') && <Follower profile={profile}/>}
@@ -54,7 +50,6 @@ const Profile = () => {
                     {(activeComponent === 'restaurant') && <RestaurantList profile={profile}/>}
                     {(activeComponent === 'ad') && <AdvertisementList profile={profile}/>}
                     {(activeComponent === 'post') && <PostAdvertisement profile={profile}/>}
-                    {/*{(activeComponent === 'partner') && <Partner profile={profile}/>}*/}
                     {(activeComponent === 'userList') && <UserList profile={profile}/>}
                     {(activeComponent === 'reviewList') && <ReviewList profile={profile}/>}
                   </div>
