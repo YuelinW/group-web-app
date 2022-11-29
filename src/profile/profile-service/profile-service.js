@@ -8,11 +8,6 @@ export const updateProfile = async (profile) => { //TODO
   // return profile;
 };
 
-export const findActivityByCustomerID = async (customerID) => {
-  const response = await axios.get(`${YEALP_API}/${customerID}`);
-  return response.data;
-};
-
 export const findProfileByProfileID = async (profileID) => {
   const response = await axios.get(`${API_BASE}/users/${profileID}`);
   return response.data

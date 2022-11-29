@@ -2,7 +2,7 @@ import React from "react";
 
 const PrivateProfile = ({profile}) => {
   // const {currentUser} = useSelector(state => state.users); // todo: uncomment
-  const currentUser = {...profile, _id: "a"}; // todo: delete
+  const currentUser = {...profile}; // todo: delete
   const isLoggedIn = (currentUser != null && currentUser._id === profile._id);
 
   return (

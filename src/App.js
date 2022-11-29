@@ -7,18 +7,17 @@ import {Provider} from "react-redux";
 import profileReducer from "./profile/profile-service/profile-reducer";
 import EditProfile from "./profile/edit-profile";
 import ProfileOther from "./profile/profile-other";
-import userActivityReducer
-  from "./profile/profile-service/user-activity-reducer";
 import restaurantsReducer from "./restaurant/restaurants-reducer";
 import advertisementsReducer from "./advertisement/advertisements-reducer";
 import Login from "./users/login";
 import Register from "./users/register";
 import usersReducer from "./users/users-reducer";
+import reviewReducer from "./review/review-reducer";
 import CurrentUser from "./users/current-user";
 import ProtectedRoute from "./users/protected-route";
 
 const store = configureStore({
-  reducer: {users: usersReducer, profile: profileReducer, userActivity: userActivityReducer, restaurants: restaurantsReducer, advertisements: advertisementsReducer}
+  reducer: {users: usersReducer, profile: profileReducer, restaurants: restaurantsReducer, advertisements: advertisementsReducer, reviews: reviewReducer}
 });
 
 function App() {

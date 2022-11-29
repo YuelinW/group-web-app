@@ -1,7 +1,32 @@
+import {useDispatch, useSelector} from "react-redux";
+import React, {useEffect} from "react";
+import {findAllReviewsThunk} from "../../review/review-thunks";
+import ReviewItem from "./review-item";
+
+
+// only viewed by admin users
 const ReviewList = ({profile}) => {
+  const {reviews, loading} = useSelector(state => state.reviews);
+  const dispatch = useDispatch();
+  useEffect(() => {dispatch(findAllReviewsThunk())}, [profile]);
+
   return (
       <>
-        <h1>Review List</h1>
+        <div className="ms-3">
+          <h3 className="text-info">Reviews</h3>
+          {loading &&
+              <div className="list-group-item">
+                Loading...
+              </div>}
+          <div className="list-group list-group-flush">
+            {!reviews || reviews.length === 0 && <>There are 0 reviews.</>}
+            {
+                reviews && reviews.length > 0 && reviews.map(review =>
+                    <ReviewItem review={review} key={review._id} allowDelete={true}/>
+                )
+            }
+          </div>
+        </div>
       </>
   );
 };
