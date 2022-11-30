@@ -1,18 +1,18 @@
 import React, {useState}  from "react";
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import "./index.css";
 import {Link} from "react-router-dom";
 import {loginThunk} from "./users-thunks";
-import {useNavigate} from "react-router";
+import {Navigate} from "react-router";
 
 const Login = () => {
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
+  const {currentUser} = useSelector((state) => state.users)
   const [error, setError] = useState(null)
   const dispatch = useDispatch()
-  const navigate = useNavigate();
   //TODO: cannot login successfully
-  const handleLoginBtn = async (e) => {
+  const handleLoginBtn = (e) => {
     e.preventDefault();
     if (username === "") {
       setError('Username must be filled')
@@ -23,14 +23,11 @@ const Login = () => {
       return
     }
     setError(null)
-    try {
-      await dispatch(loginThunk({username, password})).unwrap()
-      navigate('/profile')
-      console.log('successful')
-    } catch(error) {
-      console.log('unsuccessful')
-      setError('Username and Password do not match')
-    }
+    const loginUser = {username, password}
+    dispatch(loginThunk(loginUser))
+  }
+  if (currentUser) {
+    return (<Navigate to={'/profile'}/>)
   }
   return(
       <div className="d-flex justify-content-center">
