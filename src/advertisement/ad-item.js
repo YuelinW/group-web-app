@@ -12,8 +12,9 @@ const AdItem = ({ad, owner}) => {
   const dispatch = useDispatch();
 
   // const {currentUser} = useSelector(state => state.users); // todo: uncomment
-  const currentUser = {...owner, _id: "a"}; // todo: delete
-  const isLoggedInAndIsOwner = (currentUser != null && currentUser._id === owner._id && currentUser.role === 'OWNER'); // only owner of the Ads can edit it
+  const currentUser = {...owner}; // todo: delete
+  const isLoggedInAndIsOwner = (currentUser._id === owner._id
+      && currentUser.role === 'OWNER'); // only owner of the Ads can edit it
 
   const deleteAdHandler = (aid) => {
     dispatch(deleteAdvertisementByIDThunk(aid));

@@ -1,0 +1,16 @@
+{
+  "_id": "638264b8e61fadd4540f63b8",
+  "firstName": "Dan",
+  "lastName": "Dylon",
+  "username": "dandylon11",
+  "email": "dan.dylon@email.com",
+  "phone": "777-456-3333",
+  "profilePicture": "https://user-images.githubusercontent.com/15254181/204105401-37f06667-7d02-490b-8f2e-887d80f5458a.png",
+  "bannerPicture": "https://user-images.githubusercontent.com/15254181/203613376-d7c29b41-9deb-4fce-9ebd-0c0a5f5cf44b.jpg",
+  "bio": "I am Dan. I am the 2nd owner of Deli Board",
+  "role": "OWNER",
+  "location": "Los Angeles, CA",
+  "dateOfBirth": "1974-07-04T07:00:00.000+00:00",
+  "dateJoined": "2015-05-05T07:00:00.000+00:00",
+  "password": "p@assWord!"
+}

@@ -11,7 +11,7 @@ const AdvertisementList = ({profile}) => {
   useEffect(() => {dispatch(findAllAdvertisementsByOwnerIDThunk(profile._id))}, [profile]);
   return (
       <div className="ms-1 me-1">
-        <h3 className="text-info">Advertisements I Posted</h3>
+        <h3 className="text-info">Advertisements I Posted (sorted from the most recent ones)</h3>
         <ul className="list-group">
           {
               loading &&

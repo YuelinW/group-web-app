@@ -10,7 +10,7 @@ import {
 const RestaurantList = ({profile}) => {
   const {restaurants, loading} = useSelector(state => state.restaurants);
   // const {currentUser} = useSelector(state => state.users); // todo: uncomment
-  const currentUser = {...profile, _id: "a"}; // todo: delete
+  const currentUser = {...profile}; // todo: delete
   const dispatch = useDispatch();
   useEffect(() => {dispatch(findRestaurantsByOwnerIDThunk(profile._id))}, [profile]);
   const disconnectRestaurantAndOwnerHandler = (r) => {

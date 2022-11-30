@@ -10,7 +10,7 @@ import {Link} from "react-router-dom";
 
 const PostAdvertisement = ({profile}) => {
   // const {currentUser} = useSelector(state => state.users); // todo: uncomment
-  const currentUser = {...profile, _id: "a"}; // todo: delete
+  const currentUser = {...profile}; // todo: delete
   const dispatch = useDispatch();
   const {restaurants, loading} = useSelector(state => state.restaurants);
   useEffect(() => {dispatch(findRestaurantsByOwnerIDThunk(profile._id))}, [profile]);
