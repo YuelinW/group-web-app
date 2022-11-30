@@ -10,7 +10,7 @@ export const findAllRestaurants = async () => {
 };
 
 export const findRestaurantByRestaurantID = async (rid) => {
-  const response = await axios.get(`${YEALP_API}/businesses/${rid}`);
+  const response = await axios.get(`${YEALP_API}/${rid}`);
   return response.data;
 };
 
