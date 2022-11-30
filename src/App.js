@@ -7,7 +7,7 @@ import RestaurantSummaryList from "./restaurant-summary-list/index.js";
 import HomeComponent from "./home";
 import ExploreComponent from "./search";
 import NewlyJoinedUsersList from "./Newly-joined-users";
-import restaurantReducer from "./restaurant/restaurant-reducer";
+import restaurantReducer from "./restaurant/restaurants-reducer";
 import {configureStore} from "@reduxjs/toolkit";
 import {Provider} from "react-redux";
 import RestaurantInfo from "./restaurant-detail/restaurant-info";
