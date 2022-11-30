@@ -9,7 +9,8 @@ import {
   updateCurrentUserProfileByIDThunk,
   updateCurrentUserProfileByUserNameThunk
 } from "./users-thunks";
-import currentUser from "../profile/test-only-profile/chu-admin.json";
+// import currentUser from "../profile/test-only-profile/chu-admin.json";
+import currentUser from "../profile/test-only-profile/dan-profile.json";
 
 const usersReducer = createSlice({
   name: 'users',
