@@ -8,12 +8,22 @@ export const findAllReviewsByUserID = async (oid) => {
   return response.data;
 }
 
-export const findAllReviews = async () => {
-  const response = await axios.get(`${YEALP_API}`);
+export const findReviewByRestaurantID = async (rid) => {
+  const response = await axios.get(`${YEALP_API}/restaurant/${rid}`);
+  return response.data;
+}
+
+export const createReview = async (review) => {
+  const response = await axios.post(YEALP_API, review)
   return response.data;
 }
 
 export const deleteReviewByID = async (review) => {
   await axios.delete(`${YEALP_API}/${review._id}`);
   return review;
+}
+
+export const findAllReviews = async () => {
+  const response = await axios.get(`${YEALP_API}`);
+  return response.data;
 }

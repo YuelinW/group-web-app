@@ -1,15 +1,43 @@
+import {findReviewByRestaurantID, deleteReviewByIDThunk, findAllReviewsThunk}
+  from './review-thunks';
+
 import {createSlice} from "@reduxjs/toolkit";
-import {deleteReviewByIDThunk, findAllReviewsThunk} from "./review-thunks";
+import {createReviewThunk} from "./review-thunks";
 
 const initialState = {
-  loading: false,
-  reviews: null
+  reviews: [],
+  loading: false
 };
 
 const reviewSlice = createSlice({
-  name: "reviews",
+  name: 'reviews',
   initialState,
   extraReducers: {
+    [findReviewByRestaurantID.pending]:
+        (state) => {
+          state.loading = true;
+          state.reviews = [];
+        },
+    [findReviewByRestaurantID.fulfilled]:
+        (state, {payload}) => {
+          state.loading = false;
+          state.reviews = payload;
+        },
+    [findReviewByRestaurantID.rejected]:
+        (state) => {
+          state.loading = false;
+          state.reviews = [];
+        },
+    [createReviewThunk.fulfilled]:
+        (state, {payload}) => {
+          state.loading = false;
+          state.reviews.push(payload);
+        },
+    [deleteReviewByIDThunk.fulfilled]:
+        (state, {payload}) => {
+          state.loading = false;
+          state.reviews = state.reviews.filter(r => r._id !== payload._id);
+        },
     [findAllReviewsThunk.pending]:
         (state) => {
           state.loading = true;
@@ -24,11 +52,6 @@ const reviewSlice = createSlice({
         (state, {payload}) => {
           state.loading = false;
           state.reviews = null;
-        },
-    [deleteReviewByIDThunk.fulfilled]:
-        (state, {payload}) => {
-          state.loading = false;
-          state.reviews = state.reviews.filter(r => r._id !== payload._id);
         }
   }
 });

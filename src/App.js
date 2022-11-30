@@ -1,51 +1,67 @@
+import React from "react";
 import './App.css';
-import {Routes, Route} from "react-router";
+import NavigationSidebar from "./navigation-sidebar/index.js";
+import {Route, Routes} from "react-router";
 import {BrowserRouter} from "react-router-dom";
+import RestaurantSummaryList from "./restaurant-summary-list/index.js";
+import HomeComponent from "./home";
+import ExploreComponent from "./search";
+import NewlyJoinedUsersList from "./Newly-joined-users";
+import restaurantReducer from "./restaurant/restaurants-reducer";
 import {configureStore} from "@reduxjs/toolkit";
-import Profile from "./profile";
 import {Provider} from "react-redux";
+import RestaurantInfo from "./restaurant-detail/restaurant-info";
+import reviewsReducer from "./review/review-reducer";
+import RestaurantDetail from "./restaurant-detail";
 import profileReducer from "./profile/profile-service/profile-reducer";
 import EditProfile from "./profile/edit-profile";
 import ProfileOther from "./profile/profile-other";
-import restaurantsReducer from "./restaurant/restaurants-reducer";
 import advertisementsReducer from "./advertisement/advertisements-reducer";
 import Login from "./users/login";
 import Register from "./users/register";
-import usersReducer from "./users/users-reducer";
-import reviewReducer from "./review/review-reducer";
 import CurrentUser from "./users/current-user";
 import ProtectedRoute from "./users/protected-route";
+import usersReducer from "./users/users-reducer";
+import Profile from "./profile";
 
-const store = configureStore({
-  reducer: {users: usersReducer, profile: profileReducer, restaurants: restaurantsReducer, advertisements: advertisementsReducer, reviews: reviewReducer}
-});
+const store = configureStore(
+    {reducer: {users: usersReducer, profile: profileReducer, restaurants: restaurantReducer, advertisements: advertisementsReducer, reviews: reviewsReducer}}
+)
 
 function App() {
   return (
-      <div className="container mt-4 mb-4">
-        <Provider store={store}>
-          <CurrentUser>
-            <BrowserRouter>
-              <Routes>
-                <Route path="/login" element={<Login/>}/>
-                <Route path="/register" element={<Register/>}/>
-                <Route path="/profile" element={
-                  // <ProtectedRoute>
-                    <Profile/>
-                  // </ProtectedRoute>
-                }/>
-                <Route path="/profile/:uid" element={<ProfileOther/>}></Route>
-                <Route path="/edit-profile" element={
-                  // <ProtectedRoute>
-                    <EditProfile/>
-                  // </ProtectedRoute>
-                }/>
-                }
-              </Routes>
-            </BrowserRouter>
-          </CurrentUser>
-        </Provider>
-      </div>
+        <div className="container mt-4 mb-4">
+        <BrowserRouter>
+          <Provider store={store}>
+            <div className="mt-4 mb-4">
+                <NavigationSidebar/>
+            </div>
+            <Routes>
+              <Route index element={<HomeComponent/>}/>
+              <Route path="/home"    element={<HomeComponent/>}/>
+              <Route path="/search" element={<ExploreComponent/>}/>
+              <Route path="/restaurant-detail" element={<RestaurantDetail/>}/>
+              <Route path="/login" element={<Login/>}/>
+              <Route path="/register" element={<Register/>}/>
+              <Route path="/profile" element={
+                // <ProtectedRoute>
+                <Profile/>
+                // </ProtectedRoute>
+              }/>
+              <Route path="/profile/:uid" element={<ProfileOther/>}></Route>
+              <Route path="/edit-profile" element={
+                // <ProtectedRoute>
+                <EditProfile/>
+                // </ProtectedRoute>
+              }/>
+              }
+            </Routes>
+            {/*<div className="d-sm-none d-md-none d-lg-block col-lg-3 col-xl-3">*/}
+            {/*  <NewlyJoinedUsersList/>*/}
+            {/*</div>*/}
+          </Provider>
+        </BrowserRouter>
+        </div>
   );
 }
 
