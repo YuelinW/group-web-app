@@ -1,0 +1,14 @@
+[
+  {
+    "_id": 123,
+    "username":"alice666",
+    "profilePicture":"https://user-images.githubusercontent.com/15254181/203483222-a01e1942-19e4-49c8-b3e3-41dd0ce8b3de.jpg",
+    "bio":"Foodie. I love sushi, ramen, dumplings. Please follow me!"
+  },
+  {
+    "_id": 234,
+    "username":"alice777",
+    "profilePicture":"https://user-images.githubusercontent.com/15254181/203483222-a01e1942-19e4-49c8-b3e3-41dd0ce8b3de.jpg",
+    "bio":"Foodie. I love sushi, ramen, dumplings. Please follow me!"
+  }
+]
