@@ -1,0 +1,16 @@
+{
+  "_id": "6385600ca9dd324ab18ea909",
+  "firstName": "Chu",
+  "lastName": "Wang",
+  "username": "chuwang",
+  "email": "chu@wang.com",
+  "phone": "111-222-3333",
+  "profilePicture": "https://i.pinimg.com/736x/4c/cd/b6/4ccdb695cd0790613b533b5867c2fad8.jpg",
+  "bannerPicture": "https://user-images.githubusercontent.com/15254181/203613376-d7c29b41-9deb-4fce-9ebd-0c0a5f5cf44b.jpg",
+  "bio": "",
+  "role": "ADMIN",
+  "location": "Bellevue, WA",
+  "dateOfBirth": "1993-03-24T00:00:00.000+00:00",
+  "dateJoined": "2022-11-29T01:19:16.189+00:00",
+  "password": "chuwang123"
+}
