@@ -23,13 +23,26 @@ const NavigationSidebar = () => {
             </button>
             <div className="collapse navbar-collapse" id="navbarColor01">
               <ul className="navbar-nav me-auto">
+                {
+                    currentUser && currentUser.role === "ADMIN" &&
+                    <li className="nav-item">
+                      <Link className={`nav-link ${active === 'admin' ? 'active'
+                          : ''}`} to="/admin">Admin
+                        <span className="visually-hidden">(current)</span>
+                      </Link>
+                    </li>
+                }
+                {
+                  !currentUser &&
+                  <li className="nav-item">
+                    <Link className={`nav-link ${active === 'home' ? 'active'
+                        : ''}`} to="/home">Home
+                      <span className="visually-hidden">(current)</span>
+                    </Link>
+                  </li>
+                }
                 <li className="nav-item">
-                  <Link className={`nav-link ${active === 'home'?'active':''}`} to="/home">Home
-                    <span className="visually-hidden">(current)</span>
-                  </Link>
-                </li>
-                <li className="nav-item">
-                  <Link to="/search" className={`nav-link ${active === 'search'?'active':''}`}>Search</Link>
+                  <Link to="/search" className={`nav-link ${(active === 'search' || active === 'details')?'active':''}`}>Search</Link>
                 </li>
                 <li className="nav-item">
                   <Link className={`nav-link ${(active === 'profile' || active === 'edit-profile')?'active':''}`} to="/profile">Profile</Link>
