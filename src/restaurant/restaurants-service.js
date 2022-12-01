@@ -32,4 +32,14 @@ export const findRestaurantsByCategory = async (c) => {
 export const disConnectOwnerAndRestaurant = async (ownersAndRestaurant) => {
   await axios.put(`${YEALP_API}/disconnect/${ownersAndRestaurant.rid}`, ownersAndRestaurant.owners);
   return ownersAndRestaurant.rid;
-};
+}
+
+export const findRestaurantByYelpId = async (yid) => {
+  const response = await axios.get(`${YEALP_API}/yelpID/${yid}`);
+  return response.data;
+}
+
+export const createRestaurant = async (restaurant) => {
+  const response = await axios.post(YEALP_API, restaurant)
+  return response.data;
+}
