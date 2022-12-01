@@ -17,7 +17,7 @@ const ReviewCreate = () => {
       state => state.restaurantData)
   const dispatch = useDispatch();
   useEffect(() => {dispatch(findRestaurantByYelpId(yid))}, [yid])
-  const profile = useSelector(state => state.users.fakeCurrentUser);
+  const profile = useSelector(state => state.users);
   const [isLoggedIn, setIsLoggedIn] = useState(true);
 
   const reviewClickHandler = () => {
@@ -34,7 +34,7 @@ const ReviewCreate = () => {
   }
   console.log("review")
   console.log(singleRestaurant)
-  const profilePic = isLoggedIn ? profile.profilePicture : 'https://user-images.githubusercontent.com/113388766/204669517-e093dbef-7812-4273-b5c4-028598111fd3.jpg';
+  const profilePic = isLoggedIn ? profile.profilePicture: 'https://user-images.githubusercontent.com/113388766/204669517-e093dbef-7812-4273-b5c4-028598111fd3.jpg';
   return(
 
       <>

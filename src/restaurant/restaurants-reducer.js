@@ -7,6 +7,7 @@ import {
 } from './restaurants-thunks';
 import {createSlice} from "@reduxjs/toolkit";
 import {
+  findYelpRestaurantByRestaurantNameAndLocationThunk,
   findYelpRestaurantsByRestaurantId,
   findYelpRestaurantsByRestaurantName,
 } from './yelp-api-restaurant-thunk';
@@ -101,6 +102,21 @@ const restaurantSlice = createSlice({
           state.loading = false;
           state.restaurants.push(payload);
         },
+    [findYelpRestaurantByRestaurantNameAndLocationThunk.pending]:
+        (state) => {
+          state.restaurantsFromYelp = [];
+          state.loading = true
+        },
+    [findYelpRestaurantByRestaurantNameAndLocationThunk.fulfilled]:
+        (state, {payload}) => {
+          state.restaurantsFromYelp = payload;
+          state.loading = false;
+        },
+    [findYelpRestaurantByRestaurantNameAndLocationThunk.rejected]:
+        (state) => {
+          state.restaurantsFromYelp = [];
+          state.loading = false
+        }
   }
 });
 export default restaurantSlice.reducer;
