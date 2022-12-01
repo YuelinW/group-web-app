@@ -3,7 +3,6 @@ import {useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import React from "react";
 import {Link} from "react-router-dom";
-import NotLoggedIn from "../profile/not-logged-in";
 const ReviewCreate = () => {
   let params = (new URL(document.location)).searchParams;
   let inputId = params.get("id");

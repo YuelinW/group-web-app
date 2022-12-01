@@ -1,4 +1,4 @@
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {
   deleteAdvertisementByIDThunk,
   updateAdvertisementThunk
@@ -11,9 +11,8 @@ const AdItem = ({ad, owner}) => {
   const [contentInEdit, setContentInEdit] = useState(false);
   const dispatch = useDispatch();
 
-  // const {currentUser} = useSelector(state => state.users); // todo: uncomment
-  const currentUser = {...owner}; // todo: delete
-  const isLoggedInAndIsOwner = (currentUser._id === owner._id
+  const {currentUser} = useSelector(state => state.users);
+  const isLoggedInAndIsOwner = (currentUser && currentUser._id === owner._id
       && currentUser.role === 'OWNER'); // only owner of the Ads can edit it
 
   const deleteAdHandler = (aid) => {

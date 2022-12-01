@@ -9,6 +9,7 @@ const AdvertisementList = ({profile}) => {
   const {adsOfOwner, loading} = useSelector(state => state.advertisements);
   const dispatch = useDispatch();
   useEffect(() => {dispatch(findAllAdvertisementsByOwnerIDThunk(profile._id))}, [profile]);
+
   return (
       <div className="ms-1 me-1">
         <h3 className="text-info">Advertisements I Posted (sorted from the most recent ones)</h3>
@@ -19,7 +20,7 @@ const AdvertisementList = ({profile}) => {
                 Loading...
               </div>
           }
-          {adsOfOwner.length === 0 && !loading && <>This owner doesn't have any advertisements.</>}
+          {adsOfOwner && adsOfOwner.length === 0 && !loading && <>This owner doesn't have any advertisements.</>}
           {
               adsOfOwner && adsOfOwner.length > 0 && adsOfOwner.map(ad => <AdItem key={ad._id} ad={ad} owner={profile}/>)
           }

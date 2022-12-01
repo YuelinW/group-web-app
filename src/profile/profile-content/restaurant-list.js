@@ -7,10 +7,9 @@ import {
 } from "../../restaurant/restaurants-thunks";
 
 
-const RestaurantList = ({profile}) => {
+const RestaurantList = ({profile}) => { // profile can be otherUser
   const {restaurants, loading} = useSelector(state => state.restaurants);
-  // const {currentUser} = useSelector(state => state.users); // todo: uncomment
-  const currentUser = {...profile}; // todo: delete
+  const {currentUser} = useSelector(state => state.users);
   const dispatch = useDispatch();
   useEffect(() => {dispatch(findRestaurantsByOwnerIDThunk(profile._id))}, [profile]);
   const disconnectRestaurantAndOwnerHandler = (r) => {
@@ -22,7 +21,9 @@ const RestaurantList = ({profile}) => {
     dispatch(disConnectOwnerAndRestaurantThunk(compoundObject)
     )};
 
-  const isLoggedInAndIsOwner = (currentUser._id === profile._id
+  // console.log("current user is" + JSON.stringify(currentUser))
+
+  const isLoggedInAndIsOwner = (currentUser != null && currentUser._id === profile._id
       && currentUser.role === 'OWNER');
   return (
       <div className="ms-3 me-5">

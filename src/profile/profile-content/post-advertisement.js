@@ -9,8 +9,7 @@ import {
 import {Link} from "react-router-dom";
 
 const PostAdvertisement = ({profile}) => {
-  // const {currentUser} = useSelector(state => state.users); // todo: uncomment
-  const currentUser = {...profile}; // todo: delete
+  const {currentUser} = useSelector(state => state.users);
   const dispatch = useDispatch();
   const {restaurants, loading} = useSelector(state => state.restaurants);
   useEffect(() => {dispatch(findRestaurantsByOwnerIDThunk(profile._id))}, [profile]);
@@ -27,12 +26,11 @@ const PostAdvertisement = ({profile}) => {
       title: adTitle,
       content: adContent,
       poster: posterLink,
-      // postedDate: new Date()
     }
     dispatch(createAdvertisementThunk(newAd));
   }
 
-  const isLoggedInAndIsOwner = (currentUser._id === profile._id
+  const isLoggedInAndIsOwner = (currentUser && currentUser._id === profile._id
       && currentUser.role === 'OWNER');
   return (
       <>
