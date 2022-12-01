@@ -3,10 +3,10 @@ import {
   findAllUsers,
   findUserByID,
   logout,
+  login,
   register,
-  updateCurrentUserProfileByUserName,
+  updateCurrentUserProfileByUserName
 } from "./users-service";
-import login from "./login";
 import profile from "../profile";
 
 export const findAllUsersThunk = createAsyncThunk(

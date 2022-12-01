@@ -23,10 +23,12 @@ import CurrentUser from "./users/current-user";
 import ProtectedRoute from "./users/protected-route";
 import usersReducer from "./users/users-reducer";
 import Profile from "./profile";
+import ReviewComponent from "./restaurant-detail/review-component";
+import restaurantsReducer2 from "./restaurant/reducer";
 
 
 const store = configureStore(
-    {reducer: {users: usersReducer, profile: profileReducer, restaurants: restaurantReducer, advertisements: advertisementsReducer, reviews: reviewsReducer}}
+    {reducer: {users: usersReducer, profile: profileReducer, restaurants: restaurantReducer, restaurantData: restaurantsReducer2, advertisements: advertisementsReducer, reviews: reviewsReducer}}
 )
 
 function App() {
@@ -41,7 +43,7 @@ function App() {
               <Route index element={<HomeComponent/>}/>
               <Route path="/home"    element={<HomeComponent/>}/>
               <Route path="/search" element={<ExploreComponent/>}/>
-              <Route path="/restaurant-detail" element={<RestaurantDetail/>}/>
+              <Route path="/details" element={<RestaurantDetail/>}/>
               <Route path="/login" element={<Login/>}/>
               <Route path="/register" element={<Register/>}/>
               <Route path="/profile" element={
@@ -56,6 +58,7 @@ function App() {
                 // </ProtectedRoute>
               }/>
               }
+              <Route path="/details/:yid" element={<RestaurantDetail/>}></Route>
             </Routes>
             {/*<div className="d-sm-none d-md-none d-lg-block col-lg-3 col-xl-3">*/}
             {/*  <NewlyJoinedUsersList/>*/}

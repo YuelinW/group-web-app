@@ -9,6 +9,7 @@ import RestaurantSummaryItem
 import {Link} from "react-router-dom";
 import {useNavigate} from "react-router";
 import "./index.css";
+import {createRestaurant} from "../restaurant/restaurants-thunks";
 
 const generatePrice = (price) => {
   let result = '';
@@ -26,11 +27,27 @@ const ExploreComponent = () => {
   useEffect(() => {
     dispatch(findYelpRestaurantsByRestaurantName(searchTerm))
   }, [])
-  let navigate = useNavigate();
-  const routeChange = (id) => {
-    let path = `../restaurant-detail?id=`;
-    navigate(path + id);
-  }
+  // let navigate = useNavigate();
+  // const routeChange = (id) => {
+  //   let path = `../details?id=`;
+  //   navigate(path + id);
+  // }
+  // const exploreClickHandler = (restaurant) => {
+  //   const newRestaurant = {
+  //     name: restaurant.name,
+  //     image_url: restaurant.image_url,
+  //     category: [],
+  //     url: restaurant.url,
+  //     price: restaurant.price,
+  //     diaplay_phone: restaurant.display_phone,
+  //     owners: [],
+  //     reviews: [],
+  //     yelpID: restaurant.id
+  //   }
+  //   dispatch(createRestaurant(newRestaurant));
+  // }
+  // console.log('newrestaurant')
+  // console.log(newRestaurant)
 
   return (
       <>
@@ -51,7 +68,7 @@ const ExploreComponent = () => {
                   className="btn btn-primary float-end"
                   onClick={() => {
                     dispatch(findYelpRestaurantsByRestaurantName(searchTerm.replaceAll(' ', '+')))
-                  }}>Search by Category
+                  }}>Search by Name
               </button>
             </div>
           </div>
@@ -71,7 +88,12 @@ const ExploreComponent = () => {
                         <div><h6 className="card-text text-muted">{restaurant.categories.map(c => (<li key={c.alias}>{c.title}</li>))}</h6></div>
                       </div>
                       <div className="col-2 col-lg-2 col-md-2 col-sm-2">
-                        <button onClick={() => routeChange(restaurant.id)} type="button" class="btn btn-primary">Details</button>
+                        <Link
+                            to={`/details/${restaurant.id}`}
+                            //   onClick={exploreClickHandler({restaurant})}
+                              type="button" class="btn btn-primary">
+                          Details
+                        </Link>
                       </div>
                     </div>
                   </li>

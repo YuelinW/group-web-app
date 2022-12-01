@@ -25,3 +25,11 @@ export const disConnectOwnerAndRestaurantThunk = createAsyncThunk(
     'restaurants/disConnectOwnerAndRestaurantThunk',
     async (compoundObject) => await service.disConnectOwnerAndRestaurant(compoundObject)
 );
+
+export const findRestaurantByYelpId = createAsyncThunk(
+    'restaurants/findRestaurantByYelpId', async (yid) => await service.findRestaurantByYelpId(yid)
+);
+
+export const createRestaurant = createAsyncThunk(
+    'restaurants/createRestaurant', async (restaurant) => await service.createRestaurant(restaurant)
+);
