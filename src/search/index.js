@@ -192,8 +192,7 @@ const ExploreComponent = () => {
                             c => (<li key={c.alias}>{c.title}</li>))}</h6></div>
                       </div>
                       <div className="col-2 col-lg-2 col-md-2 col-sm-2">
-                        <button type="button" className="btn btn-primary">Details
-                        </button>
+                        <button type="button" className="btn btn-primary">Details</button>
                       </div>
                     </div>
                   </li>
