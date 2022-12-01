@@ -3,11 +3,13 @@ import {Link} from "react-router-dom";
 import {useLocation} from "react-router";
 import "../index.css";
 import "./index.css";
+import {useSelector} from "react-redux";
 
 const NavigationSidebar = () => {
   const {pathname} = useLocation();
   const paths = pathname.split('/')
   const active = paths[1];
+  const {currentUser} = useSelector((state) => state.users)
   return (
         <div className="mt-2 mb-2">
         <nav className="navbar navbar-expand-lg navbar-dark bg-primary navbar-default fixed-top">
@@ -32,9 +34,19 @@ const NavigationSidebar = () => {
                 <li className="nav-item">
                   <Link className={`nav-link ${(active === 'profile' || active === 'edit-profile')?'active':''}`} to="/profile">Profile</Link>
                 </li>
-                <li className="nav-item">
-                  <a className={`nav-link ${active === 'login'?'active':''}`} href="/login">Login</a>
-                </li>
+                {
+                    !currentUser &&
+                      <li className="nav-item">
+                        <a className={`nav-link ${active === 'login' ? 'active'
+                            : ''}`} href="/login">Login</a>
+                      </li>
+                }
+                {
+                  currentUser &&
+                    <li className="nav-item">
+                      <a className="nav-link" href="/home">Logout</a>
+                    </li>
+                }
               </ul>
               <div className="me-4">
                 <a>follow us</a><i className="ms-2 me-2 bi-instagram"></i><i className="me-2 bi-facebook"></i><i className="bi-tiktok"></i>

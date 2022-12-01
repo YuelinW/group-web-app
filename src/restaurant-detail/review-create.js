@@ -4,7 +4,7 @@ import {useDispatch, useSelector} from "react-redux";
 import React from "react";
 import {Link} from "react-router-dom";
 import {useParams} from "react-router";
-import NotLoggedIn from "../profile/not-logged-in";
+// import NotLoggedIn from "../profile/not-logged-in";
 import {useEffect} from "react";
 import {
   findRestaurantByYelpId
