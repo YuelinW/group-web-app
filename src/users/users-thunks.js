@@ -5,7 +5,6 @@ import {
   logout,
   login,
   register,
-  login,
   updateCurrentUserProfileByUserName
 } from "./users-service";
 import profile from "../profile";
