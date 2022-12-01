@@ -1,15 +1,14 @@
-import {useLocation} from "react-router";
 import PrivateProfile from "../private-profile";
+import {useSelector} from "react-redux";
 
 const BasicInfo = ({profile}) => {
-  const {pathname} = useLocation();
-  const paths = pathname.split("/");
-  const isLoggedIn = paths.length === 2; // if == 3, then it is ["", "profile", "uid"] and we should not show update button
+  const {currentUser} = useSelector(state => state.users);
+  const isAccountOwner = (currentUser != null && currentUser._id === profile._id);
 
   return (
       <>
-        {isLoggedIn && <PrivateProfile profile={profile}/>}
-        {!isLoggedIn &&
+        {isAccountOwner && <PrivateProfile profile={profile}/>}
+        {!isAccountOwner &&
             <h4 className="text-info">This content is only viewable by the account owner. Please log in to see details of your profile.</h4>
         }
       </>

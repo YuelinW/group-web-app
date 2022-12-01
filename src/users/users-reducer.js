@@ -6,10 +6,9 @@ import {
   logoutThunk,
   profileThunk,
   registerThunk,
-  updateCurrentUserProfileByIDThunk,
   updateCurrentUserProfileByUserNameThunk
 } from "./users-thunks";
-import currentUser from "../profile/test-only-profile/chu-admin.json";
+
 
 const usersReducer = createSlice({
   name: 'users',
@@ -17,7 +16,6 @@ const usersReducer = createSlice({
     loading: false,
     users: [],
     currentUser: null,
-    fakeCurrentUser: currentUser, // TODO: for testing only; delete later
     otherUser: null,
     error: null
   },
@@ -65,10 +63,6 @@ const usersReducer = createSlice({
     [updateCurrentUserProfileByUserNameThunk.fulfilled]: (state, {payload}) => {
       state.currentUser = {
         ...state.currentUser,
-        ...payload
-      }
-      state.fakeCurrentUser = { // TODO: remove
-        ...state.fakeCurrentUser,
         ...payload
       }
     }

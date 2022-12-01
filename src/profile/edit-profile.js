@@ -5,10 +5,8 @@ import React from "react";
 import {updateCurrentUserProfileByUserNameThunk} from "../users/users-thunks";
 
 const EditProfile = () => {
-  const currentUser = useSelector(state => state.users.fakeCurrentUser); // TODO: update to currentUser
+  const currentUser = useSelector(state => state.users.currentUser);
   const dispatch = useDispatch();
-  // useEffect(() => {dispatch()}, []); //TODO: in first rendering, load loggedin user
-  //TODO: need to protect this url from being hard accessed. If user is not loggedin, show notlogged in page
   const [nameString, setNameString] = useState(currentUser.firstName + " " + currentUser.lastName);
   const [bioString, setBioString] = useState(currentUser.bio);
   const [emailString, setEmailString] = useState(currentUser.email);
@@ -65,8 +63,6 @@ const EditProfile = () => {
     }
     dispatch(updateCurrentUserProfileByUserNameThunk(newProfile));
   };
-
-
 
   return (
       <div className="container w-50">

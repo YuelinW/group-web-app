@@ -30,7 +30,7 @@ const NavigationSidebar = () => {
                   <Link to="/search" className={`nav-link ${active === 'search'?'active':''}`}>Search</Link>
                 </li>
                 <li className="nav-item">
-                  <Link className={`nav-link ${active === 'profile'?'active':''}`} to="/profile">Profile</Link>
+                  <Link className={`nav-link ${(active === 'profile' || active === 'edit-profile')?'active':''}`} to="/profile">Profile</Link>
                 </li>
                 <li className="nav-item">
                   <a className={`nav-link ${active === 'login'?'active':''}`} href="/login">Login</a>

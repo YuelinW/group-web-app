@@ -3,6 +3,7 @@ import {
   findAllUsers,
   findUserByID,
   logout,
+  login,
   register,
   login,
   updateCurrentUserProfileByUserName

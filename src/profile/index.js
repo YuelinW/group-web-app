@@ -1,5 +1,5 @@
-import React, {useState, useEffect} from 'react';
-import {useDispatch, useSelector} from "react-redux";
+import React, {useState} from 'react';
+import {useSelector} from "react-redux";
 import Review from "./profile-content/review";
 import Following from "./profile-content/following";
 import Follower from "./profile-content/follower";
@@ -7,7 +7,6 @@ import Friend from "./profile-content/friend";
 import BasicInfo from "./profile-content/basic-info";
 import ProfileHeader from "./profile-header";
 import ProfileAbout from "./profile-about";
-import NotLoggedIn from "./not-logged-in";
 import ProfileNavbar from "./profile-navbar";
 import RestaurantList from "./profile-content/restaurant-list";
 import AdvertisementList from "./profile-content/advertisement-list";
@@ -16,26 +15,12 @@ import ReviewList from "./profile-content/review-list";
 import UserList from "./profile-content/user-list";
 
 const Profile = () => {
-  const profile = useSelector(state => state.users.fakeCurrentUser); // TODO
-  const [isLoggedIn, setIsLoggedIn] = useState(true); // Only for production: if true, can see private profile. TODO: isLoggedIn = currentUser != null
-  const dispatch = useDispatch();
+  const profile = useSelector(state => state.users.currentUser);
   const [activeComponent, setActiveComponent] = useState('basic'); // all roles start with basic
-  // useEffect(() => {dispatch(loginThunk())}, []); // TODO: load when first render. to get current loggedin user
-  const {currentUser} = useSelector((state) => state.users)
+
   return (
       <div className="mt-2 mb-2">
-        {
-            currentUser &&
-            <h2>Welcome {currentUser.username}</h2>
-        }
-        <div>Is the user logged in?</div>
-        <div><input type="radio" className="form-check-input me-1" name="isUser" id="isUser" defaultChecked onClick={() => setIsLoggedIn(true)}/><label htmlFor="isUser">Yes</label></div>
-        <div><input type="radio" className="form-check-input me-1" name="isUser" id="isNotUser" onClick={() => setIsLoggedIn(false)}/><label htmlFor="isNotUser">No</label></div>
-        {
-            !isLoggedIn && <NotLoggedIn/>
-        }
-        {
-            isLoggedIn &&
+        {profile &&
             <div>
               <ProfileHeader profile={profile}/>
               <div className="wd-nudge-up">

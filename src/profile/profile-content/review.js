@@ -2,7 +2,6 @@ import React, {useEffect, useState} from "react";
 import * as service from "../../review/review-service";
 import ReviewItem from "./review-item";
 
-
 // reviews of a certain user
 const Reviews = ({profile}) => {
   const [reviews, setReviews] = useState([]);
@@ -16,7 +15,7 @@ const Reviews = ({profile}) => {
       <div className="ms-3">
         <h3 className="text-info">Reviews</h3>
         <div className="list-group list-group-flush">
-          {reviews.length === 0 && <>This user doesn't have any recent activities.</>}
+          {reviews && reviews.length === 0 && <>This user doesn't have any recent activities.</>}
           {
               reviews && reviews.length > 0 && reviews.map(review => <ReviewItem review={review} allowDelete={false} key={review._id}/>             )
           }
