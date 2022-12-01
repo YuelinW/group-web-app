@@ -8,3 +8,7 @@ export const findYelpRestaurantsByRestaurantName = createAsyncThunk(
 export const findYelpRestaurantsByRestaurantId =createAsyncThunk(
     'restaurants/findYelpRestaurantsByRestaurantId', async (rId) => await service.findYelpRestaurantsByRestaurantId(rId)
 )
+
+export const findYelpRestaurantByRestaurantNameAndLocationThunk = createAsyncThunk(
+    'restaurants/findYelpRestaurantByRestaurantNameAndLocation', async ({rname, rlocation}) => await service.findYelpRestaurantByRestaurantNameAndLocation({rname, rlocation})
+)
