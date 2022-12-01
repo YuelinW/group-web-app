@@ -30,11 +30,11 @@ const store = configureStore(
 
 function App() {
   return (
-        <div className="container mt-4 mb-4">
+      <div className="container mt-4 mb-4">
         <BrowserRouter>
           <Provider store={store}>
             <div className="mt-4 mb-4">
-                <NavigationSidebar/>
+              <NavigationSidebar/>
             </div>
             <Routes>
               <Route index element={<HomeComponent/>}/>
@@ -61,7 +61,7 @@ function App() {
             {/*</div>*/}
           </Provider>
         </BrowserRouter>
-        </div>
+      </div>
   );
 }
 

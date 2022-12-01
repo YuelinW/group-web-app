@@ -32,10 +32,10 @@ const Profile = () => {
         <div><input type="radio" className="form-check-input me-1" name="isUser" id="isUser" defaultChecked onClick={() => setIsLoggedIn(true)}/><label htmlFor="isUser">Yes</label></div>
         <div><input type="radio" className="form-check-input me-1" name="isUser" id="isNotUser" onClick={() => setIsLoggedIn(false)}/><label htmlFor="isNotUser">No</label></div>
         {
-          !isLoggedIn && <NotLoggedIn/>
+            !isLoggedIn && <NotLoggedIn/>
         }
         {
-          isLoggedIn &&
+            isLoggedIn &&
             <div>
               <ProfileHeader profile={profile}/>
               <div className="wd-nudge-up">
