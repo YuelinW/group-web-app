@@ -15,8 +15,7 @@ const Following = ({profile}) => {
       <div className="ms-3">
         <h3 className="text-info">Following (sorted from most recent)</h3>
         <div className="list-group list-group-flush">
-
-          {follows.length === 0 && <>This user hasn't follow anyone yet.</>}
+          {follows && follows.length === 0 && <>This user hasn't follow anyone yet.</>}
           {
               follows && follows.length > 0 && follows.map(follow =>
                   {

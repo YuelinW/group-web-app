@@ -4,7 +4,7 @@ import FollowProfile from "../../follow/follow-profile";
 import {useDispatch} from "react-redux";
 import {deleteReviewByIDThunk} from "../../review/review-thunks";
 
-
+// helper function
 const generateRating = (rating) => {
   let result = '';
   const singleStar = '<i class="bi bi-star-fill text-primary"></i>';

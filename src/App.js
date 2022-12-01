@@ -10,10 +10,8 @@ import NewlyJoinedUsersList from "./Newly-joined-users";
 import restaurantReducer from "./restaurant/restaurants-reducer";
 import {configureStore} from "@reduxjs/toolkit";
 import {Provider} from "react-redux";
-import RestaurantInfo from "./restaurant-detail/restaurant-info";
 import reviewsReducer from "./review/review-reducer";
 import RestaurantDetail from "./restaurant-detail";
-import profileReducer from "./profile/profile-service/profile-reducer";
 import EditProfile from "./profile/edit-profile";
 import ProfileOther from "./profile/profile-other";
 import advertisementsReducer from "./advertisement/advertisements-reducer";
@@ -25,7 +23,7 @@ import usersReducer from "./users/users-reducer";
 import Profile from "./profile";
 
 const store = configureStore(
-    {reducer: {users: usersReducer, profile: profileReducer, restaurants: restaurantReducer, advertisements: advertisementsReducer, reviews: reviewsReducer}}
+    {reducer: {users: usersReducer, restaurants: restaurantReducer, advertisements: advertisementsReducer, reviews: reviewsReducer}}
 )
 
 function App() {
@@ -44,17 +42,16 @@ function App() {
               <Route path="/login" element={<Login/>}/>
               <Route path="/register" element={<Register/>}/>
               <Route path="/profile" element={
-                // <ProtectedRoute>
-                <Profile/>
-                // </ProtectedRoute>
+                <ProtectedRoute>
+                  <Profile/>
+                </ProtectedRoute>
               }/>
               <Route path="/profile/:uid" element={<ProfileOther/>}></Route>
               <Route path="/edit-profile" element={
-                // <ProtectedRoute>
-                <EditProfile/>
-                // </ProtectedRoute>
+                <ProtectedRoute>
+                  <EditProfile/>
+                </ProtectedRoute>
               }/>
-              }
             </Routes>
             {/*<div className="d-sm-none d-md-none d-lg-block col-lg-3 col-xl-3">*/}
             {/*  <NewlyJoinedUsersList/>*/}
