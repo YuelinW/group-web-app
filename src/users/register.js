@@ -88,10 +88,10 @@ const Register = () => {
           <div className="wd-auth-form-content">
             <h3 className="wd-auth-form-title">Sign Up</h3>
             {
-              error &&
-              <div className="alert alert-danger mt-3 mb-0">
-                {error}
-              </div>
+                error &&
+                <div className="alert alert-danger mt-3 mb-0">
+                  {error}
+                </div>
             }
             <div className="form-group">
               <h6 className="mt-4 fw-bold">Select your role</h6>

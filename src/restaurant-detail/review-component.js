@@ -4,6 +4,8 @@ import {useDispatch, useSelector} from "react-redux";
 import {useEffect, useState} from "react";
 import ReviewCreate from "./review-create";
 import FollowProfile from "../follow/follow-profile";
+import {useParams} from "react-router";
+import {findRestaurantByYelpId} from "../restaurant/restaurants-thunks";
 
 const generateRating = (rating) => {
   let result = '';
@@ -15,11 +17,17 @@ const generateRating = (rating) => {
 }
 
 const ReviewComponent = () => {
-  let params = (new URL(document.location)).searchParams;
-  let inputId = params.get("id");
+  const {yid} = useParams();
+  // let params = (new URL(document.location)).searchParams;
+  // let inputId = params.get("id");
   const {reviews, loading} = useSelector(state => state.reviews)
   const dispatch = useDispatch();
-  useEffect(() => {dispatch(findReviewByRestaurantID(inputId))}, [])
+  const {restaurants} = useSelector(
+      state => state.restaurants)
+  const restaurantId = restaurants._id
+  useEffect(() => {dispatch(findRestaurantByYelpId(yid))}, [yid])
+  useEffect(() => {dispatch(findReviewByRestaurantID(restaurantId))}, [restaurantId])
+
   console.log(reviews)
   return(
       <ul className="list-group">
