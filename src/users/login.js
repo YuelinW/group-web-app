@@ -11,8 +11,7 @@ const Login = () => {
   const {currentUser} = useSelector((state) => state.users)
   const [error, setError] = useState(null)
   const dispatch = useDispatch()
-  //TODO: cannot login successfully
-  const handleLoginBtn = (e) => {
+  const handleLoginBtn = async (e) => {
     e.preventDefault();
     if (username === "") {
       setError('Username must be filled')
@@ -24,7 +23,11 @@ const Login = () => {
     }
     setError(null)
     const loginUser = {username, password}
-    dispatch(loginThunk(loginUser))
+    try {
+      await dispatch(loginThunk(loginUser)).unwrap()
+    } catch (error) {
+      setError('Username and Password do not match')
+    }
   }
   if (currentUser) {
     return (<Navigate to={'/profile'}/>)

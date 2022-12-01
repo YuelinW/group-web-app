@@ -4,6 +4,7 @@ import {registerThunk} from "./users-thunks";
 import "./index.css";
 import {Link} from "react-router-dom";
 import {Navigate} from "react-router";
+import axios from "axios";
 
 const Register = () => {
   const [role, setRole] = useState('')
@@ -20,10 +21,13 @@ const Register = () => {
   const [error, setError] = useState(null)
   const {currentUser} = useSelector((state) => state.users)
   const dispatch = useDispatch()
-  const handleFileUpload = async (e) => {
-    const url = URL.createObjectURL(e.target.files[0])
-    setProfilePicture(url)
-    // TODO: convert local url to cloud one
+  const handleFileUpload = (file) => {
+    const formData = new FormData()
+    formData.append("file", file)
+    formData.append("upload_preset", "yealp123")
+    axios.post("https://api.cloudinary.com/v1_1/drqcpoarf/image/upload", formData).then((res) => {
+      setProfilePicture(res.data.url)
+    })
   }
   const handleRegisterBtn = (e) => {
     e.preventDefault();
@@ -84,10 +88,10 @@ const Register = () => {
           <div className="wd-auth-form-content">
             <h3 className="wd-auth-form-title">Sign Up</h3>
             {
-              error &&
-              <div className="alert alert-danger mt-3 mb-0">
-                {error}
-              </div>
+                error &&
+                <div className="alert alert-danger mt-3 mb-0">
+                  {error}
+                </div>
             }
             <div className="form-group">
               <h6 className="mt-4 fw-bold">Select your role</h6>
@@ -121,7 +125,7 @@ const Register = () => {
               <img className="rounded-circle wd-image-size" src={profilePicture} alt=""/>
             </div>
             <input className="mt-2" type="file" accept="image/*"
-                   onChange={handleFileUpload}/>
+                   onChange={(e)=>{handleFileUpload(e.target.files[0])}}/>
             <div id="customerForm">
               <div className="form-group">
                 <label htmlFor="registerUserName"

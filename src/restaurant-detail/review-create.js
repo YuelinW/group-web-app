@@ -3,24 +3,37 @@ import {useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import React from "react";
 import {Link} from "react-router-dom";
+import {useParams} from "react-router";
+// import NotLoggedIn from "../profile/not-logged-in";
+import {useEffect} from "react";
+import {
+  findRestaurantByYelpId
+} from "../restaurant/restaurants-thunks";
 const ReviewCreate = () => {
-  let params = (new URL(document.location)).searchParams;
-  let inputId = params.get("id");
+  const {yid} = useParams();
   let [writeReview, setWriteReview] = useState('');
   let [rating, setRating] = useState('');
+  const {singleRestaurant, loading} = useSelector(
+      state => state.restaurantData)
+  const dispatch = useDispatch();
+  useEffect(() => {dispatch(findRestaurantByYelpId(yid))}, [yid])
   const profile = useSelector(state => state.users.fakeCurrentUser);
   const [isLoggedIn, setIsLoggedIn] = useState(true);
-  const dispatch = useDispatch();
+
   const reviewClickHandler = () => {
+    const restaurant = singleRestaurant.at(0)
+    console.log(restaurant)
     const newReview = {
       postedDate: Date.now(),
       rating: rating,
       comment: writeReview,
-      restaurantID: inputId,
+      restaurantID: restaurant._id,
       customerID: isLoggedIn ? profile._id : '',
     }
     dispatch(createReviewThunk(newReview));
   }
+  console.log("review")
+  console.log(singleRestaurant)
   const profilePic = isLoggedIn ? profile.profilePicture : 'https://user-images.githubusercontent.com/113388766/204669517-e093dbef-7812-4273-b5c4-028598111fd3.jpg';
   return(
 
