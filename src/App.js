@@ -1,19 +1,17 @@
 import React from "react";
 import './App.css';
-import NavigationSidebar from "./navigation-sidebar/index.js";
+import NavigationSidebar from "./navigation-sidebar";
 import {Route, Routes} from "react-router";
 import {BrowserRouter} from "react-router-dom";
-import RestaurantSummaryList from "./restaurant-summary-list/index.js";
+import RestaurantSummaryList from "./restaurant-summary-list";
 import HomeComponent from "./home";
 import ExploreComponent from "./search";
 import NewlyJoinedUsersList from "./Newly-joined-users";
 import restaurantReducer from "./restaurant/restaurants-reducer";
 import {configureStore} from "@reduxjs/toolkit";
 import {Provider} from "react-redux";
-import RestaurantInfo from "./restaurant-detail/restaurant-info";
 import reviewsReducer from "./review/review-reducer";
 import RestaurantDetail from "./restaurant-detail";
-import profileReducer from "./profile/profile-service/profile-reducer";
 import EditProfile from "./profile/edit-profile";
 import ProfileOther from "./profile/profile-other";
 import advertisementsReducer from "./advertisement/advertisements-reducer";
@@ -25,19 +23,22 @@ import usersReducer from "./users/users-reducer";
 import Profile from "./profile";
 import ReviewComponent from "./restaurant-detail/review-component";
 import restaurantsReducer2 from "./restaurant/reducer";
-
+import EditAds from "./admin-tools/edit-ads";
+import ReviewAll from "./restaurant-detail/review-index";
+import SingleReview from "./restaurant-detail/single-review";
+import reviewReducer2 from "./review/review-reducer-2";
 
 const store = configureStore(
-    {reducer: {users: usersReducer, profile: profileReducer, restaurants: restaurantReducer, restaurantData: restaurantsReducer2, advertisements: advertisementsReducer, reviews: reviewsReducer}}
+    {reducer: {users: usersReducer, /*profile: profileReducer,*/ restaurants: restaurantReducer, restaurantData: restaurantsReducer2, advertisements: advertisementsReducer, reviews: reviewsReducer, reviewData: reviewReducer2}}
 )
 
 function App() {
   return (
-        <div className="container mt-4 mb-4">
+      <div className="container mt-4 mb-4">
         <BrowserRouter>
           <Provider store={store}>
             <div className="mt-4 mb-4">
-                <NavigationSidebar/>
+              <NavigationSidebar/>
             </div>
             <Routes>
               <Route index element={<HomeComponent/>}/>
@@ -47,26 +48,26 @@ function App() {
               <Route path="/login" element={<Login/>}/>
               <Route path="/register" element={<Register/>}/>
               <Route path="/profile" element={
-                // <ProtectedRoute>
-                <Profile/>
-                // </ProtectedRoute>
+                <ProtectedRoute>
+                  <Profile/>
+                </ProtectedRoute>
               }/>
               <Route path="/profile/:uid" element={<ProfileOther/>}></Route>
               <Route path="/edit-profile" element={
-                // <ProtectedRoute>
-                <EditProfile/>
-                // </ProtectedRoute>
+                <ProtectedRoute>
+                  <EditProfile/>
+                </ProtectedRoute>
               }/>
-              }
               <Route path="/details/:yid" element={<RestaurantDetail/>}></Route>
+              <Route path="/admin" element={<EditAds/>}></Route>
+              <Route path="/review/:reviewid" element={<SingleReview/>}></Route>
             </Routes>
             {/*<div className="d-sm-none d-md-none d-lg-block col-lg-3 col-xl-3">*/}
             {/*  <NewlyJoinedUsersList/>*/}
             {/*</div>*/}
           </Provider>
         </BrowserRouter>
-        </div>
-
+      </div>
   );
 }
 

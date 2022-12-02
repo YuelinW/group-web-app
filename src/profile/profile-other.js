@@ -20,7 +20,7 @@ import PostAdvertisement from "./profile-content/post-advertisement";
 const ProfileOther = () => {
   const {uid} = useParams();
   const dispatch = useDispatch();
-  const {otherUser} = useSelector(state => state.users);
+  const {otherUser} = useSelector(state => state.users); // initially is null or a previous otherUser
   useEffect(() => {dispatch(findUserByIDThunk(uid))}, [uid])
   const [activeComponent, setActiveComponent] = useState('basic'); // all roles start with basic
 
@@ -41,7 +41,7 @@ const ProfileOther = () => {
                 {(activeComponent === 'ad') && <AdvertisementList profile={otherUser}/>}
                 {(activeComponent === 'post') && <PostAdvertisement profile={otherUser}/>}
                 {(activeComponent === 'userList') && <UserList profile={otherUser}/>}
-                {(activeComponent === 'resList') && <ReviewList profile={otherUser}/>}
+                {(activeComponent === 'reviewList') && <ReviewList profile={otherUser}/>}
               </div>
               <div className="d-none d-md-block col-md-3 col-lg-3">
                 <ProfileAbout profile={otherUser}/>

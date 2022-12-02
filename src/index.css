@@ -51,3 +51,31 @@ li.list-group-item.wd-post {
   top: 280px;
   left: 310px;
 }
+
+.wd-profile-image {
+  position: relative;
+  bottom: 70px;
+  left: 10px;
+  border: white 2px solid;
+  object-fit: cover;
+}
+
+.wd-object-fit-cover-image {
+  object-fit: cover;
+}
+
+.wd-nudge-up {
+  margin-top: -50px;
+}
+
+.wd-hover-cursor {
+  cursor: pointer;
+}
+
+li.list-group-item.wd-post {
+  background-color: rgba(255,119,51, 40%)
+}
+
+.wd-clickable:hover{
+  cursor: pointer;
+}

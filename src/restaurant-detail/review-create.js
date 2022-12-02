@@ -4,11 +4,12 @@ import {useDispatch, useSelector} from "react-redux";
 import React from "react";
 import {Link} from "react-router-dom";
 import {useParams} from "react-router";
-import NotLoggedIn from "../profile/not-logged-in";
+// import NotLoggedIn from "../profile/not-logged-in";
 import {useEffect} from "react";
 import {
   findRestaurantByYelpId
 } from "../restaurant/restaurants-thunks";
+import ReviewComponent from "./review-component";
 const ReviewCreate = () => {
   const {yid} = useParams();
   let [writeReview, setWriteReview] = useState('');
@@ -17,8 +18,9 @@ const ReviewCreate = () => {
       state => state.restaurantData)
   const dispatch = useDispatch();
   useEffect(() => {dispatch(findRestaurantByYelpId(yid))}, [yid])
-  const profile = useSelector(state => state.users);
-  const [isLoggedIn, setIsLoggedIn] = useState(true);
+  const {currentUser} = useSelector(state => state.users);
+  const profile = useSelector(state => state.users.currentUser);
+  const isLoggedIn = (currentUser != null && currentUser._id === profile._id);
 
   const reviewClickHandler = () => {
     const restaurant = singleRestaurant.at(0)
@@ -28,19 +30,19 @@ const ReviewCreate = () => {
       rating: rating,
       comment: writeReview,
       restaurantID: restaurant._id,
-      customerID: isLoggedIn ? profile._id : '',
+      customerID: isLoggedIn ? currentUser._id : '',
     }
     dispatch(createReviewThunk(newReview));
   }
   console.log("review")
   console.log(singleRestaurant)
-  const profilePic = isLoggedIn ? profile.profilePicture: 'https://user-images.githubusercontent.com/113388766/204669517-e093dbef-7812-4273-b5c4-028598111fd3.jpg';
+  const profilePic = isLoggedIn ? currentUser.profilePicture: 'https://user-images.githubusercontent.com/113388766/204669517-e093dbef-7812-4273-b5c4-028598111fd3.jpg';
   return(
 
       <>
-          <div>Is the user logged in?</div>
-          <div><input type="radio" className="form-check-input me-1" name="isUser" id="isUser" defaultChecked onClick={() => setIsLoggedIn(true)}/><label htmlFor="isUser">Yes</label></div>
-          <div><input type="radio" className="form-check-input me-1" name="isUser" id="isNotUser" onClick={() => setIsLoggedIn(false)}/><label htmlFor="isNotUser">No</label></div>
+        {/*<div>Is the user logged in?</div>*/}
+        {/*<div><input type="radio" className="form-check-input me-1" name="isUser" id="isUser" defaultChecked onClick={() => setIsLoggedIn(true)}/><label htmlFor="isUser">Yes</label></div>*/}
+        {/*<div><input type="radio" className="form-check-input me-1" name="isUser" id="isNotUser" onClick={() => setIsLoggedIn(false)}/><label htmlFor="isNotUser">No</label></div>*/}
         {
           <div className="row">
             <div className="col-auto">
@@ -52,9 +54,9 @@ const ReviewCreate = () => {
               <input type="range" min="0" max="5"
                      step="1" id="customRange3" onChange={(event) => setRating(event.target.value)}/>
               <br/>
-               <textarea value={writeReview} placeholder="What's your comment"
-                         className="form-control border-0"
-                         onChange={(event) => setWriteReview(event.target.value)}>
+              <textarea value={writeReview} placeholder="What's your comment"
+                        className="form-control border-0"
+                        onChange={(event) => setWriteReview(event.target.value)}>
                </textarea>
 
               <div>

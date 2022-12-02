@@ -1,8 +1,8 @@
 import React from "react";
+import {useSelector} from "react-redux";
 
 const PrivateProfile = ({profile}) => {
-  // const {currentUser} = useSelector(state => state.users); // todo: uncomment
-  const currentUser = {...profile}; // todo: delete
+  const {currentUser} = useSelector(state => state.users);
   const isLoggedIn = (currentUser != null && currentUser._id === profile._id);
 
   return (
