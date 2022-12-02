@@ -27,3 +27,13 @@ export const findAllReviews = async () => {
   const response = await axios.get(`${YEALP_API}`);
   return response.data;
 }
+
+export const updateReviewOwnerReply = async (review) => {
+  await axios.put(`${YEALP_API}/${review._id}`, review);
+  return review;
+}
+
+export const findReviewByID = async (rid) => {
+  const response = await axios.get(`${YEALP_API}/${rid}`);
+  return response.data;
+}

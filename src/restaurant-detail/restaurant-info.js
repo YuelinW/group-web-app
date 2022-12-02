@@ -2,7 +2,7 @@ import React from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {useEffect, useState} from "react";
 import {findYelpRestaurantsByRestaurantId} from "../restaurant/yelp-api-restaurant-thunk";
-import ExploreComponent from "../search/index";
+import ExploreComponent from "../search";
 import ReviewAll from "./review-index";
 import "./index.css";
 import {Link} from "react-router-dom";

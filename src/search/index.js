@@ -110,21 +110,19 @@ const ExploreComponent = () => {
                              src={restaurant.image_url} alt="poke"/>
                       </div>
                       <div className="ms-3 col-5 col-lg-5 col-md-5 col-sm-5">
-                        <div className="card-header"><i
+                        <div className="card-header mb-3"><i
                             className="bi-house-fill me-2"></i> {restaurant.name}
                         </div>
-                        <br/>
-                        <div className="card-text text-muted">Price: {restaurant.price}</div>
-                        <br/>
+                        <div className="card-text text-muted mb-3">Price: {restaurant.price}</div>
                         <div><h6
-                            className="card-text text-muted">{restaurant.categories.map(
+                            className="card-text text-muted">Categories: {restaurant.categories.map(
                             c => (<li key={c.alias}>{c.title}</li>))}</h6></div>
                       </div>
                       <div className="col-2 col-lg-2 col-md-2 col-sm-2">
                         <Link
                             to={`/details/${restaurant.id}`}
                             //   onClick={exploreClickHandler({restaurant})}
-                            type="button" class="btn btn-primary">
+                            type="button" className="btn btn-primary">
                           Details
                         </Link>
                       </div>

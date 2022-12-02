@@ -1,8 +1,14 @@
-import {findReviewByRestaurantID, deleteReviewByIDThunk, findAllReviewsThunk}
+import {
+  findReviewByRestaurantID,
+  deleteReviewByIDThunk,
+  findAllReviewsThunk,
+  updateReviewOwnerReply, updateReviewOwnerReplyThunk, findReviewByIDThunk
+}
   from './review-thunks';
 
 import {createSlice} from "@reduxjs/toolkit";
 import {createReviewThunk} from "./review-thunks";
+import {updateCurrentUserProfileByUserNameThunk} from "../users/users-thunks";
 
 const initialState = {
   reviews: [],
@@ -52,7 +58,14 @@ const reviewSlice = createSlice({
         (state, {payload}) => {
           state.loading = false;
           state.reviews = null;
-        }
-  }
+        },
+    [updateReviewOwnerReplyThunk.fulfilled]: (state, {payload}) => {
+      state.reviews = {
+        ...state.reviews,
+        ...payload
+      }
+    }
+}
+
 });
 export default reviewSlice.reducer;

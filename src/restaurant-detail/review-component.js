@@ -1,11 +1,15 @@
 import React from "react";
-import {findReviewByRestaurantID} from "../review/review-thunks";
+import {
+  findReviewByRestaurantID,
+  updateReviewOwnerReply, updateReviewOwnerReplyThunk
+} from "../review/review-thunks";
 import {useDispatch, useSelector} from "react-redux";
 import {useEffect, useState} from "react";
 import ReviewCreate from "./review-create";
 import FollowProfile from "../follow/follow-profile";
 import {useParams} from "react-router";
 import {findRestaurantByYelpId} from "../restaurant/restaurants-thunks";
+import {Link} from "react-router-dom";
 
 const generateRating = (rating) => {
   let result = '';
@@ -30,7 +34,6 @@ const ReviewComponent = () => {
   const {currentUser} = useSelector(state => state.users);
   console.log("hhh")
   console.log(singleRestaurant)
-  console.log(reviews)
   return(
       <ul className="list-group">
         {
@@ -53,7 +56,9 @@ const ReviewComponent = () => {
               {review.ownerReply && <div className="text-secondary ms-3 p-1 border-start"><span>Owner's reply:</span> {review.ownerReply}</div>}
               {
                   currentUser && currentUser.role === "OWNER" &&
-                  <input placeholder="I'm the owner"/>
+                  <div>
+                  <Link to={`/review/${review._id}`} placeholder="I'm the owner" className="btn btn-primary"/>
+                  </div>
               }
             </li>
             )
