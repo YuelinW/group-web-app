@@ -14,25 +14,26 @@ import {useNavigate} from "react-router";
 import "./index.css";
 import {createRestaurant} from "../restaurant/restaurants-thunks";
 
-const generatePrice = (price) => {
-  let result = '';
-  const singlePrice = '<i class="bi bi-currency-dollar text-primary"></i>';
-  for (let i = 0; i < price.length; i++) {
-    result = result + singlePrice;
-  }
-  return result;
-}
-
 const ExploreComponent = () => {
   const dispatch = useDispatch()
+  const [error, setError] = useState(null)
   const [searchName, setSearchName] = useState('')
   const [searchLocation, setSearchLocation] = useState('')
   const {restaurantsFromYelp, loading} = useSelector(state => state.restaurants)
   const searchHandler = () => {
+    // make sure both fields are filled
+    if (searchName === '') {
+      setError('Keyword must be filled. Can be a restaurant name such as "Din Tai Fung"')
+      return
+    }
+    if (searchLocation === '') {
+      setError('Location must be filled. Can be a city name such as "Bellevue"')
+      return
+    }
+    setError(null)
     const compoundObject = {rname: searchName, rlocation: searchLocation}
     dispatch(findYelpRestaurantByRestaurantNameAndLocationThunk(compoundObject))
   }
-  //End of YELP search added by Chu
 
   // let navigate = useNavigate();
   // const routeChange = (id) => {
@@ -57,15 +58,18 @@ const ExploreComponent = () => {
   // console.log(newRestaurant)
   return (
       <>
-        <ul className="list-group">
-          {
-              loading && <div className="list-group-item">Loading...</div>
-          }
+        <div className="list-group">
           {
               !loading &&
-              <div className="row">
-                <div className="col-10 position-relative">
-                  <div className="form-floating">
+              <div className="container">
+                <div className="row position-relative d-flex justify-content-center">
+                  {error && <div
+                      className="w-75 alert alert-danger mt-3 mb-4 row d-flex justify-content-center">
+                    {error}
+                  </div>
+                  }
+                  <div className="w-75 form-floating">
+
                     <input placeholder="Enter Keywords"
                            className="form-control ps-5 mb-3"
                            onChange={(e) => {
@@ -74,7 +78,7 @@ const ExploreComponent = () => {
                            value={searchName}/>
                     <label htmlFor="floatingInput">Enter Keywords</label>
                   </div>
-                  <div className="form-floating">
+                  <div className="w-75 form-floating">
                     <input placeholder="Enter Location"
                            className="form-control ps-5"
                            onChange={(e) => {
@@ -83,23 +87,26 @@ const ExploreComponent = () => {
                            value={searchLocation}/>
                     <label htmlFor="floatingInput">Enter Location</label>
                   </div>
-                </div>
-                <div className="col-2">
-                  <button
-                      className="btn btn-primary float-end"
-                      onClick={searchHandler}>Search
-                  </button>
+                  <div className="w-75 mt-3">
+                    <button
+                        className="btn btn-primary float-start"
+                        onClick={searchHandler}>Search
+                    </button>
+                  </div>
                 </div>
               </div>
           }
           <br/>
+          {
+              loading && <div className="list-group-item">Loading...</div>
+          }
           {
               restaurantsFromYelp && restaurantsFromYelp.businesses && restaurantsFromYelp.businesses.map(restaurant =>
                   <li key={restaurant.id}
                       className="card bg-light mb-3 list-group-item">
                     <div className="row">
                       <div className="container col-2 col-lg-2 col-md-2 col-sm-2">
-                        <img className="image-scale" width={300} height={200}
+                        <img className="wd-object-fit-cover-image" width={300} height={200}
                              src={restaurant.image_url} alt="poke"/>
                       </div>
                       <div className="ms-3 col-5 col-lg-5 col-md-5 col-sm-5">
@@ -125,7 +132,7 @@ const ExploreComponent = () => {
                   </li>
               )
           }
-        </ul>
+        </div>
       </>
   );
 };
