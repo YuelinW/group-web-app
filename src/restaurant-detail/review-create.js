@@ -4,7 +4,6 @@ import {useDispatch, useSelector} from "react-redux";
 import React from "react";
 import {Link} from "react-router-dom";
 import {useParams} from "react-router";
-// import NotLoggedIn from "../profile/not-logged-in";
 import {useEffect} from "react";
 import {
   findRestaurantByYelpId
@@ -38,12 +37,7 @@ const ReviewCreate = () => {
   console.log(singleRestaurant)
   const profilePic = isLoggedIn ? currentUser.profilePicture: 'https://user-images.githubusercontent.com/113388766/204669517-e093dbef-7812-4273-b5c4-028598111fd3.jpg';
   return(
-
       <>
-        {/*<div>Is the user logged in?</div>*/}
-        {/*<div><input type="radio" className="form-check-input me-1" name="isUser" id="isUser" defaultChecked onClick={() => setIsLoggedIn(true)}/><label htmlFor="isUser">Yes</label></div>*/}
-        {/*<div><input type="radio" className="form-check-input me-1" name="isUser" id="isNotUser" onClick={() => setIsLoggedIn(false)}/><label htmlFor="isNotUser">No</label></div>*/}
-        {
           <div className="row">
             <div className="col-auto">
               <img src={profilePic} alt="profile" width={60}/>
@@ -87,7 +81,6 @@ const ReviewCreate = () => {
               <hr/>
             </div>
           </div>
-        }
       </>
   );
 }

@@ -46,10 +46,10 @@ const RestaurantInfo = () => {
     }
     dispatch(createRestaurant(newRestaurant));
   }
-  console.log("see here")
-  console.log(restaurants.name)
+  // console.log("see here")
+  // console.log(restaurants.name)
     return (
-        <ul className="list-group">
+        <div className="list-group">
           {
               loading &&
               <li className="list-group-item">
@@ -59,36 +59,37 @@ const RestaurantInfo = () => {
           {
             <div className="container">
               <div className="row">
-                <div className="col-3">
-                  <img className="food1" src={restaurants.image_url}
+                <div className="col-6">
+                  <img className=" wd-object-fit-cover-image" width={450} height={350} src={restaurants.image_url}
                        alt="home banner"/>
                 </div>
-                <div className="col-9">
-                  <div><h1>{restaurants.name}</h1></div>
-                  <div>Price: {restaurants.price}</div>
+                <div className="col-6">
+                  <div className="text-primary"><h1>{restaurants.name}</h1></div>
+                  <div className="list-group">
+                    <div className="list-group-item border-0 pt-0 pb-0 text-dark">Price: {restaurants.price}</div>
 
-                  <div>Phone: {restaurants.display_phone}</div>
-                  <div>Status: {`${restaurants.is_closed ? 'Closed'
-                      : 'Open'}`}</div>
-                  {/*<div>{restaurants.categories.map(c => (<div key={c.alias}>{c.title}</div>))}</div>*/}
-                  <div>Categories: {restaurants.categories?.map(c => {
-                    return (
-                        <>{c.title} </>
-                    )
-                  })}
-                  </div>
-                  <div>Support: {restaurants.transactions?.map(transaction => {
-                    return (
-                        <i className="bi-check me-2">{transaction}</i>
-                    )
-                  })}
-                  </div>
-                  <div>Address: {restaurants.location?.display_address.map(
-                      location => {
-                        return (
-                            <div className="ms-2">{location} </div>
-                        )
-                      })}
+                    <div className="list-group-item border-0 pt-0 pb-0 text-dark">Phone: {restaurants.display_phone}</div>
+                    <div className="list-group-item border-0 pt-0 pb-0 text-dark">Status: {`${restaurants.is_closed ? 'Closed' : 'Open'}`}</div>
+                    {/*<div>{restaurants.categories.map(c => (<div key={c.alias}>{c.title}</div>))}</div>*/}
+                    <div className="list-group-item border-0 pt-0 pb-0 text-dark">Categories: {restaurants.categories?.map((c, index) => {
+                      return (
+                          <div className="list-group-item border-0 pt-0 pb-0 text-dark" key={index + "_category"}>{c.title} </div>
+                      )
+                    })}
+                    </div>
+                    <div className="list-group-item border-0 pt-0 pb-0 text-dark">Support: {restaurants.transactions?.map((transaction, index) => {
+                      return (
+                          <i className="bi-check me-2" key={index + "_transaction"}>{transaction}</i>
+                      )
+                    })}
+                    </div>
+                    <div className="list-group-item border-0 pt-0 pb-0 text-dark">Address: {restaurants.location?.display_address.map(
+                        (location, index) => {
+                          return (
+                              <div className="ms-2" key={index + "_location"}>{location}</div>
+                          )
+                        })}
+                    </div>
                   </div>
                 </div>
               </div>
@@ -99,7 +100,7 @@ const RestaurantInfo = () => {
               </button>
             </div>
           }
-        </ul>
+        </div>
 
     );
 };

@@ -27,7 +27,7 @@ import EditAds from "./admin-tools/edit-ads";
 import ReviewAll from "./restaurant-detail/review-index";
 
 const store = configureStore(
-    {reducer: {users: usersReducer, /*profile: profileReducer,*/ restaurants: restaurantReducer, restaurantData: restaurantsReducer2, advertisements: advertisementsReducer, reviews: reviewsReducer}}
+    {reducer: {users: usersReducer, restaurants: restaurantReducer, restaurantData: restaurantsReducer2, advertisements: advertisementsReducer, reviews: reviewsReducer}}
 )
 
 function App() {

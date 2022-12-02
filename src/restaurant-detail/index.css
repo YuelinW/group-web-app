@@ -1,24 +1,20 @@
-.top1 {
+.wd-top1 {
   height:390px;
   background-color:#FFFFFF;
   margin-top:10px;
   overflow: hidden;
 }
 
-.top1 img {
+.wd-top1 img {
   height:100%;
 }
 
-.food1 {
-  height:230px;
-}
-
-.name1 {
+.wd-name1 {
   background-color:#555555;
   height:90px;
 }
 
-.description1 {
+.wd-description1 {
   background-color:#777777;
   height:70px;
 }
