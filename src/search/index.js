@@ -99,7 +99,7 @@ const ExploreComponent = () => {
                       className="card bg-light mb-3 list-group-item">
                     <div className="row">
                       <div className="container col-2 col-lg-2 col-md-2 col-sm-2">
-                        <img className="image-scale" width={300} height={200}
+                        <img className="image-scale" width="100%" height="100%"
                              src={restaurant.image_url} alt="poke"/>
                       </div>
                       <div className="ms-3 col-5 col-lg-5 col-md-5 col-sm-5">
