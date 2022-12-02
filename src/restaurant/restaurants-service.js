@@ -22,12 +22,12 @@ export const findRestaurantsByOwnerID = async (oid) => {
 export const findRestaurantsByRestaurantName =async (rName) => {
   const response = await axios.get(`${YEALP_API}/${rName}`);
   return response.data;
-};
+}
 
 export const findRestaurantsByCategory = async (c) => {
   const response = await axios.get(`${YEALP_API}/category/${c}`);
   return response.data;
-};
+}
 
 export const disConnectOwnerAndRestaurant = async (ownersAndRestaurant) => {
   await axios.put(`${YEALP_API}/disconnect/${ownersAndRestaurant.rid}`, ownersAndRestaurant.owners);
@@ -43,3 +43,4 @@ export const createRestaurant = async (restaurant) => {
   const response = await axios.post(YEALP_API, restaurant)
   return response.data;
 }
+

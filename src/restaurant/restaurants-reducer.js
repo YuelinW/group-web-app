@@ -13,8 +13,7 @@ import {
 } from './yelp-api-restaurant-thunk';
 const initialState = {
   restaurants: [],
-  loading: false,
-  restaurantsFromYelp: []
+  loading: false
 };
 
 const restaurantSlice = createSlice({
@@ -97,6 +96,7 @@ const restaurantSlice = createSlice({
         (state) => {
           state.loading = false;
         },
+
     [createRestaurant.fulfilled]:
         (state, {payload}) => {
           state.loading = false;

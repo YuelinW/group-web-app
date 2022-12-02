@@ -15,9 +15,8 @@ export const findYelpRestaurantsByRestaurantName =async (rName) => {
 }
 
 // Add temporary access to cors anywhere server: https://cors-anywhere.herokuapp.com/corsdemo
-const API_BASE_2= "https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/";
 export const findYelpRestaurantsByRestaurantId =async (rId) => {
-  const response = await axios.get(`${API_BASE_2}${rId}`, {headers: {'Authorization': AUTH}});
+  const response = await axios.get(`${YEALP_API}/search/yelpid/${rId}`);
   console.log(response.data)
   return response.data;
 }

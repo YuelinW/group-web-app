@@ -33,7 +33,7 @@ const NavigationSidebar = () => {
                     </li>
                 }
                 {
-                  !currentUser &&
+                  (!currentUser || currentUser.role === "OWNER" || currentUser.role === "CUSTOMER") &&
                   <li className="nav-item">
                     <Link className={`nav-link ${active === 'home' ? 'active'
                         : ''}`} to="/home">Home

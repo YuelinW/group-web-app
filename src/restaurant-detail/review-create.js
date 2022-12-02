@@ -9,6 +9,7 @@ import {useEffect} from "react";
 import {
   findRestaurantByYelpId
 } from "../restaurant/restaurants-thunks";
+import ReviewComponent from "./review-component";
 const ReviewCreate = () => {
   const {yid} = useParams();
   let [writeReview, setWriteReview] = useState('');
@@ -39,9 +40,9 @@ const ReviewCreate = () => {
   return(
 
       <>
-          {/*<div>Is the user logged in?</div>*/}
-          {/*<div><input type="radio" className="form-check-input me-1" name="isUser" id="isUser" defaultChecked onClick={() => setIsLoggedIn(true)}/><label htmlFor="isUser">Yes</label></div>*/}
-          {/*<div><input type="radio" className="form-check-input me-1" name="isUser" id="isNotUser" onClick={() => setIsLoggedIn(false)}/><label htmlFor="isNotUser">No</label></div>*/}
+        {/*<div>Is the user logged in?</div>*/}
+        {/*<div><input type="radio" className="form-check-input me-1" name="isUser" id="isUser" defaultChecked onClick={() => setIsLoggedIn(true)}/><label htmlFor="isUser">Yes</label></div>*/}
+        {/*<div><input type="radio" className="form-check-input me-1" name="isUser" id="isNotUser" onClick={() => setIsLoggedIn(false)}/><label htmlFor="isNotUser">No</label></div>*/}
         {
           <div className="row">
             <div className="col-auto">
@@ -53,9 +54,9 @@ const ReviewCreate = () => {
               <input type="range" min="0" max="5"
                      step="1" id="customRange3" onChange={(event) => setRating(event.target.value)}/>
               <br/>
-               <textarea value={writeReview} placeholder="What's your comment"
-                         className="form-control border-0"
-                         onChange={(event) => setWriteReview(event.target.value)}>
+              <textarea value={writeReview} placeholder="What's your comment"
+                        className="form-control border-0"
+                        onChange={(event) => setWriteReview(event.target.value)}>
                </textarea>
 
               <div>

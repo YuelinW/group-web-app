@@ -22,12 +22,14 @@ const ReviewComponent = () => {
   // let inputId = params.get("id");
   const {reviews, loading} = useSelector(state => state.reviews)
   const dispatch = useDispatch();
-  const {restaurants} = useSelector(
-      state => state.restaurants)
-  const restaurantId = restaurants._id
+  const {singleRestaurant, loading2} = useSelector(
+      state => state.restaurantData)
+  const restaurantId = singleRestaurant?.at(0)._id
   useEffect(() => {dispatch(findRestaurantByYelpId(yid))}, [yid])
   useEffect(() => {dispatch(findReviewByRestaurantID(restaurantId))}, [restaurantId])
-
+  const {currentUser} = useSelector(state => state.users);
+  console.log("hhh")
+  console.log(singleRestaurant)
   console.log(reviews)
   return(
       <ul className="list-group">
@@ -49,9 +51,22 @@ const ReviewComponent = () => {
               </div>
               <div className="text-dark">{review.comment}</div>
               {review.ownerReply && <div className="text-secondary ms-3 p-1 border-start"><span>Owner's reply:</span> {review.ownerReply}</div>}
+              {
+                  currentUser && currentUser.role === "OWNER" &&
+                  <input placeholder="I'm the owner"/>
+              }
             </li>
             )
         }
+        {/*{*/}
+        {/*  currentUser && currentUser.role === "OWNER" &&*/}
+        {/*    reviews && reviews.map(review =>*/}
+        {/*        <li key={review._id} className="list-group-item">*/}
+        {/*          <input placeholder="I'm the owner"/>*/}
+        {/*        </li>*/}
+        {/*    )*/}
+
+        {/*}*/}
       </ul>
   );
 };
