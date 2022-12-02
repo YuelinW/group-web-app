@@ -29,7 +29,8 @@ import SingleReview from "./restaurant-detail/single-review";
 import reviewReducer2 from "./review/review-reducer-2";
 
 const store = configureStore(
-    {reducer: {users: usersReducer, /*profile: profileReducer,*/ restaurants: restaurantReducer, restaurantData: restaurantsReducer2, advertisements: advertisementsReducer, reviews: reviewsReducer, reviewData: reviewReducer2}}
+    {reducer: {users: usersReducer, restaurants: restaurantReducer, restaurantData: restaurantsReducer2, advertisements: advertisementsReducer, reviews: reviewsReducer, reviewData: reviewReducer2}}
+
 )
 
 function App() {

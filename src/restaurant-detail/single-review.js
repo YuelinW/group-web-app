@@ -37,7 +37,7 @@ const SingleReview = () =>{
        <div>
           <button
               onClick={replyClickHandler}
-              class="btn btn-primary">Reply</button>
+              className="btn btn-primary">Reply</button>
        </div>
       </>
 

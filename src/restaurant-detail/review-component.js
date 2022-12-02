@@ -57,7 +57,7 @@ const ReviewComponent = () => {
               {
                   currentUser && currentUser.role === "OWNER" &&
                   <div>
-                  <Link to={`/review/${review._id}`} placeholder="I'm the owner" class="btn btn-primary"/>
+                  <Link to={`/review/${review._id}`} placeholder="I'm the owner" className="btn btn-primary"/>
                   </div>
               }
             </li>
