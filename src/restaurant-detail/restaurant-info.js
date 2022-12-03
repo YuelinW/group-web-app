@@ -1,31 +1,21 @@
-import React from "react";
 import {useDispatch, useSelector} from "react-redux";
-import {useEffect, useState} from "react";
+import React, {useEffect, useState} from "react";
 import {
   findYelpRestaurantsByRestaurantId
 } from "../restaurant/yelp-api-restaurant-thunk";
-import ExploreComponent from "../search";
 import ReviewAll from "./review-index";
 import "./index.css";
-import {Link} from "react-router-dom";
-import {useParams} from "react-router";
 import {
   findRestaurantByYelpIdThunk,
   createRestaurantThunk,
   findRestaurantFromYelpByYelpIDThunk
 } from "../restaurant/restaurants-thunks";
-import NotInDB from "./not-in-DB";
-import RestaurantCreate from "./restaurant-create";
-import ReviewCreate from "./review-create";
-import * as service from "../restaurant/restaurants-service";
-import {
-  findRestaurantByYelpId,
-  findRestaurantFromYelplByYelpID
-} from "../restaurant/restaurants-service";
+
 
 const RestaurantInfo = ({yelpRestaurant}) => {
   const dispatch = useDispatch();
   const {restaurantInDetail, loading} = useSelector(state => state.restaurants); // from our DB
+  const [restaurantDBResponse, setRestaurantDBResponse] = useState(null)
   useEffect(() => { // create the restaurant
     const newRestaurant = {
       name: yelpRestaurant.name,
@@ -38,7 +28,12 @@ const RestaurantInfo = ({yelpRestaurant}) => {
       reviews: [],
       yelpID: yelpRestaurant.id,
     };
-    dispatch(createRestaurantThunk(newRestaurant)).then(() => dispatch(findRestaurantByYelpIdThunk(newRestaurant.yelpID)));
+    // dispatch(createRestaurantThunk(newRestaurant))
+    // .then(() => dispatch(findRestaurantByYelpIdThunk(newRestaurant.yelpID))
+    // .then((r) => setRestaurantDBResponse(r)))
+
+    dispatch(createRestaurantThunk(newRestaurant))
+    .then((r) => setRestaurantDBResponse(r))
   }, []);
 
   return (
@@ -56,25 +51,27 @@ const RestaurantInfo = ({yelpRestaurant}) => {
                   </div>
                   <div className="list-group">
                     <div
-                        className="list-group-item border-0 pt-0 pb-0 text-dark">Price: {yelpRestaurant.price}</div>
+                        className="list-group-item border-0 pt-0 pb-0 text-dark">Price: {`${yelpRestaurant.price ? yelpRestaurant.price : 'N/A'}`}</div>
                     <div
-                        className="list-group-item border-0 pt-0 pb-0 text-dark">Phone: {yelpRestaurant.display_phone}</div>
+                        className="list-group-item border-0 pt-0 pb-0 text-dark">Phone: {`${yelpRestaurant.display_phone ? yelpRestaurant.display_phone : 'N/A'}`}</div>
                     <div
                         className="list-group-item border-0 pt-0 pb-0 text-dark">Status: {`${yelpRestaurant.is_closed
                         ? 'Closed' : 'Open'}`}</div>
-                    <div
+                    {(!yelpRestaurant.categories || yelpRestaurant.categories.length === 0) && <div className="list-group-item border-0 pt-0 pb-0 text-dark">Categories: N/A</div>}
+                    {yelpRestaurant.categories && yelpRestaurant.categories.length > 0 && <div
                         className="list-group-item border-0 pt-0 pb-0 text-dark">Categories: {yelpRestaurant.categories?.map(
                         (c, index) =>
                             <div
                                 className="list-group-item border-0 pt-0 pb-0 text-dark"
                                 key={index + "_category"}>{c.title} </div>)}
-                    </div>
-                    <div
+                    </div>}
+                    {(!yelpRestaurant.transactions || yelpRestaurant.transactions.length === 0) && <div className="list-group-item border-0 pt-0 pb-0 text-dark">Support: N/A</div>}
+                    {yelpRestaurant.transactions && yelpRestaurant.transactions.length > 0 && <div
                         className="list-group-item border-0 pt-0 pb-0 text-dark">Support: {yelpRestaurant.transactions?.map(
                         (transaction, index) =>
                             <i className="bi-check me-2"
                                key={index + "_transaction"}>{transaction}</i>)}
-                    </div>
+                    </div>}
                     <div
                         className="list-group-item border-0 pt-0 pb-0 text-dark">Address: {yelpRestaurant.location?.display_address.map(
                         (location, index) => <div className="ms-2" key={index
@@ -85,7 +82,16 @@ const RestaurantInfo = ({yelpRestaurant}) => {
               </div>
             </div>
         }
-        {restaurantInDetail && <h1>{JSON.stringify(restaurantInDetail)}</h1>}
+        <br/>
+        <h5 className="text-primary">Reviews</h5>
+        {/*<button onClick={() => }>See Reviews</button>*/}
+        {/*{JSON.stringify(restaurantInDetail)}*/}
+
+        {/*{restaurantInDetail && <ReviewAll restaurantInDB={restaurantInDetail}/>}*/}
+
+        {!loading && restaurantDBResponse && <p>Response: {JSON.stringify(restaurantDBResponse)}</p>}
+        {restaurantDBResponse && restaurantDBResponse.payload && <ReviewAll restaurantInDB={restaurantDBResponse.payload}/>}
+
       </div>
   );
 };

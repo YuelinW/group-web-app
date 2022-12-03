@@ -20,8 +20,6 @@ const RestaurantDetail = () =>{
   return(
       <ul>
         {yelpRestaurant && <RestaurantInfo yelpRestaurant={yelpRestaurant}/>}
-        <br/>
-        {/*<ReviewAll/>*/}
       </ul>
   );
 };

@@ -1,5 +1,3 @@
-
-
 import axios from "axios";
 
 // Add temporary access to cors anywhere server: https://cors-anywhere.herokuapp.com/corsdemo
@@ -10,19 +8,19 @@ const YEALP_API = `${process.env.REACT_APP_API_BASE}/restaurants`;
 
 export const findYelpRestaurantsByRestaurantName =async (rName) => {
   const response = await axios.get(`${API_BASE}${rName}`, {headers: {'Authorization': AUTH}});
-  console.log(response.data)
+  // console.log(response.data)
   return response.data;
 }
 
 // Add temporary access to cors anywhere server: https://cors-anywhere.herokuapp.com/corsdemo
 export const findYelpRestaurantsByRestaurantId =async (rId) => {
   const response = await axios.get(`${YEALP_API}/search/yelpid/${rId}`);
-  console.log(response.data)
+  // console.log(response.data)
   return response.data;
 }
 
 export const findYelpRestaurantByRestaurantNameAndLocation = async ({rname, rlocation}) => {
   const response = await axios.get(`${YEALP_API}/search/${rname}/${rlocation}`);
-  console.log(response.data)
+  // console.log(response.data)
   return response.data
 }

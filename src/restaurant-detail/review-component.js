@@ -18,16 +18,15 @@ const generateRating = (rating) => {
   return result;
 }
 
-const ReviewComponent = () => {
-  const {yid} = useParams();
+const ReviewComponent = ({restaurantInDB}) => { // can be seen by both logged-in user and anonymous users
   const {reviews, loading} = useSelector(state => state.reviews)
   const dispatch = useDispatch();
-  const {singleRestaurant, loading2} = useSelector(
-      state => state.restaurantData)
-  const restaurantId = singleRestaurant?.at(0)._id
-  useEffect(() => {dispatch(findRestaurantByYelpIdThunk(yid))}, [yid])
-  useEffect(() => {dispatch(findReviewByRestaurantIDThunk(restaurantId))}, [restaurantId])
+  useEffect(() => {dispatch(findReviewByRestaurantIDThunk(restaurantInDB._id))}, [restaurantInDB])
   const {currentUser} = useSelector(state => state.users);
+
+  const connectRestaurantAndOwnerHandler = (rid, uid) => {
+
+  }
 
   return(
       <ul className="list-group">
@@ -37,8 +36,9 @@ const ReviewComponent = () => {
               Loading...
             </li>
         }
+        {reviews && reviews.length === 0 && <>No reviews yet.</>}
         {
-          reviews && reviews.map(review =>
+          reviews && reviews.length > 0 && reviews.map(review =>
             <li key={review._id} className="list-group-item">
               <div>
                 <FollowProfile profile_ID={review.customerID}/>
@@ -50,23 +50,15 @@ const ReviewComponent = () => {
               <div className="text-dark">{review.comment}</div>
               {review.ownerReply && <div className="text-secondary ms-3 p-1 border-start"><span>Owner's reply:</span> {review.ownerReply}</div>}
               {
-                  currentUser && currentUser.role === "OWNER" &&
+                  currentUser && currentUser.role === "OWNER" && restaurantInDB.owners.findIndex(currentUser._id) == -1 &&
                   <div>
-                  <Link to={`/review/${review._id}`} placeholder="I'm the owner" className="btn btn-primary"/>
+                    <button className="btn btn-success float-end" onClick={() => connectRestaurantAndOwnerHandler(restaurantInDB._id, currentUser._id)}>I am the owner</button>
+                    {/*<Link to={`/review/${review._id}`} placeholder="I'm the owner" className="btn btn-primary"/>*/}
                   </div>
               }
             </li>
             )
         }
-        {/*{*/}
-        {/*  currentUser && currentUser.role === "OWNER" &&*/}
-        {/*    reviews && reviews.map(review =>*/}
-        {/*        <li key={review._id} className="list-group-item">*/}
-        {/*          <input placeholder="I'm the owner"/>*/}
-        {/*        </li>*/}
-        {/*    )*/}
-
-        {/*}*/}
       </ul>
   );
 };

@@ -31,28 +31,6 @@ const ExploreComponent = () => {
     const compoundObject = {rname: searchName, rlocation: searchLocation}
     dispatch(findYelpRestaurantByRestaurantNameAndLocationThunk(compoundObject))
   }
-
-  // let navigate = useNavigate();
-  // const routeChange = (id) => {
-  //   let path = `../details?id=`;
-  //   navigate(path + id);
-  // }
-  // const exploreClickHandler = (restaurant) => {
-  //   const newRestaurant = {
-  //     name: restaurant.name,
-  //     image_url: restaurant.image_url,
-  //     category: [],
-  //     url: restaurant.url,
-  //     price: restaurant.price,
-  //     diaplay_phone: restaurant.display_phone,
-  //     owners: [],
-  //     reviews: [],
-  //     yelpID: restaurant.id
-  //   }
-  //   dispatch(createRestaurant(newRestaurant));
-  // }
-  // console.log('newrestaurant')
-  // console.log(newRestaurant)
   return (
       <>
         <div className="list-group">
@@ -99,14 +77,14 @@ const ExploreComponent = () => {
           }
           {
               restaurantsFromYelp && restaurantsFromYelp.businesses && restaurantsFromYelp.businesses.map(restaurant =>
-                  <li key={restaurant.id}
+                  <div key={restaurant.id}
                       className="card bg-light mb-3 list-group-item">
-                    <div className="row">
-                      <div className="container col-2 col-lg-2 col-md-2 col-sm-2">
-                        <img className="wd-object-fit-cover-image" width={300} height={200}
+                    <div className="row container">
+                      <div className="d-none d-md-block col-md-5 align-content-center">
+                        <img className="wd-object-fit-cover-image wd-search-image" width={450} height={300}
                              src={restaurant.image_url} alt="poke"/>
                       </div>
-                      <div className="ms-3 col-5 col-lg-5 col-md-5 col-sm-5">
+                      <div className="col-7 col-md-4 ms-3">
                         <div className="card-header mb-3"><i
                             className="bi-house-fill me-2"></i> {restaurant.name}
                         </div>
@@ -115,16 +93,15 @@ const ExploreComponent = () => {
                             className="card-text text-muted">Categories: {restaurant.categories.map(
                             c => (<li key={c.alias}>{c.title}</li>))}</h6></div>
                       </div>
-                      <div className="col-2 col-lg-2 col-md-2 col-sm-2">
+                      <div className="col-4 col-md-2 ms-3">
                         <Link
                             to={`/details/${restaurant.id}`}
-                            //   onClick={exploreClickHandler({restaurant})}
-                            type="button" className="btn btn-primary">
+                            type="button" className="btn btn-primary float-end">
                           Details
                         </Link>
                       </div>
                     </div>
-                  </li>
+                  </div>
               )
           }
         </div>

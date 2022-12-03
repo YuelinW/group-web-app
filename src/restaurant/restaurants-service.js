@@ -39,14 +39,15 @@ export const findRestaurantByYelpId = async (yid) => { // from our DB
   return response.data;
 }
 
-export const findRestaurantFromYelplByYelpID = async (yid) => { // retrieve data from yelp
+export const findRestaurantFromYelpByYelpID = async (yid) => { // retrieve data from yelp
   const response = await axios.get(`${YEALP_API}/search/yelpid/${yid}`);
   return response.data;
 }
 
 export const createRestaurant = async (restaurant) => {
-  const response = await axios.post(YEALP_API, restaurant)
-  return response.data;
+  await axios.post(YEALP_API, restaurant)
+  // return response.data;
+  return findRestaurantByYelpId(restaurant.yelpID);
 }
 
 
