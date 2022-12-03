@@ -79,3 +79,8 @@ li.list-group-item.wd-post {
 .wd-clickable:hover{
   cursor: pointer;
 }
+
+.wd-detail-image {
+  max-width: 100%;
+  max-height: 100%;
+}

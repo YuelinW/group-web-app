@@ -44,3 +44,7 @@ export const createRestaurant = async (restaurant) => {
   return response.data;
 }
 
+export const findRestaurantInDetailByYelpID = async (yid) => {
+  const response = await axios.get(`${YEALP_API}/search/yelpid/${yid}`);
+  return response.data;
+}

@@ -12,7 +12,7 @@ import RestaurantSummaryItem
 import {Link} from "react-router-dom";
 import {useNavigate} from "react-router";
 import "./index.css";
-import {createRestaurant} from "../restaurant/restaurants-thunks";
+import {createRestaurantThunk} from "../restaurant/restaurants-thunks";
 
 const ExploreComponent = () => {
   const dispatch = useDispatch()

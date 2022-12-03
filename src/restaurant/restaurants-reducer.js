@@ -2,8 +2,10 @@ import {
   disConnectOwnerAndRestaurantThunk,
   findAllRestaurantsThunk,
   findRestaurantsByOwnerIDThunk,
-  findRestaurantsByCategory,
-  findRestaurantByYelpId, createRestaurant
+  findRestaurantsByCategoryThunk,
+  findRestaurantByYelpIdThunk,
+  createRestaurantThunk,
+  findRestaurantInDetailByYelpIDThunk
 } from './restaurants-thunks';
 import {createSlice} from "@reduxjs/toolkit";
 import {
@@ -11,9 +13,14 @@ import {
   findYelpRestaurantsByRestaurantId,
   findYelpRestaurantsByRestaurantName,
 } from './yelp-api-restaurant-thunk';
+
 const initialState = {
   restaurants: [],
-  loading: false
+  loading: false,
+  restaurantInDetail: null,
+  yelpRestaurant: null, // this is the data retrieved from YelpAPI (not in our DB)
+  retrieveLoading: false,
+  pendingCreating: false
 };
 
 const restaurantSlice = createSlice({
@@ -54,17 +61,17 @@ const restaurantSlice = createSlice({
           state.loading = false;
           state.restaurants = state.restaurants.filter(r => r._id !== payload);
         },
-    [findRestaurantsByCategory.pending]:
+    [findRestaurantsByCategoryThunk.pending]:
         (state) => {
           state.loading = true;
           state.singleRestaurant = null;
         },
-    [findRestaurantsByCategory.fulfilled]:
+    [findRestaurantsByCategoryThunk.fulfilled]:
         (state, {payload}) => {
           state.loading = false;
           state.restaurants = payload;
         },
-    [findRestaurantsByCategory.rejected]:
+    [findRestaurantsByCategoryThunk.rejected]:
         (state) => {
           state.loading = false;
         },
@@ -96,11 +103,21 @@ const restaurantSlice = createSlice({
         (state) => {
           state.loading = false;
         },
-
-    [createRestaurant.fulfilled]:
+    [createRestaurantThunk.fulfilled]:
         (state, {payload}) => {
-          state.loading = false;
-          state.restaurants.push(payload);
+          // state.restaurants.push(payload); // state.restaurants will be updated in other loads
+          state.restaurantInDetail = payload;
+          state.pendingCreating = false
+        },
+    [createRestaurantThunk.pending]:
+        (state) => {
+          state.restaurantInDetail = null;
+          state.pendingCreating = true
+        },
+    [createRestaurantThunk.rejected]:
+        (state, {payload}) => {
+          state.restaurantInDetail = payload; // write like this on purpose
+          state.pendingCreating = false
         },
     [findYelpRestaurantByRestaurantNameAndLocationThunk.pending]:
         (state) => {
@@ -116,7 +133,37 @@ const restaurantSlice = createSlice({
         (state) => {
           state.restaurantsFromYelp = [];
           state.loading = false
-        }
+        },
+    [findRestaurantInDetailByYelpIDThunk.pending]: // this is the data retrieved from YelpAPI (not in our DB)
+        (state) => {
+          state.yelpRestaurant = null;
+          state.retrieveLoading = true;
+        },
+    [findRestaurantInDetailByYelpIDThunk.fulfilled]: // this is the data retrieved from YelpAPI (not in our DB)
+        (state, action) => {
+          state.yelpRestaurant = action.payload;
+          state.retrieveLoading = false;
+        },
+    [findRestaurantInDetailByYelpIDThunk.rejected]: // this is the data retrieved from YelpAPI (not in our DB)
+        (state) => {
+          state.yelpRestaurant = null;
+          state.retrieveLoading = false;
+        },
+    [findRestaurantByYelpIdThunk.pending]:
+        (state) => {
+          state.restaurantInDetail = null;
+          state.loading = true;
+        },
+    [findRestaurantByYelpIdThunk.fulfilled]:
+        (state, {payload}) => {
+          state.restaurantInDetail = payload;
+          state.loading = false;
+        },
+    [findRestaurantByYelpIdThunk.rejected]: // there is not yet a restaurant data
+        (state) => {
+          state.restaurantInDetail = null;
+          state.loading = false;
+        },
   }
 });
 export default restaurantSlice.reducer;

@@ -2,7 +2,7 @@ import {createAsyncThunk} from "@reduxjs/toolkit";
 import * as service from "./review-service";
 import {findReviewByID, updateReviewOwnerReply} from "./review-service";
 
-export const findReviewByRestaurantID = createAsyncThunk(
+export const findReviewByRestaurantIDThunk = createAsyncThunk(
     'reviews/findReviewByRestaurantID', async (rid) => await service.findReviewByRestaurantID(rid)
 )
 export const createReviewThunk = createAsyncThunk(

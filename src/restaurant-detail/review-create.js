@@ -1,14 +1,14 @@
 import {createReviewThunk} from "../review/review-thunks";
-import {useState} from "react";
+import React, {useState, useEffect} from "react";
 import {useDispatch, useSelector} from "react-redux";
-import React from "react";
 import {Link} from "react-router-dom";
 import {useParams} from "react-router";
-import {useEffect} from "react";
 import {
-  findRestaurantByYelpId
+  findRestaurantByYelpIdThunk
 } from "../restaurant/restaurants-thunks";
 import ReviewComponent from "./review-component";
+
+// for sure have an existing restaurant in DB after fully loaded
 const ReviewCreate = () => {
   const {yid} = useParams();
   let [writeReview, setWriteReview] = useState('');
@@ -16,7 +16,7 @@ const ReviewCreate = () => {
   const {singleRestaurant, loading} = useSelector(
       state => state.restaurantData)
   const dispatch = useDispatch();
-  useEffect(() => {dispatch(findRestaurantByYelpId(yid))}, [yid])
+  useEffect(() => {dispatch(findRestaurantByYelpIdThunk(yid))}, [yid])
   const {currentUser} = useSelector(state => state.users);
   const profile = useSelector(state => state.users.currentUser);
   const isLoggedIn = (currentUser != null && currentUser._id === profile._id);

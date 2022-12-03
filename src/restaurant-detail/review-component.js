@@ -1,14 +1,12 @@
 import React from "react";
 import {
-  findReviewByRestaurantID,
-  updateReviewOwnerReply, updateReviewOwnerReplyThunk
+  findReviewByRestaurantIDThunk
 } from "../review/review-thunks";
 import {useDispatch, useSelector} from "react-redux";
 import {useEffect, useState} from "react";
-import ReviewCreate from "./review-create";
 import FollowProfile from "../follow/follow-profile";
 import {useParams} from "react-router";
-import {findRestaurantByYelpId} from "../restaurant/restaurants-thunks";
+import {findRestaurantByYelpIdThunk} from "../restaurant/restaurants-thunks";
 import {Link} from "react-router-dom";
 
 const generateRating = (rating) => {
@@ -22,18 +20,15 @@ const generateRating = (rating) => {
 
 const ReviewComponent = () => {
   const {yid} = useParams();
-  // let params = (new URL(document.location)).searchParams;
-  // let inputId = params.get("id");
   const {reviews, loading} = useSelector(state => state.reviews)
   const dispatch = useDispatch();
   const {singleRestaurant, loading2} = useSelector(
       state => state.restaurantData)
   const restaurantId = singleRestaurant?.at(0)._id
-  useEffect(() => {dispatch(findRestaurantByYelpId(yid))}, [yid])
-  useEffect(() => {dispatch(findReviewByRestaurantID(restaurantId))}, [restaurantId])
+  useEffect(() => {dispatch(findRestaurantByYelpIdThunk(yid))}, [yid])
+  useEffect(() => {dispatch(findReviewByRestaurantIDThunk(restaurantId))}, [restaurantId])
   const {currentUser} = useSelector(state => state.users);
-  console.log("hhh")
-  console.log(singleRestaurant)
+
   return(
       <ul className="list-group">
         {

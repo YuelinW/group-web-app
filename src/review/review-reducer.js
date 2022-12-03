@@ -1,5 +1,5 @@
 import {
-  findReviewByRestaurantID,
+  findReviewByRestaurantIDThunk,
   deleteReviewByIDThunk,
   findAllReviewsThunk,
   updateReviewOwnerReply, updateReviewOwnerReplyThunk, findReviewByIDThunk
@@ -19,17 +19,17 @@ const reviewSlice = createSlice({
   name: 'reviews',
   initialState,
   extraReducers: {
-    [findReviewByRestaurantID.pending]:
+    [findReviewByRestaurantIDThunk.pending]:
         (state) => {
           state.loading = true;
           state.reviews = [];
         },
-    [findReviewByRestaurantID.fulfilled]:
+    [findReviewByRestaurantIDThunk.fulfilled]:
         (state, {payload}) => {
           state.loading = false;
           state.reviews = payload;
         },
-    [findReviewByRestaurantID.rejected]:
+    [findReviewByRestaurantIDThunk.rejected]:
         (state) => {
           state.loading = false;
           state.reviews = [];

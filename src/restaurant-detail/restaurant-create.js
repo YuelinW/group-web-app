@@ -5,7 +5,7 @@ import {useEffect} from "react";
 import {
   findYelpRestaurantsByRestaurantId
 } from "../restaurant/yelp-api-restaurant-thunk";
-import {createRestaurant} from "../restaurant/restaurants-thunks";
+import {createRestaurantThunk} from "../restaurant/restaurants-thunks";
 
 const RestaurantCreate = ({restaurant}) => {
   const dispatch = useDispatch();
@@ -20,7 +20,7 @@ const RestaurantCreate = ({restaurant}) => {
     reviews: ['', ''],
     yelpID: restaurant.id,
   }
-  dispatch(createRestaurant(newRestaurant));
+  dispatch(createRestaurantThunk(newRestaurant));
   // return(
   //     {newRestaurant}
   // );
