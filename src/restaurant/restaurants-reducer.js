@@ -5,7 +5,7 @@ import {
   findRestaurantsByCategoryThunk,
   findRestaurantByYelpIdThunk,
   createRestaurantThunk,
-  findRestaurantInDetailByYelpIDThunk
+  findRestaurantFromYelpByYelpIDThunk
 } from './restaurants-thunks';
 import {createSlice} from "@reduxjs/toolkit";
 import {
@@ -134,32 +134,32 @@ const restaurantSlice = createSlice({
           state.restaurantsFromYelp = [];
           state.loading = false
         },
-    [findRestaurantInDetailByYelpIDThunk.pending]: // this is the data retrieved from YelpAPI (not in our DB)
+    [findRestaurantFromYelpByYelpIDThunk.pending]: // this is the data retrieved from YelpAPI (not in our DB)
         (state) => {
           state.yelpRestaurant = null;
           state.retrieveLoading = true;
         },
-    [findRestaurantInDetailByYelpIDThunk.fulfilled]: // this is the data retrieved from YelpAPI (not in our DB)
+    [findRestaurantFromYelpByYelpIDThunk.fulfilled]: // this is the data retrieved from YelpAPI (not in our DB)
         (state, action) => {
           state.yelpRestaurant = action.payload;
           state.retrieveLoading = false;
         },
-    [findRestaurantInDetailByYelpIDThunk.rejected]: // this is the data retrieved from YelpAPI (not in our DB)
+    [findRestaurantFromYelpByYelpIDThunk.rejected]: // this is the data retrieved from YelpAPI (not in our DB)
         (state) => {
           state.yelpRestaurant = null;
           state.retrieveLoading = false;
         },
-    [findRestaurantByYelpIdThunk.pending]:
+    [findRestaurantByYelpIdThunk.pending]: // from our database
         (state) => {
           state.restaurantInDetail = null;
           state.loading = true;
         },
-    [findRestaurantByYelpIdThunk.fulfilled]:
+    [findRestaurantByYelpIdThunk.fulfilled]: // from our database
         (state, {payload}) => {
           state.restaurantInDetail = payload;
           state.loading = false;
         },
-    [findRestaurantByYelpIdThunk.rejected]: // there is not yet a restaurant data
+    [findRestaurantByYelpIdThunk.rejected]: // from our database
         (state) => {
           state.restaurantInDetail = null;
           state.loading = false;

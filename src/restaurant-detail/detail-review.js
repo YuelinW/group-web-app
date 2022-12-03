@@ -3,7 +3,7 @@ import {useEffect} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {
   createRestaurantThunk,
-  findRestaurantByYelpIdThunk, findRestaurantInDetailByYelpIDThunk
+  findRestaurantByYelpIdThunk, findRestaurantFromYelpByYelpIDThunk
 } from "../restaurant/restaurants-thunks";
 
 const DetailReview = () => {
@@ -16,7 +16,7 @@ const DetailReview = () => {
     if (restaurantInDetail) { // already in database
       // display review info
     } else { // not in our database
-      dispatch(findRestaurantInDetailByYelpIDThunk(yid)) // retrieve this info
+      dispatch(findRestaurantFromYelpByYelpIDThunk(yid)) // retrieve this info
       if (!retrieveLoading && !yelpRestaurant) { // create when the detailed page is loaded
         const newRestaurant = {
           name: yelpRestaurant.name,

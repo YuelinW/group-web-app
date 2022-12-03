@@ -34,8 +34,13 @@ export const disConnectOwnerAndRestaurant = async (ownersAndRestaurant) => {
   return ownersAndRestaurant.rid;
 }
 
-export const findRestaurantByYelpId = async (yid) => {
+export const findRestaurantByYelpId = async (yid) => { // from our DB
   const response = await axios.get(`${YEALP_API}/yelpID/${yid}`);
+  return response.data;
+}
+
+export const findRestaurantFromYelplByYelpID = async (yid) => { // retrieve data from yelp
+  const response = await axios.get(`${YEALP_API}/search/yelpid/${yid}`);
   return response.data;
 }
 
@@ -44,7 +49,4 @@ export const createRestaurant = async (restaurant) => {
   return response.data;
 }
 
-export const findRestaurantInDetailByYelpID = async (yid) => {
-  const response = await axios.get(`${YEALP_API}/search/yelpid/${yid}`);
-  return response.data;
-}
+

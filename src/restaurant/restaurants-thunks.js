@@ -1,6 +1,6 @@
 import {createAsyncThunk} from "@reduxjs/toolkit";
 import * as service from './restaurants-service';
-import {findRestaurantInDetailByYelpID} from "./restaurants-service";
+import {findRestaurantFromYelplByYelpID} from "./restaurants-service";
 
 export const findAllRestaurantsThunk = createAsyncThunk(
     'restaurants/findAllRestaurantsThunk', async () => await service.findAllRestaurants()
@@ -31,10 +31,15 @@ export const findRestaurantByYelpIdThunk = createAsyncThunk(
     'restaurants/findRestaurantByYelpId', async (yid) => await service.findRestaurantByYelpId(yid)
 );
 
-export const findRestaurantInDetailByYelpIDThunk = createAsyncThunk(
-    'restaurants/findRestaurantInDetailByYelpID', async (yid) => await service.findRestaurantInDetailByYelpID(yid)
+export const findRestaurantFromYelpByYelpIDThunk = createAsyncThunk(
+    'restaurants/findRestaurantInDetailByYelpID', async (yid) => await service.findRestaurantFromYelplByYelpID(yid)
 );
 
 export const createRestaurantThunk = createAsyncThunk(
-    'restaurants/createRestaurant', async (restaurant) => await service.createRestaurant(restaurant)
+    'restaurants/createRestaurant', async (restaurant) => {
+      if (!restaurant) {
+        return null
+      }
+      return await service.createRestaurant(restaurant)
+    }
 );

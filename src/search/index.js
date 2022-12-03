@@ -1,18 +1,15 @@
 import {useDispatch, useSelector} from "react-redux";
-import {useEffect, useState} from "react";
+import React, {useEffect, useState} from "react";
 import {
   findYelpRestaurantByRestaurantNameAndLocationThunk,
   findYelpRestaurantsByRestaurantName
 } from "../restaurant/yelp-api-restaurant-thunk";
-import React from "react";
 import RestaurantSummaryList from "../restaurant-summary-list";
 import "./index.css";
 import RestaurantSummaryItem
   from "../restaurant-summary-list/restaurant-summary-item";
 import {Link} from "react-router-dom";
-import {useNavigate} from "react-router";
 import "./index.css";
-import {createRestaurantThunk} from "../restaurant/restaurants-thunks";
 
 const ExploreComponent = () => {
   const dispatch = useDispatch()
