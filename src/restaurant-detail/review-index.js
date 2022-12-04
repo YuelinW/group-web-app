@@ -47,10 +47,10 @@ const ReviewAll = ({restaurantInDB}) => {
       : 'https://user-images.githubusercontent.com/113388766/204669517-e093dbef-7812-4273-b5c4-028598111fd3.jpg';
 
   // Owner related
-  const isAOwner = currentUser && currentUser.role === "OWNER";
-  const [isTheOwner, setIsTheOwner] = useState(isAOwner && restaurantInDB.owners.indexOf(currentUser._id) !== -1);
+  const isAOwner = (currentUser && currentUser.role === "OWNER") ? true : false;
+  const containsThisOwner = currentUser && restaurantInDB.owners.indexOf(currentUser._id) !== -1;
+  const [canShowImTheOwnerButton, setCanShowImTheOwnerButton] = useState(!containsThisOwner && isAOwner);
   const connectRestaurantAndOwnerHandler = (r) => {
-    // If the user is already the owner, then for each review below, if the review's owner's reply is empty, then allow this use to reply
     const newOwnerList = [
       ...r.owners,
       currentUser._id
@@ -59,13 +59,14 @@ const ReviewAll = ({restaurantInDB}) => {
       owners: newOwnerList,
       rid: r._id
     };
-    setIsTheOwner(true);
+    setCanShowImTheOwnerButton(false);
     dispatch(connectOwnerAndRestaurantThunk(compoundObject))
   }
 
   const [ownerReplyText, setOwnerReplyText] = useState('')
   const [reviewInEdit, setReviewInEdit] = useState(null)
   const [replyInEdit, setReplyInEdit] = useState(false);
+
   const addOwnerReplyHandler = (review) => {
     setReplyInEdit(false);
     const newReview = {
@@ -73,15 +74,12 @@ const ReviewAll = ({restaurantInDB}) => {
       ownerReply: ownerReplyText
     }
     dispatch(updateReviewOwnerReplyThunk(newReview));
-    dispatch(findReviewByRestaurantIDThunk(restaurantInDB._id))
     setOwnerReplyText('')
     setReplyInEdit(false)
     setReviewInEdit(null)
   }
-
   return (
       <>
-
         {/*Owner Reply Section*/}
         {
             replyInEdit &&
@@ -96,11 +94,10 @@ const ReviewAll = ({restaurantInDB}) => {
 
         {/*I am the owner section*/}
         {
-            isAOwner && !isTheOwner &&
+            canShowImTheOwnerButton &&
             <div>
               <button className="btn btn-success float-left mb-3"
-                      onClick={() => connectRestaurantAndOwnerHandler(
-                          restaurantInDB)}>I am the owner
+                      onClick={() => connectRestaurantAndOwnerHandler(restaurantInDB)}>I am the owner
               </button>
             </div>
         }
@@ -158,7 +155,6 @@ const ReviewAll = ({restaurantInDB}) => {
         }
 
         {/*Below are review listing*/}
-
         <ul className="list-group">
           {
               loading &&
@@ -167,7 +163,7 @@ const ReviewAll = ({restaurantInDB}) => {
               </li>
           }
           {
-            reviews && reviews.length === 0 && <>No reviews yet.</>
+              reviews && reviews.length === 0 && <>No reviews yet.</>
           }
           {
               reviews && reviews.length > 0 && reviews.map(review =>
@@ -187,7 +183,7 @@ const ReviewAll = ({restaurantInDB}) => {
                         className="text-secondary ms-3 p-1 border-start"><span>Owner's reply:</span> {review.ownerReply}
                     </div>}
                     {
-                        isTheOwner && (!review.ownerReply || review.ownerReply === '') &&
+                        isAOwner && !canShowImTheOwnerButton && (!review.ownerReply || review.ownerReply === '') &&
                         <div>
                           <h2>{replyInEdit}</h2>
                           {
@@ -199,7 +195,6 @@ const ReviewAll = ({restaurantInDB}) => {
               )
           }
         </ul>
-        {JSON.stringify(reviews)}
       </>
   );
 };

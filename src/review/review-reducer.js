@@ -54,13 +54,14 @@ const reviewSlice = createSlice({
           state.reviews = payload;
         },
     [findAllReviewsThunk.rejected]:
-        (state, {payload}) => {
+        (state) => {
           state.loading = false;
           state.reviews = null;
         },
     [updateReviewOwnerReplyThunk.fulfilled]: (state, {payload}) => {
-      state.reviews = {
-        ...state.reviews,
+      const index = state.reviews.findIndex(r => r._id === payload._id)
+      state.reviews[index] = {
+        ...state.reviews[index],
         ...payload
       }
     }

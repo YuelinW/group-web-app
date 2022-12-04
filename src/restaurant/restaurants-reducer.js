@@ -63,9 +63,13 @@ const restaurantSlice = createSlice({
         },
     [connectOwnerAndRestaurantThunk.fulfilled]:
         (state, {payload}) => {
-          state.loading = false;
-          const newRes = findYelpRestaurantsByRestaurantId(payload);
-          state.restaurants = state.restaurants.push(newRes);
+          state.loading = false; // cannot add to restaurants since restaurants might be uninitialized
+          // const index = state.restaurants.findIndex(r => r._id === payload.rid)
+          // console.log(payload.rid + " this is the rid")
+          // console.log("index is " + index)
+          // state.restaurants[index].owners = [
+          //   ...payload.owners
+          // ]
         },
     [findRestaurantsByCategoryThunk.pending]:
         (state) => {

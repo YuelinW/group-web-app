@@ -36,7 +36,7 @@ export const disConnectOwnerAndRestaurant = async (ownersAndRestaurant) => {
 
 export const connectOwnerAndRestaurant = async (ownersAndRestaurant) => {
   await axios.put(`${YEALP_API}/update/${ownersAndRestaurant.rid}`, ownersAndRestaurant.owners);
-  return ownersAndRestaurant.rid;
+  return ownersAndRestaurant;
 }
 
 export const findRestaurantByYelpId = async (yid) => { // from our DB
