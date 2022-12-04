@@ -13,7 +13,7 @@ const AdvertisementPostsList = () => {
   const adsRender = [];
   for (let i = 0; i < allAds.length; i += 3) {
     adsRender.push(
-        <div className="d-flex justify-content-around">
+        <div className="d-flex justify-content-around" key={i}>
           {
             allAds.slice(i, i + 3)
             .map(ad =>

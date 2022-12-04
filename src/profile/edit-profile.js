@@ -2,10 +2,12 @@ import {useDispatch, useSelector} from "react-redux";
 import {Link} from "react-router-dom";
 import React, {useState} from "react";
 import {updateCurrentUserProfileByUserNameThunk} from "../users/users-thunks";
+import axios from "axios";
 
 const EditProfile = () => {
   const currentUser = useSelector(state => state.users.currentUser);
   const dispatch = useDispatch();
+  const [profilePicture, setProfilePicture] = useState(currentUser.profilePicture);
   const [nameString, setNameString] = useState(currentUser.firstName + " " + currentUser.lastName);
   const [bioString, setBioString] = useState(currentUser.bio);
   const [emailString, setEmailString] = useState(currentUser.email);
@@ -17,6 +19,15 @@ const EditProfile = () => {
   const profileBirthdayDate = currentUser.dateOfBirth.substring(8, 10);
   const [birthdateString, setBirthdateString] = useState(profileBirthdayYear + "-" + profileBirthdayMonth + "-" + profileBirthdayDate);
   const [dateInEdit, setDateInEdit] = useState(false);
+
+  const handleChangeProfilePicture = (file) => {
+    const formData = new FormData()
+    formData.append("file", file)
+    formData.append("upload_preset", "yealp123")
+    axios.post("https://api.cloudinary.com/v1_1/drqcpoarf/image/upload", formData).then((res) => {
+      setProfilePicture(res.data.url)
+    })
+  };
 
   const changeName = (event) => {
     setNameString(event.target.value);
@@ -45,6 +56,7 @@ const EditProfile = () => {
 
   const saveHandler = () => {
     const newProfile = {
+      profilePicture: profilePicture,
       firstName: nameString.split(" ")[0],
       lastName: nameString.split(" ")[1],
       username: currentUser.username,
@@ -72,7 +84,9 @@ const EditProfile = () => {
         </div>
         <img src={currentUser.bannerPicture} height={230} alt={currentUser.bannerPicture} className="w-100 rounded-1 mt-1 wd-object-fit-cover-image"/>
         <div>
-          <img src={currentUser.profilePicture} height={150} width={150} alt={currentUser.profilePicture} className="rounded-2 ms-3 wd-profile-image"/>
+          <img src={profilePicture} height={150} width={150} alt={profilePicture} className="rounded-2 ms-3 wd-profile-image"/>
+          <input className="ms-3" type="file" accept="image/*"
+                 onChange={(e)=>{handleChangeProfilePicture(e.target.files[0])}}/>
         </div>
         <div className="ms-3 wd-nudge-up">
           <div className="mb-3">

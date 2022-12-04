@@ -7,6 +7,7 @@ import {
   findRestaurantsByOwnerIDThunk
 } from "../../restaurant/restaurants-thunks";
 import {Link} from "react-router-dom";
+import axios from "axios";
 
 const PostAdvertisement = ({profile}) => {
   const {currentUser} = useSelector(state => state.users);
@@ -19,6 +20,16 @@ const PostAdvertisement = ({profile}) => {
   const [adContent, setAdContent] = useState('');
   const [posterLink, setPosterLink] = useState('');
   const [activeRestaurantID, setActiveRestaurantID] = useState('');
+
+  const handlePosterUpload = (file) => {
+    const formData = new FormData()
+    formData.append("file", file)
+    formData.append("upload_preset", "yealp123")
+    axios.post("https://api.cloudinary.com/v1_1/drqcpoarf/image/upload", formData).then((res) => {
+      setPosterLink(res.data.url)
+    })
+  }
+
   const adCreationHandler = () => {
     const newAd = {
       restaurantID: activeRestaurantID,
@@ -45,7 +56,12 @@ const PostAdvertisement = ({profile}) => {
                   className="bi bi-file-post-fill me-2"></i>Create a new advertisement</h4>
               <label className="text-primary fw-bold">Title: </label><div><textarea value={adTitle} placeholder="Enter the title..." onChange={(e) => setAdTitle(e.target.value)} className="w-100"></textarea></div>
               <label className="text-primary fw-bold">Content: </label><div><textarea value={adContent} placeholder="Enter the content..." onChange={(e) => setAdContent(e.target.value)} className="w-100"></textarea></div>
-              <label className="text-primary fw-bold">Poster Link: </label><div><textarea value={posterLink} placeholder="Enter the link to the poster" onChange={(e) => setPosterLink(e.target.value)} className="w-100"></textarea></div>
+              <label className="text-primary fw-bold">Upload a poster: </label>
+              <div className="mt-2 mb-2">
+                <img className="w-100" src={posterLink} alt=""/>
+                <input type="file" accept="image/*"
+                       onChange={(e)=>{handlePosterUpload(e.target.files[0])}}/>
+              </div>
               <button className="mt-2 me-2 btn btn-success" onClick={() => {adCreationHandler(); setInEdit(false);}}>Post</button>
               <button className="mt-2 btn btn-light" onClick={() => {setAdTitle(''); setAdContent(''); setPosterLink(''); setActiveRestaurantID(''); setInEdit(false);}}>Cancel</button>
             </div>}
