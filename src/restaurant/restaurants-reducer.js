@@ -105,9 +105,8 @@ const restaurantSlice = createSlice({
         },
     [createRestaurantThunk.fulfilled]:
         (state, {payload}) => {
-          // state.restaurants.push(payload); // state.restaurants will be updated in other loads
           state.restaurantInDetail = payload;
-          state.pendingCreating = false
+          state.pendingCreating = false;
         },
     [createRestaurantThunk.pending]:
         (state) => {
@@ -115,8 +114,8 @@ const restaurantSlice = createSlice({
           state.pendingCreating = true
         },
     [createRestaurantThunk.rejected]:
-        (state, {payload}) => {
-          state.restaurantInDetail = payload; // write like this on purpose
+        (state) => {
+          state.restaurantInDetail = null;
           state.pendingCreating = false
         },
     [findYelpRestaurantByRestaurantNameAndLocationThunk.pending]:

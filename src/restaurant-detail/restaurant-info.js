@@ -1,21 +1,15 @@
 import {useDispatch, useSelector} from "react-redux";
-import React, {useEffect, useState} from "react";
-import {
-  findYelpRestaurantsByRestaurantId
-} from "../restaurant/yelp-api-restaurant-thunk";
+import React, {useEffect} from "react";
 import ReviewAll from "./review-index";
 import "./index.css";
 import {
-  findRestaurantByYelpIdThunk,
   createRestaurantThunk,
-  findRestaurantFromYelpByYelpIDThunk
 } from "../restaurant/restaurants-thunks";
 
 
 const RestaurantInfo = ({yelpRestaurant}) => {
   const dispatch = useDispatch();
-  const {restaurantInDetail, loading} = useSelector(state => state.restaurants); // from our DB
-  const [restaurantDBResponse, setRestaurantDBResponse] = useState(null)
+  const {restaurantInDetail} = useSelector(state => state.restaurants)
   useEffect(() => { // create the restaurant
     const newRestaurant = {
       name: yelpRestaurant.name,
@@ -28,13 +22,9 @@ const RestaurantInfo = ({yelpRestaurant}) => {
       reviews: [],
       yelpID: yelpRestaurant.id,
     };
-    // dispatch(createRestaurantThunk(newRestaurant))
-    // .then(() => dispatch(findRestaurantByYelpIdThunk(newRestaurant.yelpID))
-    // .then((r) => setRestaurantDBResponse(r)))
 
     dispatch(createRestaurantThunk(newRestaurant))
-    .then((r) => setRestaurantDBResponse(r))
-  }, []);
+  }, [yelpRestaurant]);
 
   return (
       <div className="list-group">
@@ -84,14 +74,7 @@ const RestaurantInfo = ({yelpRestaurant}) => {
         }
         <br/>
         <h5 className="text-primary">Reviews</h5>
-        {/*<button onClick={() => }>See Reviews</button>*/}
-        {/*{JSON.stringify(restaurantInDetail)}*/}
-
-        {/*{restaurantInDetail && <ReviewAll restaurantInDB={restaurantInDetail}/>}*/}
-
-        {!loading && restaurantDBResponse && <p>Response: {JSON.stringify(restaurantDBResponse)}</p>}
-        {restaurantDBResponse && restaurantDBResponse.payload && <ReviewAll restaurantInDB={restaurantDBResponse.payload}/>}
-
+        {restaurantInDetail && <ReviewAll restaurantInDB={restaurantInDetail}/>}
       </div>
   );
 };
