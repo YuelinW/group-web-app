@@ -30,7 +30,7 @@ const ReviewAll = ({restaurantInDB}) => {
 
   // Review listing related
   const {reviews, loading} = useSelector(state => state.reviews)
-  useEffect(() => {dispatch(findReviewByRestaurantIDThunk(restaurantInDB._id))}, [])
+  useEffect(() => {dispatch(findReviewByRestaurantIDThunk(restaurantInDB._id))}, [restaurantInDB])
 
   const connectRestaurantAndOwnerHandler = (rid, uid) => {
     //TODO
