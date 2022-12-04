@@ -5,7 +5,7 @@ import {
   findRestaurantsByCategoryThunk,
   findRestaurantByYelpIdThunk,
   createRestaurantThunk,
-  findRestaurantFromYelpByYelpIDThunk
+  findRestaurantFromYelpByYelpIDThunk, connectOwnerAndRestaurantThunk
 } from './restaurants-thunks';
 import {createSlice} from "@reduxjs/toolkit";
 import {
@@ -60,6 +60,12 @@ const restaurantSlice = createSlice({
         (state, {payload}) => {
           state.loading = false;
           state.restaurants = state.restaurants.filter(r => r._id !== payload);
+        },
+    [connectOwnerAndRestaurantThunk.fulfilled]:
+        (state, {payload}) => {
+          state.loading = false;
+          const newRes = findYelpRestaurantsByRestaurantId(payload);
+          state.restaurants = state.restaurants.push(newRes);
         },
     [findRestaurantsByCategoryThunk.pending]:
         (state) => {

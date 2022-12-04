@@ -7,9 +7,8 @@ import {
 import {Link} from "react-router-dom";
 import FollowProfile from "../follow/follow-profile";
 import {
-  findRestaurantByYelpIdThunk,
+  connectOwnerAndRestaurantThunk,
 } from "../restaurant/restaurants-thunks";
-import {useParams} from "react-router";
 
 
 const generateRating = (rating) => {
@@ -32,10 +31,6 @@ const ReviewAll = ({restaurantInDB}) => {
   const {reviews, loading} = useSelector(state => state.reviews)
   useEffect(() => {dispatch(findReviewByRestaurantIDThunk(restaurantInDB._id))}, [restaurantInDB])
 
-  const connectRestaurantAndOwnerHandler = (rid, uid) => {
-    //TODO
-  }
-
   const reviewClickHandler = () => {
     const newReview = {
       postedDate: new Date(),
@@ -49,8 +44,35 @@ const ReviewAll = ({restaurantInDB}) => {
   }
   const profilePic = currentUser ? currentUser.profilePicture : 'https://user-images.githubusercontent.com/113388766/204669517-e093dbef-7812-4273-b5c4-028598111fd3.jpg';
 
+
+  // Owner related
+  const [showButton, setShowButton] = useState(currentUser && currentUser.role === "OWNER" && restaurantInDB.owners.indexOf(currentUser._id) === -1);
+  const connectRestaurantAndOwnerHandler = (r) => {
+    // If the logged-in user is an owner and the restaurant owners list doesn't contain this user, then display a button of "I am the owner"
+    // If the user is already the owner, then for each review below, if the review's owner's reply is empty, then allow this use to reply
+    const newOwnerList = [
+      ...r.owners,
+      currentUser._id
+    ]
+    const compoundObject = {
+      owners: newOwnerList,
+      rid: r._id
+    };
+    dispatch(connectOwnerAndRestaurantThunk(compoundObject))
+    .then(() => setShowButton(false));
+  }
+
   return (
       <>
+        {/*I am the owner section*/}
+        {
+            showButton && currentUser && currentUser.role === "OWNER" && restaurantInDB.owners.indexOf(currentUser._id) === -1 &&
+            <div>
+              <button className="btn btn-success float-left mb-3" onClick={() => connectRestaurantAndOwnerHandler(restaurantInDB)}>I am the owner</button>
+            </div>
+        }
+        {/*Create Review section*/}
+        <h5 className="text-primary">Reviews</h5>
         <div className="row">
           <div className="col-auto">
             <img src={profilePic} alt="profile" width={60} height={60} className="wd-object-fit-cover-image"/>
@@ -116,13 +138,6 @@ const ReviewAll = ({restaurantInDB}) => {
                     </div>
                     <div className="text-dark">{review.comment}</div>
                     {review.ownerReply && <div className="text-secondary ms-3 p-1 border-start"><span>Owner's reply:</span> {review.ownerReply}</div>}
-                    {
-                        currentUser && currentUser.role === "OWNER" && restaurantInDB.owners.findIndex(currentUser._id) === -1 &&
-                        <div>
-                          <button className="btn btn-success float-end" onClick={() => connectRestaurantAndOwnerHandler(restaurantInDB._id, currentUser._id)}>I am the owner</button>
-                          {/*<Link to={`/review/${review._id}`} placeholder="I'm the owner" className="btn btn-primary"/>*/}
-                        </div>
-                    }
                   </li>
               )
           }

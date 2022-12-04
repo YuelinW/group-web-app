@@ -18,12 +18,9 @@ const RestaurantList = ({profile}) => { // profile can be otherUser
       owners: newOwnerList,
       rid: r._id
     };
-    dispatch(disConnectOwnerAndRestaurantThunk(compoundObject)
-    )};
+    dispatch(disConnectOwnerAndRestaurantThunk(compoundObject))};
 
-  // console.log("current user is" + JSON.stringify(currentUser))
-
-  const isLoggedInAndIsOwner = (currentUser != null && currentUser._id === profile._id
+  const isLoggedInAndIsOwner = (currentUser && currentUser._id === profile._id
       && currentUser.role === 'OWNER');
   return (
       <div className="ms-3 me-5">
@@ -37,7 +34,7 @@ const RestaurantList = ({profile}) => { // profile can be otherUser
           {
               restaurants && restaurants.length > 0 && restaurants.map(restaurant =>
               <div className="card w-100 m-2" key={restaurant._id}>
-                <img src={restaurant.image_url} className="card-img-top" alt={restaurant.name}/>
+                <img src={restaurant.image_url} className="card-img-top wd-owner-profile-detail-image" alt={restaurant.name}/>
                 <div className="card-body">
                   <h5 className="card-title text-primary">{restaurant.name}<span className="ps-2 text-secondary">{restaurant.price}</span>
                     {

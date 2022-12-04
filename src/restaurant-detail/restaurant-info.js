@@ -73,8 +73,7 @@ const RestaurantInfo = ({yelpRestaurant}) => {
             </div>
         }
         <br/>
-        <h5 className="text-primary">Reviews</h5>
-        {restaurantInDetail && <ReviewAll restaurantInDB={restaurantInDetail}/>}
+         {restaurantInDetail && <ReviewAll restaurantInDB={restaurantInDetail}/>}
       </div>
   );
 };
