@@ -9,7 +9,6 @@ import {
   updateCurrentUserProfileByUserNameThunk
 } from "./users-thunks";
 
-
 const usersReducer = createSlice({
   name: 'users',
   initialState: {

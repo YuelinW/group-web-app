@@ -6,9 +6,9 @@ import {loginThunk} from "./users-thunks";
 import {Navigate} from "react-router";
 
 const Login = () => {
+  const {currentUser} = useSelector((state) => state.users)
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
-  const {currentUser} = useSelector((state) => state.users)
   const [error, setError] = useState(null)
   const dispatch = useDispatch()
   const handleLoginBtn = async (e) => {
@@ -34,6 +34,10 @@ const Login = () => {
   }
   return(
       <div className="d-flex justify-content-center">
+        {/*{*/}
+        {/*    currentUser &&*/}
+        {/*    <h2>Welcome: {currentUser.username}</h2>*/}
+        {/*}*/}
         <form className="wd-auth-form">
           <div className="wd-auth-form-content">
             <h3 className="wd-auth-form-title">Log In</h3>

@@ -1,0 +1,10 @@
+.wd-ad-post {
+  width: 30%;
+  box-shadow: rgb(0 0 0 / 16%) 1px 1px 10px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  border-radius: 8px;
+  background-color: white;
+}
