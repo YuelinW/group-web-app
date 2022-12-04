@@ -1,67 +1,52 @@
 import {createReviewThunk} from "../review/review-thunks";
-import {useState} from "react";
+import React, {useState, useEffect} from "react";
 import {useDispatch, useSelector} from "react-redux";
-import React from "react";
 import {Link} from "react-router-dom";
-import {useParams} from "react-router";
-import {useEffect} from "react";
-import {
-  findRestaurantByYelpId
-} from "../restaurant/restaurants-thunks";
-import ReviewComponent from "./review-component";
-const ReviewCreate = () => {
-  const {yid} = useParams();
-  let [writeReview, setWriteReview] = useState('');
-  let [rating, setRating] = useState('');
-  const {singleRestaurant, loading} = useSelector(
-      state => state.restaurantData)
+
+// for sure have an existing restaurant in DB after fully loaded
+const ReviewCreate = ({restaurantInDB}) => {
   const dispatch = useDispatch();
-  useEffect(() => {dispatch(findRestaurantByYelpId(yid))}, [yid])
+  let [writeReview, setWriteReview] = useState('');
+  let [rating, setRating] = useState('1');
   const {currentUser} = useSelector(state => state.users);
-  const profile = useSelector(state => state.users.currentUser);
-  const isLoggedIn = (currentUser != null && currentUser._id === profile._id);
 
   const reviewClickHandler = () => {
-    const restaurant = singleRestaurant.at(0)
-    console.log(restaurant)
     const newReview = {
-      postedDate: Date.now(),
+      postedDate: new Date(),
       rating: rating,
       comment: writeReview,
-      restaurantID: restaurant._id,
-      customerID: isLoggedIn ? currentUser._id : '',
+      restaurantID: restaurantInDB._id,
+      customerID: currentUser._id,
     }
     dispatch(createReviewThunk(newReview));
   }
-  console.log("review")
-  console.log(singleRestaurant)
-  const profilePic = isLoggedIn ? currentUser.profilePicture: 'https://user-images.githubusercontent.com/113388766/204669517-e093dbef-7812-4273-b5c4-028598111fd3.jpg';
+  const profilePic = currentUser ? currentUser.profilePicture : 'https://user-images.githubusercontent.com/113388766/204669517-e093dbef-7812-4273-b5c4-028598111fd3.jpg';
   return(
       <>
           <div className="row">
             <div className="col-auto">
-              <img src={profilePic} alt="profile" width={60}/>
+              <img src={profilePic} alt="profile" width={60} height={60} className="wd-object-fit-cover-image"/>
             </div>
             <div className="col-10">
-              <label htmlFor="customRange3" className="form-label me-3">Rating({rating})</label>
+              <label htmlFor="range" className="form-label me-3">Your Rating from 1 to 5 ({rating})</label>
               <br/>
-              <input type="range" min="0" max="5"
-                     step="1" id="customRange3" onChange={(event) => setRating(event.target.value)}/>
+              <input type="range" min="1" max="5"
+                     step="1" id="range" onChange={(event) => setRating(event.target.value)}/>
               <br/>
-              <textarea value={writeReview} placeholder="What's your comment"
+              <textarea value={writeReview} placeholder="Share your comment"
                         className="form-control border-0"
                         onChange={(event) => setWriteReview(event.target.value)}>
                </textarea>
 
               <div>
-                {isLoggedIn &&
+                {currentUser &&
                     <button
                         className="rounded-pill btn btn-primary float-end mt-2 ps-3 pe-3 fw-bold"
                         onClick={reviewClickHandler}>
                       Submit
                     </button>
                 }
-                {!isLoggedIn &&
+                {!currentUser &&
                     <Link
                         className="rounded-pill btn btn-primary float-end mt-2 ps-3 pe-3 fw-bold"
                         to="/login">

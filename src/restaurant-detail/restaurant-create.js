@@ -5,24 +5,24 @@ import {useEffect} from "react";
 import {
   findYelpRestaurantsByRestaurantId
 } from "../restaurant/yelp-api-restaurant-thunk";
-import {createRestaurant} from "../restaurant/restaurants-thunks";
+import {createRestaurantThunk} from "../restaurant/restaurants-thunks";
 
 const RestaurantCreate = ({restaurant}) => {
   const dispatch = useDispatch();
-  const newRestaurant = {
-    name: restaurant.name,
-    image_url: restaurant.image_url,
-    category: '',
-    url: restaurant.url,
-    price: restaurant.price,
-    diaplay_phone: restaurant.display_phone,
-    owners: 'owner',
-    reviews: ['', ''],
-    yelpID: restaurant.id,
+  let newRestaurant = null;
+  if (restaurant) {
+    newRestaurant = {
+      name: restaurant.name,
+      image_url: restaurant.image_url,
+      category: restaurant.categories[0].title,
+      url: restaurant.url,
+      price: restaurant.price,
+      display_phone: restaurant.display_phone,
+      owners: [],
+      reviews: [],
+      yelpID: restaurant.id,
+    };
   }
-  dispatch(createRestaurant(newRestaurant));
-  // return(
-  //     {newRestaurant}
-  // );
+  dispatch(createRestaurantThunk(newRestaurant));
 };
 export default RestaurantCreate;

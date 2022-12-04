@@ -1,7 +1,7 @@
 import React, {useEffect} from "react";
 import {useParams} from "react-router";
 import {useDispatch, useSelector} from "react-redux";
-import {findRestaurantByYelpId} from "../restaurant/restaurants-thunks";
+import {findRestaurantByYelpIdThunk} from "../restaurant/restaurants-thunks";
 const NotInDB = () => {
   const {yid} = useParams();
   // let params = (new URL(document.location)).searchParams;
@@ -9,7 +9,7 @@ const NotInDB = () => {
   const {restaurants, loading} = useSelector(
       state => state.restaurants)
   const dispatch = useDispatch();
-  useEffect(() => {dispatch(findRestaurantByYelpId(yid))}, [yid])
+  useEffect(() => {dispatch(findRestaurantByYelpIdThunk(yid))}, [yid])
   return(
       <ul>
         {

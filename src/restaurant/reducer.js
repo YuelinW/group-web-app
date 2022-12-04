@@ -1,5 +1,5 @@
 import {
-  findRestaurantByYelpId
+  findRestaurantByYelpIdThunk
 } from './restaurants-thunks';
 import {createSlice} from "@reduxjs/toolkit";
 const initialState = {
@@ -11,17 +11,17 @@ const restaurantSlice1 = createSlice({
   name: 'restaurants',
   initialState,
   extraReducers: {
-    [findRestaurantByYelpId.pending]:
+    [findRestaurantByYelpIdThunk.pending]:
         (state) => {
           state.loading = true;
           state.singleRestaurant = null;
         },
-    [findRestaurantByYelpId.fulfilled]:
+    [findRestaurantByYelpIdThunk.fulfilled]:
         (state, {payload}) => {
           state.loading = false;
           state.singleRestaurant = payload;
         },
-    [findRestaurantByYelpId.rejected]:
+    [findRestaurantByYelpIdThunk.rejected]:
         (state) => {
           state.loading = false;
         },
