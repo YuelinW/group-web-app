@@ -88,3 +88,8 @@ li.list-group-item.wd-post {
 .wd-search-image {
   max-width: 100%;
 }
+
+.wd-owner-profile-detail-image {
+  height: 500px;
+  object-fit: cover;
+}

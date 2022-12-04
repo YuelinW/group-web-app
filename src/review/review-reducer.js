@@ -2,13 +2,12 @@ import {
   findReviewByRestaurantIDThunk,
   deleteReviewByIDThunk,
   findAllReviewsThunk,
-  updateReviewOwnerReply, updateReviewOwnerReplyThunk, findReviewByIDThunk
+  updateReviewOwnerReplyThunk
 }
   from './review-thunks';
 
 import {createSlice} from "@reduxjs/toolkit";
 import {createReviewThunk} from "./review-thunks";
-import {updateCurrentUserProfileByUserNameThunk} from "../users/users-thunks";
 
 const initialState = {
   reviews: [],
@@ -55,13 +54,14 @@ const reviewSlice = createSlice({
           state.reviews = payload;
         },
     [findAllReviewsThunk.rejected]:
-        (state, {payload}) => {
+        (state) => {
           state.loading = false;
           state.reviews = null;
         },
     [updateReviewOwnerReplyThunk.fulfilled]: (state, {payload}) => {
-      state.reviews = {
-        ...state.reviews,
+      const index = state.reviews.findIndex(r => r._id === payload._id)
+      state.reviews[index] = {
+        ...state.reviews[index],
         ...payload
       }
     }

@@ -1,15 +1,10 @@
 import RestaurantInfo from "./restaurant-info";
-import ReviewAll from "./review-index";
-import ReviewCreate from "./review-create";
-import ReviewComponent from "./review-component";
 import {useParams} from "react-router";
 import {useDispatch, useSelector} from "react-redux";
 import React, {useEffect} from "react";
 import {
-  findRestaurantByYelpIdThunk,
   findRestaurantFromYelpByYelpIDThunk
 } from "../restaurant/restaurants-thunks";
-import RestaurantCreate from "./restaurant-create";
 
 const RestaurantDetail = () =>{
   const {yid} = useParams();

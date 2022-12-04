@@ -1,7 +1,6 @@
 import {useDispatch, useSelector} from "react-redux";
 import {Link} from "react-router-dom";
-import {useEffect, useState} from "react";
-import React from "react";
+import React, {useState} from "react";
 import {updateCurrentUserProfileByUserNameThunk} from "../users/users-thunks";
 
 const EditProfile = () => {
@@ -11,7 +10,6 @@ const EditProfile = () => {
   const [bioString, setBioString] = useState(currentUser.bio);
   const [emailString, setEmailString] = useState(currentUser.email);
   const [phoneString, setPhoneString] = useState(currentUser.phone);
-  const [passwordString, setPasswordString] = useState(currentUser.password);
   const [locationString, setLocationString] = useState(currentUser.location);
 
   const profileBirthdayYear = currentUser.dateOfBirth.substring(0, 4);
@@ -36,10 +34,6 @@ const EditProfile = () => {
     setPhoneString(event.target.value);
   };
 
-  const changePassword = (event) => {
-    setPasswordString(event.target.value);
-  };
-
   const changeLocation = (event) => {
     setLocationString(event.target.value);
   };
@@ -56,7 +50,6 @@ const EditProfile = () => {
       username: currentUser.username,
       email: emailString,
       phone: phoneString,
-      password: passwordString,
       bio: bioString,
       location: locationString,
       dateOfBirth: birthdateString
@@ -96,11 +89,6 @@ const EditProfile = () => {
             <label className="ps-1 fa-lg pb-3 text-dark">Phone</label>
             <input type="text" className="form-control text-bg-light text-info pt-0" value={phoneString}
                    onChange={changePhone}/>
-          </div>
-          <div className="mb-3">
-            <label className="ps-1 fa-lg pb-3 text-dark">Password</label>
-            <input type="password" className="form-control text-bg-light text-info pt-0" value={passwordString}
-                   onChange={changePassword}/>
           </div>
           <div className="mb-3">
             <label className="ps-1 fa-lg pb-3 text-dark">Bio</label>

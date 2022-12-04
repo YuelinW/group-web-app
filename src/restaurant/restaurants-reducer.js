@@ -5,7 +5,7 @@ import {
   findRestaurantsByCategoryThunk,
   findRestaurantByYelpIdThunk,
   createRestaurantThunk,
-  findRestaurantFromYelpByYelpIDThunk
+  findRestaurantFromYelpByYelpIDThunk, connectOwnerAndRestaurantThunk
 } from './restaurants-thunks';
 import {createSlice} from "@reduxjs/toolkit";
 import {
@@ -60,6 +60,16 @@ const restaurantSlice = createSlice({
         (state, {payload}) => {
           state.loading = false;
           state.restaurants = state.restaurants.filter(r => r._id !== payload);
+        },
+    [connectOwnerAndRestaurantThunk.fulfilled]:
+        (state, {payload}) => {
+          state.loading = false; // cannot add to restaurants since restaurants might be uninitialized
+          // const index = state.restaurants.findIndex(r => r._id === payload.rid)
+          // console.log(payload.rid + " this is the rid")
+          // console.log("index is " + index)
+          // state.restaurants[index].owners = [
+          //   ...payload.owners
+          // ]
         },
     [findRestaurantsByCategoryThunk.pending]:
         (state) => {

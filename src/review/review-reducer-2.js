@@ -1,5 +1,5 @@
 import {
-  findReviewByIDThunk, updateReviewOwnerReplyThunk
+  findReviewByIDThunk
 }
   from './review-thunks';
 

@@ -67,8 +67,7 @@ function App() {
                     </ProtectedRoute>
                   }/>
                   <Route path="/details/:yid" element={<RestaurantDetail/>}></Route>
-                  <Route path="/admin" element={<EditAds/>}></Route>
-                  <Route path="/review/:reviewid" element={<SingleReview/>}></Route>
+                  {/*<Route path="/admin" element={<EditAds/>}></Route>*/}
                 </Routes>
                 {/*<div className="d-sm-none d-md-none d-lg-block col-lg-3 col-xl-3">*/}
                 {/*  <NewlyJoinedUsersList/>*/}
