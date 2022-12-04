@@ -2,13 +2,12 @@ import {
   findReviewByRestaurantIDThunk,
   deleteReviewByIDThunk,
   findAllReviewsThunk,
-  updateReviewOwnerReply, updateReviewOwnerReplyThunk, findReviewByIDThunk
+  updateReviewOwnerReplyThunk
 }
   from './review-thunks';
 
 import {createSlice} from "@reduxjs/toolkit";
 import {createReviewThunk} from "./review-thunks";
-import {updateCurrentUserProfileByUserNameThunk} from "../users/users-thunks";
 
 const initialState = {
   reviews: [],
