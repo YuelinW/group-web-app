@@ -12,7 +12,7 @@ const NavigationSidebar = () => {
   const {currentUser} = useSelector((state) => state.users)
   return (
         <div className="mt-2 mb-2">
-        <nav className="navbar navbar-expand-lg navbar-dark bg-primary navbar-default fixed-top">
+        <nav className="navbar navbar-expand-sm navbar-dark bg-primary navbar-default fixed-top">
           <div className="ms-4 container-fluid">
             <Link to="/home" className="navbar-brand">Yealp</Link>
             <button className="navbar-toggler" type="button"
