@@ -5,10 +5,9 @@ import {Route, Routes} from "react-router";
 import {BrowserRouter} from "react-router-dom";
 import HomeComponent from "./home";
 import ExploreComponent from "./search";
-import NewlyJoinedUsersList from "./Newly-joined-users";
 import restaurantReducer from "./restaurant/restaurants-reducer";
 import {configureStore} from "@reduxjs/toolkit";
-import {Provider, useSelector} from "react-redux";
+import {Provider} from "react-redux";
 import reviewsReducer from "./review/review-reducer";
 import RestaurantDetail from "./restaurant-detail";
 import EditProfile from "./profile/edit-profile";
@@ -21,7 +20,6 @@ import ProtectedRoute from "./users/protected-route";
 import usersReducer from "./users/users-reducer";
 import Profile from "./profile";
 import restaurantsReducer2 from "./restaurant/reducer";
-import EditAds from "./admin-tools/edit-ads";
 import reviewReducer2 from "./review/review-reducer-2";
 
 const store = configureStore({
@@ -65,9 +63,6 @@ function App() {
                   <Route path="/details/:yid" element={<RestaurantDetail/>}></Route>
                   {/*<Route path="/admin" element={<EditAds/>}></Route>*/}
                 </Routes>
-                {/*<div className="d-sm-none d-md-none d-lg-block col-lg-3 col-xl-3">*/}
-                {/*  <NewlyJoinedUsersList/>*/}
-                {/*</div>*/}
               </CurrentUser>
           </BrowserRouter>
         </Provider>
