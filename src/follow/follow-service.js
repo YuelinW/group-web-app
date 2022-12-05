@@ -17,3 +17,8 @@ export const findFriendsByProfileID = async (profileID) => {
   const response = await axios.get(`${YEALP_API}/friends/${profileID}`);
   return response.data;
 };
+
+export const follow = async (followInfo) => {
+  const response = await axios.post(`${API_BASE}/home`, followInfo)
+  return response.data
+};
