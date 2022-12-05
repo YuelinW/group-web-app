@@ -5,6 +5,7 @@ import {findAllUsersThunk} from "../users/users-thunks";
 
 const WhoToFollowList = () => {
   const {users, loading} = useSelector((state) => state.users);
+  const DISPLAY_LIMIT = 7;
   const dispatch = useDispatch();
   useEffect(() => {dispatch(findAllUsersThunk())}, []);
   return(
@@ -21,7 +22,7 @@ const WhoToFollowList = () => {
           }
           {
             users &&
-              users.map(who =>
+              users.slice(0, users.length <= DISPLAY_LIMIT ? users.length : DISPLAY_LIMIT).map(who =>
                 <WhoToFollowItem
                     key={who._id}
                     who={who}/>)
