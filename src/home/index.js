@@ -2,6 +2,7 @@ import React from "react";
 import "../index.css";
 import AdvertisementPostsList from "./advertisement-posts-list";
 import {useSelector} from "react-redux";
+import WhoToFollowList from "./who-to-follow-list";
 
 const HomeComponent = () => {
   const {currentUser} = useSelector((state) => state.users)
@@ -25,7 +26,22 @@ const HomeComponent = () => {
               Start the journey
             </a>
           </div>
-          <AdvertisementPostsList/>
+          {
+              (!currentUser || currentUser && currentUser.role !== "CUSTOMER") &&
+              <AdvertisementPostsList/>
+          }
+          {
+              currentUser && currentUser.role === "CUSTOMER" &&
+              <div className="row">
+                <div className="col-md-12 col-lg-9 col-xl-9">
+                  <AdvertisementPostsList/>
+                </div>
+                <div
+                    className="d-none d-sm-none d-md-none d-lg-block col-lg-3 col-xl-3">
+                  <WhoToFollowList/>
+                </div>
+              </div>
+          }
         </div>
       </>
   );

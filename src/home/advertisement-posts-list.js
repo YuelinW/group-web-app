@@ -13,7 +13,7 @@ const AdvertisementPostsList = () => {
   const adsRender = [];
   for (let i = 0; i < allAds.length; i += 3) {
     adsRender.push(
-        <div className="d-flex justify-content-around">
+        <div className="d-flex justify-content-between" key={i}>
           {
             allAds.slice(i, i + 3)
             .map(ad =>
@@ -26,7 +26,7 @@ const AdvertisementPostsList = () => {
   }
   return (
       <div>
-        <ul className="list-group mt-4">
+        <ul className="list-group mt-2">
           {
               loading &&
               <li className="list-group-item">
