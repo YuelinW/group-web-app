@@ -1,8 +1,10 @@
 import {Link} from "react-router-dom";
 import {useLocation} from "react-router";
 import React from "react";
+import {useSelector} from "react-redux";
 
 const ProfileHeader = ({profile}) => {
+  const {currentUser} = useSelector((state) => state.users)
   const {pathname} = useLocation();
   const paths = pathname.split("/");
   const showEdit = paths.length === 2; // if == 3, then it is ["", "profile", "uid"] and we should not show update button
@@ -23,6 +25,16 @@ const ProfileHeader = ({profile}) => {
           {
               showEdit && <Link to="/edit-profile"><button className="btn btn-primary float-end rounded-pill mt-3 me-2 text-lg-center">Update Your Profile</button></Link>
           }
+          // TODO: follow function
+          {/*{*/}
+          {/*    currentUser.role === 'CUSTOMER' &&*/}
+          {/*    <button type="button"*/}
+          {/*            className="btn btn-outline-primary rounded-pill ms-4 mb-4"*/}
+          {/*            onClick={() => dispatch(updateFollowsThunk({*/}
+          {/*              ...followsInfo,*/}
+          {/*              following: followsCount.following + 1*/}
+          {/*            }))}>Follow</button>*/}
+          {/*}*/}
         </div>
       </>
   );
