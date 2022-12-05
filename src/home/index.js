@@ -21,13 +21,13 @@ const HomeComponent = () => {
                 <h1 className="text-primary position-absolute wd-nudge-up-2"><i className="bi-balloon"></i>Hi! Welcome to Yealp!</h1>
             }
           </div>
-          <h6 className="position-absolute wd-nudge-up-3">Everyone's Review and Recommendation of Best Restaurants...</h6>
+          <h6 className="position-absolute wd-nudge-up-3 text-dark">Everyone's Review and Recommendation of Best Restaurants...</h6>
             <a href="/search" className="position-absolute btn btn-primary btn-block rounded-pill wd-nudge-up-4">
               Start the journey
             </a>
           </div>
           {
-              (!currentUser || currentUser && currentUser.role !== "CUSTOMER") &&
+              (!currentUser || currentUser.role !== "CUSTOMER") &&
               <AdvertisementPostsList/>
           }
           {

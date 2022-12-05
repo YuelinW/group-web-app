@@ -12,7 +12,7 @@ const NavigationSidebar = () => {
   const {currentUser} = useSelector((state) => state.users)
   return (
         <div className="mt-2 mb-2">
-        <nav className="navbar navbar-expand-sm navbar-dark bg-primary navbar-default fixed-top">
+        <nav className="navbar navbar-expand navbar-dark bg-primary navbar-default fixed-top">
           <div className="ms-4 container-fluid">
             <Link to="/home" className="navbar-brand">Yealp</Link>
             <button className="navbar-toggler" type="button"
@@ -23,21 +23,11 @@ const NavigationSidebar = () => {
             </button>
             <div className="collapse navbar-collapse" id="navbarColor01">
               <ul className="navbar-nav me-auto">
-                {/*{*/}
-                {/*    currentUser && currentUser.role === "ADMIN" &&*/}
-                {/*    <li className="nav-item">*/}
-                {/*      <Link className={`nav-link ${active === 'admin' ? 'active'*/}
-                {/*          : ''}`} to="/admin">Admin*/}
-                {/*        <span className="visually-hidden">(current)</span>*/}
-                {/*      </Link>*/}
-                {/*    </li>*/}
-                {/*}*/}
                 {
                   (!currentUser || currentUser.role === "OWNER" || currentUser.role === "CUSTOMER" || currentUser.role === 'ADMIN') &&
                   <li className="nav-item">
                     <Link className={`nav-link ${active === 'home' ? 'active'
                         : ''}`} to="/home">Home
-                      {/*<span className="visually-hidden">(current)</span>*/}
                     </Link>
                   </li>
                 }
@@ -61,7 +51,7 @@ const NavigationSidebar = () => {
                     </li>
                 }
               </ul>
-              <div className="me-4">
+              <div className="me-4 d-none d-sm-block">
                 <span>follow us</span><i className="ms-2 me-2 bi-instagram"></i><i className="me-2 bi-facebook"></i><i className="bi-tiktok"></i>
               </div>
             </div>
