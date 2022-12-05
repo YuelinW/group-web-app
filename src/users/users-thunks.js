@@ -6,7 +6,7 @@ import {
   login,
   register,
   updateCurrentUserProfileByUserName,
-  profile
+  profile, increaseUserFollowerCountByUserID, increaseUserFollowingCountByUserID
 } from "./users-service";
 
 export const findAllUsersThunk = createAsyncThunk(
@@ -42,4 +42,14 @@ export const findUserByIDThunk = createAsyncThunk(
 export const updateCurrentUserProfileByUserNameThunk = createAsyncThunk(
     'users/updateCurrentUserProfileByUserName',
     async (user) => await updateCurrentUserProfileByUserName(user)
+)
+
+export const increaseUserFollowerCountByUserIDThunk = createAsyncThunk(
+    'users/increaseUserFollowerCountByUserID',
+    async (uid) => await increaseUserFollowerCountByUserID(uid)
+)
+
+export const increaseUserFollowingCountByUserIDThunk = createAsyncThunk(
+    'users/increaseUserFollowerCountByUserID',
+    async (uid) => await increaseUserFollowingCountByUserID(uid)
 )
