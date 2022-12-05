@@ -103,8 +103,7 @@ const ReviewAll = ({restaurantInDB}) => {
         }
         {/*Create Review section*/}
         <h5 className="text-primary">Reviews</h5>
-
-        {!currentUser || (currentUser && currentUser.role === 'CUSTOMER') &&
+        {!(currentUser && currentUser.role !== 'CUSTOMER') &&
             <div className="row">
               <div className="col-auto">
                 <img src={profilePic} alt="profile" width={60} height={60}

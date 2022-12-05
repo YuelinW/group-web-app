@@ -19,7 +19,7 @@ export const login = async (user) => {
 }
 
 export const profile = async () => {
-  const response = await axios.post(`${BASE_URL}/profile`)
+  const response = await axios.post(`${BASE_URL}/profile`, {}, {withCredentials: true})
   return response.data
 }
 
