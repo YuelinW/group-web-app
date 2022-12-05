@@ -25,16 +25,12 @@ const ProfileHeader = ({profile}) => {
           {
               showEdit && <Link to="/edit-profile"><button className="btn btn-primary float-end rounded-pill mt-3 me-2 text-lg-center">Update Your Profile</button></Link>
           }
-          // TODO: follow function
-          {/*{*/}
-          {/*    currentUser.role === 'CUSTOMER' &&*/}
-          {/*    <button type="button"*/}
-          {/*            className="btn btn-outline-primary rounded-pill ms-4 mb-4"*/}
-          {/*            onClick={() => dispatch(updateFollowsThunk({*/}
-          {/*              ...followsInfo,*/}
-          {/*              following: followsCount.following + 1*/}
-          {/*            }))}>Follow</button>*/}
-          {/*}*/}
+          {/*TODO: follow function*/}
+          {
+              currentUser.role === 'CUSTOMER' &&
+              <button type="button"
+                      className="btn btn-outline-primary rounded-pill ms-4 mb-4">Follow</button>
+          }
         </div>
       </>
   );

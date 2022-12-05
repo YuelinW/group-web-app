@@ -34,10 +34,6 @@ const Login = () => {
   }
   return(
       <div className="d-flex justify-content-center">
-        {/*{*/}
-        {/*    currentUser &&*/}
-        {/*    <h2>Welcome: {currentUser.username}</h2>*/}
-        {/*}*/}
         <form className="wd-auth-form">
           <div className="wd-auth-form-content">
             <h3 className="wd-auth-form-title">Log In</h3>

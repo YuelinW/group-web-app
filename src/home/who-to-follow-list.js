@@ -6,6 +6,7 @@ import {findAllUsersThunk} from "../users/users-thunks";
 
 const WhoToFollowList = () => {
   const {users, loading} = useSelector((state) => state.users);
+  const {currentUser} = useSelector((state) => state.users)
   const dispatch = useDispatch();
   useEffect(() => {dispatch(findAllUsersThunk())}, []);
   return(
@@ -22,11 +23,10 @@ const WhoToFollowList = () => {
           }
           {
             users &&
-            users.map(who =>
+              users.map(who =>
                 <WhoToFollowItem
                     key={who._id}
-                    who={who}/>
-            )
+                    who={who}/>)
           }
         </ul>
       </div>
