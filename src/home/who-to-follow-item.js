@@ -4,9 +4,7 @@ import * as service from "../profile/profile-service/profile-service";
 import {useDispatch, useSelector} from "react-redux";
 import {createFollowThunk} from "../follow/follow-thunks";
 
-const WhoToFollowItem = (
-    {who}
-) => {
+const WhoToFollowItem = ({who}) => {
   const {currentUser} = useSelector((state) => state.users)
   const [profile, setProfile] = useState([]);
   const dispatch = useDispatch()
@@ -20,6 +18,8 @@ const WhoToFollowItem = (
     .then(res => setProfile(res))
     .catch(() => setProfile(null))
   }, []);
+
+
   return(
       <li className="list-group-item">
         <div className="row">
