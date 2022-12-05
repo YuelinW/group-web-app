@@ -3,7 +3,6 @@ import './App.css';
 import NavigationSidebar from "./navigation-sidebar";
 import {Route, Routes} from "react-router";
 import {BrowserRouter} from "react-router-dom";
-import RestaurantSummaryList from "./restaurant-summary-list";
 import HomeComponent from "./home";
 import ExploreComponent from "./search";
 import NewlyJoinedUsersList from "./Newly-joined-users";
@@ -21,11 +20,8 @@ import CurrentUser from "./users/current-user";
 import ProtectedRoute from "./users/protected-route";
 import usersReducer from "./users/users-reducer";
 import Profile from "./profile";
-import ReviewComponent from "./restaurant-detail/review-component";
 import restaurantsReducer2 from "./restaurant/reducer";
 import EditAds from "./admin-tools/edit-ads";
-import ReviewAll from "./restaurant-detail/review-index";
-import SingleReview from "./restaurant-detail/single-review";
 import reviewReducer2 from "./review/review-reducer-2";
 
 const store = configureStore({

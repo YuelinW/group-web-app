@@ -1,9 +1,5 @@
 import {createAsyncThunk} from "@reduxjs/toolkit";
 import * as service from './restaurants-service';
-import {
-  connectOwnerAndRestaurant,
-  findRestaurantFromYelpByYelpID
-} from "./restaurants-service";
 
 export const findAllRestaurantsThunk = createAsyncThunk(
     'restaurants/findAllRestaurantsThunk', async () => await service.findAllRestaurants()
@@ -11,10 +7,6 @@ export const findAllRestaurantsThunk = createAsyncThunk(
 
 export const findRestaurantsByOwnerIDThunk = createAsyncThunk(
     'restaurants/findRestaurantsByOwnerID', async (oid) => await service.findRestaurantsByOwnerID(oid)
-);
-
-export const findRestaurantByRestaurantID = createAsyncThunk(
-    'restaurants/findRestaurantByRestaurantID', async (rid) => await service.findRestaurantByRestaurantID(rid)
 );
 
 export const findRestaurantsByRestaurantName = createAsyncThunk(
