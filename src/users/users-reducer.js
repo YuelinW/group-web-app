@@ -67,19 +67,16 @@ const usersReducer = createSlice({
         ...payload
       }
     },
-    [increaseUserFollowerCountByUserIDThunk.fulfilled]: (state, {payload}) => {
+    [increaseUserFollowerCountByUserIDThunk.fulfilled]: (state, {payload}) => { // currentUser follow other
       const index = state.users.findIndex(u => u._id === payload);
       state.users[index] = {
         ...state.users[index],
         followersCount: state.users[index].followersCount + 1
       }
+
     },
-    [increaseUserFollowingCountByUserIDThunk.fulfilled]: (state, {payload}) => {
-      const index = state.users.findIndex(u => u._id === payload);
-      state.users[index] = {
-        ...state.users[index],
-        followingCount: state.users[index].followingCount + 1
-      }
+    [increaseUserFollowingCountByUserIDThunk.fulfilled]: (state, {payload}) => { // currentUser follow other
+      // state.currentUser.followingCount = state.currentUser.followingCount + 1
     },
   }
 })

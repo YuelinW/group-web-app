@@ -12,7 +12,7 @@ const WhoToFollowList = ({currentUser}) => {
   .then((userPayload) => dispatch(findFollowsByFollowerIDThunk(currentUser._id))
   .then(r => {
     const followList = r.payload.map(follow => follow.leaderID);
-    const listToDisplay = userPayload.payload.filter(user => user.role === 'CUSTOMER' && followList.indexOf(user._id) === -1)
+    const listToDisplay = userPayload.payload.filter(user => user.role === 'CUSTOMER' && followList.indexOf(user._id) === -1 && user._id !== currentUser._id)
     setDisplayList([...listToDisplay])
   }))}, [])
   return(
