@@ -3,7 +3,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {registerThunk} from "./users-thunks";
 import "./index.css";
 import {Link} from "react-router-dom";
-import {Navigate} from "react-router";
+import {Navigate, useNavigate} from "react-router";
 import axios from "axios";
 
 const Register = () => {
@@ -21,6 +21,7 @@ const Register = () => {
   const [error, setError] = useState(null)
   const {currentUser} = useSelector((state) => state.users)
   const dispatch = useDispatch()
+  const navigate = useNavigate();
   const handleFileUpload = (file) => {
     const formData = new FormData()
     formData.append("file", file)
@@ -80,7 +81,7 @@ const Register = () => {
     dispatch(registerThunk(newUser))
   }
   if (currentUser) {
-    return (<Navigate to={'/profile'}/>)
+    return (navigate(-1))
   }
   return(
       <div className="d-flex justify-content-center">

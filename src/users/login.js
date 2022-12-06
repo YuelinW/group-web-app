@@ -3,7 +3,7 @@ import {useDispatch, useSelector} from "react-redux";
 import "./index.css";
 import {Link} from "react-router-dom";
 import {loginThunk} from "./users-thunks";
-import {Navigate} from "react-router";
+import {useNavigate} from "react-router";
 
 const Login = () => {
   const {currentUser} = useSelector((state) => state.users)
@@ -11,6 +11,7 @@ const Login = () => {
   const [password, setPassword] = useState('')
   const [error, setError] = useState(null)
   const dispatch = useDispatch()
+  const navigate = useNavigate();
   const handleLoginBtn = async (e) => {
     e.preventDefault();
     if (username === "") {
@@ -30,7 +31,7 @@ const Login = () => {
     }
   }
   if (currentUser) {
-    return (<Navigate to={'/profile'}/>)
+    return (navigate(-1))
   }
   return(
       <div className="d-flex justify-content-center">
