@@ -24,6 +24,7 @@ export const profile = async () => {
 }
 
 export const logout = async () => {
+  console.log("called logout")
   const response = await axios.post(`${BASE_URL}/logout`)
   return response.data
 }

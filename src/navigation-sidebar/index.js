@@ -3,13 +3,18 @@ import {Link} from "react-router-dom";
 import {useLocation} from "react-router";
 import "../index.css";
 import "./index.css";
-import {useSelector} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
+import {logoutThunk} from "../users/users-thunks";
 
 const NavigationSidebar = () => {
   const {pathname} = useLocation();
   const paths = pathname.split('/')
   const active = paths[1];
+  const dispatch = useDispatch();
   const {currentUser} = useSelector((state) => state.users)
+  const handleLogoutBtn = () => {
+    dispatch(logoutThunk())
+  }
   return (
         <div className="mt-2 mb-2">
         <nav className="navbar navbar-expand navbar-dark bg-primary navbar-default fixed-top">
@@ -40,14 +45,14 @@ const NavigationSidebar = () => {
                 {
                     !currentUser &&
                       <li className="nav-item">
-                        <a className={`nav-link ${active === 'login' ? 'active'
-                            : ''}`} href="/login">Login</a>
+                        <Link to="/login" className={`nav-link ${active === 'login' ? 'active'
+                            : ''}`}>Login</Link>
                       </li>
                 }
                 {
                   currentUser &&
                     <li className="nav-item">
-                      <a className="nav-link" href="/home">Logout</a>
+                      <Link to="/home" className="nav-link"><div onClick={handleLogoutBtn}>Logout</div></Link>
                     </li>
                 }
               </ul>

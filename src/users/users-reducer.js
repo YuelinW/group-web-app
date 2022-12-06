@@ -3,7 +3,6 @@ import {
   findAllUsersThunk,
   findUserByIDThunk,
   increaseUserFollowerCountByUserIDThunk,
-  increaseUserFollowingCountByUserIDThunk,
   loginThunk,
   logoutThunk,
   profileThunk,
@@ -74,9 +73,6 @@ const usersReducer = createSlice({
         followersCount: state.users[index].followersCount + 1
       }
 
-    },
-    [increaseUserFollowingCountByUserIDThunk.fulfilled]: (state, {payload}) => { // currentUser follow other
-      // state.currentUser.followingCount = state.currentUser.followingCount + 1
     },
   }
 })
