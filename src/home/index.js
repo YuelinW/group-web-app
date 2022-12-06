@@ -38,7 +38,7 @@ const HomeComponent = () => {
                 </div>
                 <div
                     className="d-none d-sm-none d-md-none d-lg-block col-lg-3 col-xl-3">
-                  <WhoToFollowList/>
+                  <WhoToFollowList currentUser={currentUser}/>
                 </div>
               </div>
           }

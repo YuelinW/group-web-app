@@ -19,6 +19,6 @@ export const findFriendsByProfileID = async (profileID) => {
 };
 
 export const createFollowRelationship = async (followInfo) => {
-  const response = await axios.post(`${API_BASE}`, followInfo)
+  const response = await axios.post(`${YEALP_API}`, followInfo)
   return response.data
 };

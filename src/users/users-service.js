@@ -40,8 +40,10 @@ export const updateCurrentUserProfileByUserName = async (user) => { // this is c
 
 export const increaseUserFollowerCountByUserID = async (uid) => {
   await axios.put(`${BASE_URL}/users/followercount/${uid}`)
+  return uid
 }
 
 export const increaseUserFollowingCountByUserID = async (uid) => {
   await axios.put(`${BASE_URL}/users/followingcount/${uid}`)
+  return uid
 }
