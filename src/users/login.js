@@ -1,4 +1,4 @@
-import React, {useState}  from "react";
+import React, {useEffect, useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import "./index.css";
 import {Link} from "react-router-dom";
@@ -12,6 +12,14 @@ const Login = () => {
   const [error, setError] = useState(null)
   const dispatch = useDispatch()
   const navigate = useNavigate();
+
+  //return to previous page
+  useEffect(() => {
+    if(currentUser) {
+      navigate(-1)
+    }
+  })
+
   const handleLoginBtn = async (e) => {
     e.preventDefault();
     if (username === "") {
@@ -29,9 +37,6 @@ const Login = () => {
     } catch (error) {
       setError('Username and Password do not match')
     }
-  }
-  if (currentUser) {
-    return (navigate(-1))
   }
   return(
       <div className="d-flex justify-content-center">
