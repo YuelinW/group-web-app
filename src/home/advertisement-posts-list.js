@@ -6,12 +6,13 @@ import {
 } from "../advertisement/advertisements-thunks";
 
 const AdvertisementPostsList = () => {
+  const DISPLAY_LIMIT = 6;
   const {allAds, loading} = useSelector(
       state => state.advertisements)
   const dispatch = useDispatch();
   useEffect(() => {dispatch(findAllAdvertisementsThunk())}, []);
   const adsRender = [];
-  for (let i = 0; i < allAds.length; i += 3) {
+  for (let i = 0; i < (allAds.length <= DISPLAY_LIMIT ? allAds.length : DISPLAY_LIMIT); i += 3) {
     adsRender.push(
         <div className="d-flex justify-content-between" key={i}>
           {

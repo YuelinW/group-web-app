@@ -2,6 +2,7 @@ import {createSlice} from "@reduxjs/toolkit";
 import {
   findAllUsersThunk,
   findUserByIDThunk,
+  increaseUserFollowerCountByUserIDThunk,
   loginThunk,
   logoutThunk,
   profileThunk,
@@ -64,7 +65,15 @@ const usersReducer = createSlice({
         ...state.currentUser,
         ...payload
       }
-    }
+    },
+    [increaseUserFollowerCountByUserIDThunk.fulfilled]: (state, {payload}) => { // currentUser follow other
+      const index = state.users.findIndex(u => u._id === payload);
+      state.users[index] = {
+        ...state.users[index],
+        followersCount: state.users[index].followersCount + 1
+      }
+
+    },
   }
 })
 

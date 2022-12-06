@@ -24,6 +24,7 @@ export const profile = async () => {
 }
 
 export const logout = async () => {
+  console.log("called logout")
   const response = await axios.post(`${BASE_URL}/logout`)
   return response.data
 }
@@ -36,4 +37,14 @@ export const findUserByID = async (uid) => { // this is called when /profile/uid
 export const updateCurrentUserProfileByUserName = async (user) => { // this is called in edit-profile
   await axios.put(`${BASE_URL}/users/username/${user.username}`, user);
   return user;
+}
+
+export const increaseUserFollowerCountByUserID = async (uid) => {
+  await axios.put(`${BASE_URL}/users/followercount/${uid}`)
+  return uid
+}
+
+export const increaseUserFollowingCountByUserID = async (uid) => {
+  await axios.put(`${BASE_URL}/users/followingcount/${uid}`)
+  return uid
 }
