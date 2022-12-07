@@ -29,7 +29,7 @@ const AdItem = ({ad, owner}) => {
       <li className="list-group-item wd-post">
         <div className="row mb-2">
           <div className="col-auto">
-            <img src={owner.profilePicture} width={45} height={45} className="rounded-circle" alt={owner.profilePicture}/>
+            <img src={owner.profilePicture} width={45} height={45} className="rounded-circle wd-object-fit-cover-image" alt={owner.profilePicture}/>
           </div>
           <div className="col-10 ps-0 pe-0">
             {
