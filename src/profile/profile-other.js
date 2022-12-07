@@ -55,7 +55,7 @@ const ProfileOther = () => {
         {otherUser && <>
           <ProfileHeader profile={otherUser}/>
           {
-            currentUser && otherUser.role === 'CUSTOMER' && otherUser._id !== currentUser._id && !follow &&
+            currentUser && currentUser.role === 'CUSTOMER' && otherUser.role === 'CUSTOMER' && otherUser._id !== currentUser._id && !follow &&
               <button onClick={followHandler} className="btn btn-info btn-lg rounded-3 wd-nudge-up-follow-button">
                 <i className="bi bi-person-plus-fill me-2"></i>Follow</button>
           }
