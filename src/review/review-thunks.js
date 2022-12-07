@@ -1,6 +1,5 @@
 import {createAsyncThunk} from "@reduxjs/toolkit";
 import * as service from "./review-service";
-import {findReviewByID, updateReviewOwnerReply} from "./review-service";
 
 export const findReviewByRestaurantIDThunk = createAsyncThunk(
     'reviews/findReviewByRestaurantID', async (rid) => await service.findReviewByRestaurantID(rid)
@@ -17,7 +16,7 @@ export const findAllReviewsThunk = createAsyncThunk(
 );
 
 export const updateReviewOwnerReplyThunk = createAsyncThunk(
-    'reviews/updateReviewOwnerReply', async (review) => await updateReviewOwnerReply(review)
+    'reviews/updateReviewOwnerReply', async (review) => await service.updateReviewOwnerReply(review)
 )
 
 export const findReviewByIDThunk = createAsyncThunk(
