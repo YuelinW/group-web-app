@@ -13,12 +13,14 @@ export const findFollowsByLeaderID = async (lid) => {
   return response.data;
 };
 
-export const findFriendsByProfileID = async (profileID) => {
-  const response = await axios.get(`${YEALP_API}/friends/${profileID}`);
-  return response.data;
-};
-
 export const createFollowRelationship = async (followInfo) => {
   const response = await axios.post(`${YEALP_API}`, followInfo)
   return response.data
 };
+
+export const findFollowByIDs = async (followInfo) => {
+  const fid = followInfo.followerID;
+  const lid = followInfo.leaderID;
+  const response = await axios.get(`${YEALP_API}/follower/${fid}/leader/${lid}`);
+  return response.data
+}
