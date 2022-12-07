@@ -3,7 +3,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {registerThunk} from "./users-thunks";
 import "./index.css";
 import {Link} from "react-router-dom";
-import {Navigate, useNavigate} from "react-router";
+import {useNavigate} from "react-router";
 import axios from "axios";
 
 const Register = () => {
