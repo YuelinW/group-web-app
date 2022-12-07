@@ -3,7 +3,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {registerThunk} from "./users-thunks";
 import "./index.css";
 import {Link} from "react-router-dom";
-import {Navigate, useNavigate} from "react-router";
+import {useNavigate} from "react-router";
 import axios from "axios";
 
 const Register = () => {
@@ -30,7 +30,7 @@ const Register = () => {
       setProfilePicture(res.data.url)
     })
   }
-  const handleRegisterBtn = (e) => {
+  const handleRegisterBtn = async (e) => {
     e.preventDefault();
     if (role === "") {
       setError('Select your role')
@@ -78,7 +78,11 @@ const Register = () => {
     }
     setError(null)
     const newUser = {role, profilePicture, username, firstName, lastName, email, phone, password, location, dateOfBirth}
-    dispatch(registerThunk(newUser))
+    try {
+      await dispatch(registerThunk(newUser)).unwrap()
+    } catch (error) {
+      setError('Username already exists.')
+    }
   }
   if (currentUser) {
     return (navigate(-1))
