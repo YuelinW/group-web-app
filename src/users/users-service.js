@@ -19,13 +19,12 @@ export const login = async (user) => {
 }
 
 export const profile = async () => {
-  const response = await axios.post(`${BASE_URL}/profile`, {}, {withCredentials: true})
+  const response = await api.post(`${BASE_URL}/profile`)
   return response.data
 }
 
 export const logout = async () => {
-  console.log("called logout")
-  const response = await axios.post(`${BASE_URL}/logout`)
+  const response = await api.post(`${BASE_URL}/logout`)
   return response.data
 }
 
@@ -35,7 +34,7 @@ export const findUserByID = async (uid) => { // this is called when /profile/uid
 }
 
 export const updateCurrentUserProfileByUserName = async (user) => { // this is called in edit-profile
-  await axios.put(`${BASE_URL}/users/username/${user.username}`, user);
+  await api.put(`${BASE_URL}/users/username/${user.username}`, user);
   return user;
 }
 
