@@ -68,6 +68,12 @@ li.list-group-item.wd-post {
   margin-top: -50px;
 }
 
+.wd-nudge-up-follow-button {
+  position: relative;
+  left: 200px;
+  bottom: 120px;
+}
+
 .wd-hover-cursor {
   cursor: pointer;
 }

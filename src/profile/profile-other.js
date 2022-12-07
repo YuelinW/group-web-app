@@ -13,21 +13,52 @@ import AdvertisementList from "./profile-content/advertisement-list";
 import UserList from "./profile-content/user-list";
 import ReviewList from "./profile-content/review-list";
 import ProfileAbout from "./profile-about";
-import {findUserByIDThunk} from "../users/users-thunks";
+import {
+  findUserByIDThunk,
+  increaseUserFollowerCountByUserIDThunk,
+  increaseUserFollowingCountByUserIDThunk
+} from "../users/users-thunks";
 import PostAdvertisement from "./profile-content/post-advertisement";
+import {createFollowThunk, findFollowByIDsThunk} from "../follow/follow-thunks";
 
 
 const ProfileOther = () => {
   const {uid} = useParams();
   const dispatch = useDispatch();
-  const {otherUser} = useSelector(state => state.users); // initially is null or a previous otherUser
-  useEffect(() => {dispatch(findUserByIDThunk(uid))}, [uid])
+  const {otherUser, currentUser} = useSelector(state => state.users);
+  const [follow, setFollow] = useState(true); // default to be already followed and cannot follow again
+  useEffect(() => {
+    dispatch(findUserByIDThunk(uid))
+    .then((o) => {dispatch(findFollowByIDsThunk({followerID: (currentUser ? currentUser._id : o.payload._id), leaderID: o.payload._id}))
+    .then(r => {
+      if (r.payload) { // there is an existing follow
+        setFollow(true)
+      } else { // not followed yet, can follow
+        setFollow(false)
+      }
+    })})
+  }, [uid])
+
+  const followHandler = () => {
+    const followerID = currentUser._id
+    const leaderID = otherUser._id
+    dispatch(createFollowThunk({followerID, leaderID}))
+    dispatch(increaseUserFollowerCountByUserIDThunk(leaderID))
+    dispatch(increaseUserFollowingCountByUserIDThunk(followerID))
+    dispatch(findUserByIDThunk(uid)) // refresh follower count
+    setFollow(true)
+  }
   const [activeComponent, setActiveComponent] = useState('basic'); // all roles start with basic
 
   return (
       <div>
         {otherUser && <>
           <ProfileHeader profile={otherUser}/>
+          {
+            currentUser && otherUser.role === 'CUSTOMER' && otherUser._id !== currentUser._id && !follow &&
+              <button onClick={followHandler} className="btn btn-info btn-lg rounded-3 wd-nudge-up-follow-button">
+                <i className="bi bi-person-plus-fill me-2"></i>Follow</button>
+          }
           <div className="wd-nudge-up">
             <div className="row">
               <ProfileNavbar role={otherUser.role} setActiveComponent ={setActiveComponent}/>
